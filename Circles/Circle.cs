@@ -70,7 +70,7 @@ namespace Circles {
                 offset += step / 4;
             }
 
-            screenPoint -= offset;
+            screenPoint -= offset - step / 2;
             screenPoint /= step;
 
             return new Vector2((int)screenPoint.X, (int)screenPoint.Y);
