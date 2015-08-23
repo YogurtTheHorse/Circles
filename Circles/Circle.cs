@@ -43,22 +43,7 @@ namespace Circles {
         }
 
         public void Draw(SpriteBatch batch) {
-            float fieldSize = Constants.ToScreenMin(1 - Constants.FIELD_OFFSET * 2);
-
-            Vector2 offset = new Vector2
-            {
-                X = (CircleGame.instance.GetScreenWidth() - fieldSize) / 2,
-                Y = (CircleGame.instance.GetScreenHeight() - fieldSize) / 2
-            };
-
-            Vector2 step = new Vector2(fieldSize / (Constants.FIELD_WIDTH - 1));
-            if (player == Constants.FIRST_PLAYER) {
-                offset -= step / 4;
-            } else {
-                offset += step / 4;
-            }
-
-            Vector2 center = offset + position * step;
+            Vector2 center = GetCenterPosition();
             float r = Constants.ToScreenMin(radius);
 
             Vector2 scale = new Vector2(r / texture.Width);
@@ -67,7 +52,26 @@ namespace Circles {
             batch.Draw(texture, center, null, null, origin, 0, scale, color);
         }
 
-        static Texture2D CreateTexture(int radius) {
+        public static Vector2 GetCenterPosition() {
+            float fieldSize = Constants.ToScreenMin(1 - Constants.FIELD_OFFSET * 2);
+
+            Vector2 offset = new Vector2
+                {
+                    X = (CircleGame.instance.GetScreenWidth() - fieldSize) / 2,
+                    Y = (CircleGame.instance.GetScreenHeight() - fieldSize) / 2
+                };
+
+            Vector2 step = new Vector2(fieldSize / (Constants.FIELD_WIDTH - 1));
+            if (player == Constants.FIRST_PLAYER) {
+                offset -= step / 4;
+            } else {
+                offset += step / 4;
+            }
+
+            return = offset + position * step;
+        }
+
+        private static Texture2D CreateTexture(int radius) {
             Texture2D texture = new Texture2D(CircleGame.instance.GraphicsDevice, radius, radius);
             Color[] colorData = new Color[radius * radius];
 
