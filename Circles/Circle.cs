@@ -56,10 +56,10 @@ namespace Circles {
             float fieldSize = Constants.ToScreenMin(1 - Constants.FIELD_OFFSET * 2);
 
             Vector2 offset = new Vector2
-                {
-                    X = (CircleGame.instance.GetScreenWidth() - fieldSize) / 2,
-                    Y = (CircleGame.instance.GetScreenHeight() - fieldSize) / 2
-                };
+            {
+                X = (CircleGame.instance.GetScreenWidth() - fieldSize) / 2,
+                Y = (CircleGame.instance.GetScreenHeight() - fieldSize) / 2
+            };
 
             Vector2 step = new Vector2(fieldSize / (Constants.FIELD_WIDTH - 1));
             if (player == Constants.FIRST_PLAYER) {
@@ -68,7 +68,7 @@ namespace Circles {
                 offset += step / 4;
             }
 
-            return = offset + position * step;
+            return offset + position * step;
         }
 
         private static Texture2D CreateTexture(int radius) {
