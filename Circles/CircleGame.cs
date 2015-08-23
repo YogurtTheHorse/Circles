@@ -71,8 +71,8 @@ namespace Circles {
         }
 
         // Calls in update if mouse just up
-        public void OnMouseDown(InputManager.MouseButton button) {
-            Console.WriteLine(button.ToString() + " button is down");
+        public void OnMouseDown(InputManager.MouseButton button, Point position) {
+            
         }
 
         public Vector2 GetScreenSize() {
