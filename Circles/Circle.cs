@@ -30,10 +30,12 @@ namespace Circles {
         }
 
         public void Update(GameTime gameTime) {
+            Animate(gameTime);
+        }
+
+        private void Animate(GameTime gameTime) {
             if (animationTime <= Constants.OPEN_ANIMATION_TIME) {
                 animationTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-
 
                 float scale = (float)Math.Sin(Math.PI / 4f * 3f * animationTime / Constants.OPEN_ANIMATION_TIME) * 1.5f;
                 radius = Constants.CIRCLE_RADIUS * scale;
