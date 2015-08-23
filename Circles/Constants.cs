@@ -10,7 +10,12 @@ namespace Circles {
 
         public const float CIRCLE_RADIUS = 0.05f;
 
-        public static Color FIRST_PLAYER_COLOR = Color.CornflowerBlue;
+        public const int FIRST_PLAYER = 0;
+        public static Color[] COLORS = new Color[]
+        {
+            Color.CornflowerBlue,
+            Color.IndianRed
+        };
 
         public static Vector2 ToScreen(float x, float y) {
             return new Vector2(ToScreenWidth(x), ToScreenHeight(y));

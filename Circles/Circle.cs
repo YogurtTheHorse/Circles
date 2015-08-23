@@ -15,10 +15,12 @@ namespace Circles {
 
         private Vector2 position;
         private Color color;
+        private int player;
 
-        public Circle(int i, int j, Color color) {
+        public Circle(int i, int j, int player) {
             this.position = new Vector2(i, j);
-            this.color = color;
+            this.player = player;
+            this.color = Constants.COLORS[player];
         }
 
         public void Draw(SpriteBatch batch) {
