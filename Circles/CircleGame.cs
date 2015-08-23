@@ -22,6 +22,7 @@ namespace Circles {
             base.Initialize();
 
             this.Window.AllowUserResizing = true;
+            this.IsMouseVisible = true;
         }
 
         protected override void LoadContent() {
