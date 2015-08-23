@@ -16,7 +16,7 @@ namespace Circles {
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
 
-        private Circle[,] firstPlayerField;
+        private Circle[,] firstPlayerField, secondPlayerField;
 
         public CircleGame() {
             instance = this;
@@ -37,10 +37,12 @@ namespace Circles {
 
         public void InitFields() {
             firstPlayerField = new Circle[Constants.FIELD_WIDTH, Constants.FIELD_HEIGHT];
+            secondPlayerField = new Circle[Constants.FIELD_WIDTH, Constants.FIELD_HEIGHT];
 
             for (int i = 0; i < Constants.FIELD_WIDTH; i++) {
                 for (int j = 0; j < Constants.FIELD_HEIGHT; j++) {
                     firstPlayerField[i, j] = new Circle(i, j, Constants.FIRST_PLAYER);
+                    secondPlayerField[i, j] = new Circle(i, j, Constants.SECOND_PLAYER);
                 }
             }
         }

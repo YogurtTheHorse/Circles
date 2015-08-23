@@ -11,6 +11,7 @@ namespace Circles {
         public const float CIRCLE_RADIUS = 0.05f;
 
         public const int FIRST_PLAYER = 0;
+        public const int SECOND_PLAYER = 1;
         public static Color[] COLORS = new Color[]
         {
             Color.CornflowerBlue,
