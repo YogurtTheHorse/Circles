@@ -51,6 +51,7 @@
     <Compile Include="Primitives2D.cs" />
     <Compile Include="Circle.cs" />
     <Compile Include="InputManager.cs" />
+    <Compile Include="Line.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />
