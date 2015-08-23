@@ -1,1 +1,12 @@
-﻿<Properties StartupItem="Circles/Circles.csproj" />
+﻿<Properties StartupItem="Circles/Circles.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Circles/CircleGame.cs">
+    <Files>
+      <File FileName="Circles/CircleGame.cs" Line="17" Column="19" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
