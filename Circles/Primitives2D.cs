@@ -366,9 +366,12 @@ namespace C3.XNA {
                 CreateThePixel(spriteBatch);
             }
 
+            Vector2 offset = new Vector2((float)Math.Cos(angle - Math.PI / 2), (float)Math.Sin(angle - Math.PI / 2));
+            offset *= thickness / 2;
+
             // stretch the pixel between the two vectors
             spriteBatch.Draw(pixel,
-                point,
+                point + offset,
                 null,
                 color,
                 angle,
