@@ -33,6 +33,11 @@ namespace Circles {
             };
 
             Vector2 step = new Vector2(fieldSize / (Constants.FIELD_WIDTH - 1));
+            if (player == Constants.FIRST_PLAYER) {
+                offset -= step / 4;
+            } else {
+                offset += step / 4;
+            }
 
             Vector2 center = offset + position * step;
             float r = Constants.ToScreenMin(Constants.CIRCLE_RADIUS);
@@ -56,8 +61,7 @@ namespace Circles {
                     Vector2 pos = new Vector2(x - diam, y - diam);
                     if (pos.LengthSquared() <= diamsq) {
                         colorData[index] = Color.Gray;
-                    }
-                    else {
+                    } else {
                         colorData[index] = Color.Transparent;
                     }
                 }
