@@ -12,6 +12,7 @@ using C3.XNA;
 namespace Circles {
     public class CircleGame : Game {
         public static CircleGame instance;
+        public static int CurrentTurn = Constants.FIRST_PLAYER;
 
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
