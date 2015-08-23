@@ -17,10 +17,29 @@ namespace Circles {
         private Color color;
         private int player;
 
+        private float animationTime;
+        private float radius;
+
         public Circle(int i, int j, int player) {
             this.position = new Vector2(i, j);
             this.player = player;
             this.color = Constants.COLORS[player];
+
+            this.animationTime = 0f;
+            this.radius = 0f;
+        }
+
+        public void Update(GameTime gameTime) {
+            if (animationTime <= Constants.OPEN_ANIMATION_TIME) {
+                animationTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+
+
+                float scale = (float)Math.Sin(Math.PI / 4f * 3f * animationTime / Constants.OPEN_ANIMATION_TIME) * 1.5f;
+                radius = Constants.CIRCLE_RADIUS * scale;
+            } else {
+                radius = Constants.CIRCLE_RADIUS;
+            }
         }
 
         public void Draw(SpriteBatch batch) {
@@ -40,7 +59,7 @@ namespace Circles {
             }
 
             Vector2 center = offset + position * step;
-            float r = Constants.ToScreenMin(Constants.CIRCLE_RADIUS);
+            float r = Constants.ToScreenMin(radius);
 
             Vector2 scale = new Vector2(r / texture.Width);
             Vector2 origin = new Vector2(texture.Width / 2);

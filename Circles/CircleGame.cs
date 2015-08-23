@@ -59,6 +59,13 @@ namespace Circles {
             }
             #endif
             base.Update(gameTime);
+
+            for (int i = 0; i < Constants.FIELD_WIDTH; i++) {
+                for (int j = 0; j < Constants.FIELD_HEIGHT; j++) {
+                    firstPlayerField[i, j].Update(gameTime);
+                    secondPlayerField[i, j].Update(gameTime);
+                }
+            }
         }
 
         public Vector2 GetScreenSize() {
