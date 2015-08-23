@@ -14,6 +14,8 @@ namespace Circles {
         public static CircleGame instance;
         public static int CurrentTurn = Constants.FIRST_PLAYER;
 
+        private InputManager inputManager;
+
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
 

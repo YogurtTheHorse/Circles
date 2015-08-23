@@ -10,6 +10,56 @@ using C3.XNA;
 #endregion
 
 namespace Circles {
-    class InputManager {
+    public class InputManager {
+        public enum MouseButton {
+            Left = 0,
+            Right
+        }
+
+        public delegate void ClickContainer(MouseButton button);
+
+        public event ClickContainer OnClick;
+        public event ClickContainer OnMouseDown;
+
+        public bool IsMouseDown { get; private set; }
+
+        private MouseState OldState;
+
+        public InputManager() {
+            this.OldState = new MouseState();
+            this.IsMouseDown = false;
+        }
+
+        public void Update() {
+            MouseState newState = Mouse.GetState();
+
+            if (IsDown(newState) && !IsDown(OldState)) {
+                if (OnMouseDown != null) {
+                    OnMouseDown(GetButton(newState));
+                }
+                IsMouseDown = true;
+            }
+
+            if (!IsDown(newState) && IsMouseDown) {
+                if (OnClick != null) {
+                    OnClick(GetButton(OldState));
+                }
+                IsMouseDown = false;
+            }
+
+            OldState = newState;
+        }
+
+        private bool IsDown(MouseState state) {
+            return state.LeftButton == ButtonState.Pressed || state.RightButton == ButtonState.Pressed;
+        }
+
+        private MouseButton GetButton(MouseState state) {
+            if (state.LeftButton == ButtonState.Pressed) {
+                return MouseButton.Left;
+            } else {
+                return MouseButton.Right;
+            }
+        }
     }
 }
