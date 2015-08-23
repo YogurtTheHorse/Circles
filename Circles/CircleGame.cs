@@ -14,7 +14,7 @@ namespace Circles {
         public static CircleGame instance;
         public static int CurrentTurn = Constants.FIRST_PLAYER;
 
-        private InputManager inputManager;
+        private InputManager InputManager;
 
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
@@ -34,6 +34,9 @@ namespace Circles {
             this.Window.AllowUserResizing = true;
             this.IsMouseVisible = true;
             this.graphics.PreferMultiSampling = true;
+
+            this.InputManager = new InputManager();
+            this.InputManager.OnClick += OnMouseDown;
 
             InitFields();
         }
@@ -55,13 +58,9 @@ namespace Circles {
         }
 
         protected override void Update(GameTime gameTime) {
-            #if !__IOS__
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
-                Keyboard.GetState().IsKeyDown(Keys.Escape)) {
-                Exit();
-            }
-            #endif
             base.Update(gameTime);
+
+            InputManager.Update();
 
             for (int i = 0; i < Constants.FIELD_WIDTH; i++) {
                 for (int j = 0; j < Constants.FIELD_HEIGHT; j++) {
@@ -69,6 +68,11 @@ namespace Circles {
                     secondPlayerField[i, j].Update(gameTime);
                 }
             }
+        }
+
+        // Calls in update if mouse just up
+        public void OnMouseDown(InputManager.MouseButton button) {
+            Console.WriteLine(button.ToString() + " button is down");
         }
 
         public Vector2 GetScreenSize() {
