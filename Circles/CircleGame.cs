@@ -9,11 +9,11 @@ using Microsoft.Xna.Framework.Input;
 #endregion
 
 namespace Circles {
-	public class Game1 : Game {
-		GraphicsDeviceManager graphics;
-		SpriteBatch spriteBatch;
+	public class CircleGame : Game {
+		private GraphicsDeviceManager graphics;
+		private SpriteBatch spriteBatch;
 
-		public Game1() {
+		public CircleGame() {
 			graphics = new GraphicsDeviceManager(this);
 			Content.RootDirectory = "Content";	            
 			graphics.IsFullScreen = true;		
