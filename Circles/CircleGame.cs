@@ -21,6 +21,15 @@ namespace Circles {
 
         private Circle[,] firstPlayerField, secondPlayerField;
 
+        private Circle[,] CurrentField
+        {
+            get {
+                return CurrentTurn == 0 ? firstPlayerField : secondPlayerField;
+            }
+        }
+
+        private Line currentLine;
+
         public CircleGame() {
             instance = this;
 
@@ -36,7 +45,8 @@ namespace Circles {
             this.graphics.PreferMultiSampling = true;
 
             this.InputManager = new InputManager();
-            this.InputManager.OnClick += OnMouseDown;
+            this.InputManager.OnMouseDown += OnMouseDown;
+            this.InputManager.OnClick += OnMouseUp;
 
             InitFields();
         }
@@ -61,6 +71,7 @@ namespace Circles {
             base.Update(gameTime);
 
             InputManager.Update();
+            UpdateLines();
 
             for (int i = 0; i < Constants.FIELD_WIDTH; i++) {
                 for (int j = 0; j < Constants.FIELD_HEIGHT; j++) {
@@ -71,8 +82,39 @@ namespace Circles {
         }
 
         // Calls in update if mouse just up
-        public void OnMouseDown(InputManager.MouseButton button, Point position) {
-            
+        public void OnMouseDown(InputManager.MouseButton button, Vector2 position) {
+            Vector2 circlePosition = Circle.GetPosition(position, CurrentTurn);
+            if (InField(circlePosition)) {
+                Circle c = CurrentField[(int)circlePosition.X, (int)circlePosition.Y];
+
+                currentLine = new Line(Circle.GetCenterPosition(c), position);
+            }
+        }
+
+        public void OnMouseUp(InputManager.MouseButton button, Vector2 position) {
+            if (currentLine != null) {
+                Vector2 begin = Circle.GetPosition(currentLine.begin, CurrentTurn);
+                Vector2 end = Circle.GetPosition(currentLine.end, CurrentTurn);
+                if (InField(end)) {
+
+                    Vector2 size = begin - end;
+                    if (size.LengthSquared() >= 0.99 && size.LengthSquared() <= 1.01) {
+                        Console.WriteLine("Added line");
+                    }
+                }
+
+                currentLine = null;
+            }
+        }
+
+        private void UpdateLines() {
+            if (currentLine != null) {
+                currentLine.end = InputManager.GetMousePosition();
+            }
+        }
+
+        public bool InField(Vector2 v) {
+            return new Rectangle(0, 0, Constants.FIELD_WIDTH, Constants.FIELD_HEIGHT).Contains(v);
         }
 
         public Vector2 GetScreenSize() {
@@ -97,10 +139,14 @@ namespace Circles {
             base.Draw(gameTime);
             spriteBatch.Begin();
             DrawField();
+            if (currentLine != null) {
+                currentLine.Draw(spriteBatch);
+            }
             spriteBatch.End();
         }
 
         protected void DrawField() {
+
             for (int i = 0; i < Constants.FIELD_WIDTH; i++) {
                 for (int j = 0; j < Constants.FIELD_HEIGHT; j++) {
                     firstPlayerField[i, j].Draw(spriteBatch);
