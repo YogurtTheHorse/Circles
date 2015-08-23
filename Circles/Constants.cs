@@ -6,7 +6,7 @@ namespace Circles {
         public const int FIELD_SIZE = 5;
         public const int FIELD_WIDTH = FIELD_SIZE;
         public const int FIELD_HEIGHT = FIELD_SIZE;
-        public const float FIELD_OFFSET = 0.1f;
+        public const float FIELD_OFFSET = 0.15f;
 
         public const float CIRCLE_RADIUS = 0.05f;
 
@@ -14,9 +14,11 @@ namespace Circles {
         public const int SECOND_PLAYER = 1;
         public static Color[] COLORS = new Color[]
         {
-            Color.CornflowerBlue,
-            Color.IndianRed
+            new Color(235, 73, 73),
+            new Color(99, 200, 225)
         };
+
+        public const float OPEN_ANIMATION_TIME = 1f;
 
         public static Vector2 ToScreen(float x, float y) {
             return new Vector2(ToScreenWidth(x), ToScreenHeight(y));
