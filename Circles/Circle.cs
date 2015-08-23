@@ -60,7 +60,7 @@ namespace Circles {
                     int index = x * radius + y;
                     Vector2 pos = new Vector2(x - diam, y - diam);
                     if (pos.LengthSquared() <= diamsq) {
-                        colorData[index] = Color.Gray;
+                        colorData[index] = Color.White;
                     } else {
                         colorData[index] = Color.Transparent;
                     }
