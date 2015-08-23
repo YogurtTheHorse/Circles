@@ -92,6 +92,7 @@ namespace Circles {
             for (int i = 0; i < Constants.FIELD_WIDTH; i++) {
                 for (int j = 0; j < Constants.FIELD_HEIGHT; j++) {
                     firstPlayerField[i, j].Draw(spriteBatch);
+                    secondPlayerField[i, j].Draw(spriteBatch);
                 }
             }
         }
