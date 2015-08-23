@@ -94,8 +94,6 @@ namespace Circles {
         }
 
         protected void DrawField() {
-            float stepX = 1f / Constants.FIELD_WIDTH, stepY = 1f / Constants.FIELD_HEIGHT;
-
             for (int i = 0; i < Constants.FIELD_WIDTH; i++) {
                 for (int j = 0; j < Constants.FIELD_HEIGHT; j++) {
                     firstPlayerField[i, j].Draw(spriteBatch);
