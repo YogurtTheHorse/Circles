@@ -16,7 +16,7 @@ namespace Circles {
             Right
         }
 
-        public delegate void ClickContainer(MouseButton button,Point position);
+        public delegate void ClickContainer(MouseButton button,Vector2 position);
 
         public event ClickContainer OnClick;
         public event ClickContainer OnMouseDown;
@@ -35,14 +35,14 @@ namespace Circles {
 
             if (IsDown(newState) && !IsDown(OldState)) {
                 if (OnMouseDown != null) {
-                    OnMouseDown(GetButton(newState), newState.Position);
+                    OnMouseDown(GetButton(newState), GetMousePosition());
                 }
                 IsMouseDown = true;
             }
 
             if (!IsDown(newState) && IsMouseDown) {
                 if (OnClick != null) {
-                    OnClick(GetButton(OldState), newState.Position);
+                    OnClick(GetButton(OldState), GetMousePosition());
                 }
                 IsMouseDown = false;
             }
