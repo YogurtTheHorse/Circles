@@ -23,11 +23,11 @@ namespace Circles
 	static class Program
 	#endif
     {
-		private static Game1 game;
+		private static CircleGame game;
 
 		internal static void RunGame ()
 		{
-			game = new Game1 ();
+			game = new CircleGame ();
 			game.Run ();
 		}
 
