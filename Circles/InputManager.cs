@@ -61,5 +61,10 @@ namespace Circles {
                 return MouseButton.Right;
             }
         }
+
+        public Vector2 GetMousePosition() {
+            return new Vector2(OldState.Position.X, OldState.Position.Y);
+        }
+
     }
 }
