@@ -53,26 +53,33 @@ namespace Circles {
         }
 
         public void OpenAnimation(GameTime gameTime) {
-            if (animationTime <= Constants.OPEN_ANIMATION_TIME) {
+            if (animationTime < Constants.OPEN_ANIMATION_TIME) {
                 animationTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
                 float scale = (float)Math.Sin(Math.PI / 4f * 3f * animationTime / Constants.OPEN_ANIMATION_TIME) * 1.5f;
                 radius = Constants.CIRCLE_RADIUS * scale;
             } else {
-                animationTime = 0f;
                 radius = Constants.CIRCLE_RADIUS;
             }
         }
 
+        public void ResetAnimation() {
+            this.animationTime = 0f;
+        }
+
         public void CloseAnimation(GameTime gameTime) {
             if (animationTime <= Constants.CLOSE_ANIMATION_TIME - Constants.LINE_ANIMATION_TIME) {
+                Console.WriteLine(animationTime);
                 animationTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-                float end = Constants.CLOSE_ANIMATION_TIME - Constants.LINE_ANIMATION_TIME;
+                float t = (Constants.CLOSE_ANIMATION_LAST_CIRCLE_START / Constants.FIELD_SIZE) * position.X;
+                if (animationTime < t) {
+                    return;
+                }
 
-                animationOffset = Constants.CloseAnimate(animationTime, 0, 1, end);
-            } else {
-                animationTime = 0f;
+                float end = Constants.CLOSE_ANIMATION_TIME - Constants.LINE_ANIMATION_TIME - Constants.CLOSE_ANIMATION_LAST_CIRCLE_START;
+
+                animationOffset = Constants.CloseAnimate(animationTime - t, 0, 1, end);
             }
         }
 
