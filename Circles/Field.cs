@@ -62,7 +62,7 @@ namespace Circles {
                 if (player == Constants.FIRST_PLAYER) {
                     return !TryGet(a.X + 1, a.Y - 1).IsConnected(TryGet(a.X + 1, a.Y));
                 } else {
-                    return !TryGet(a.X + 1, a.Y + 2).IsConnected(TryGet(a.X + 1, a.Y + 1));
+                    return !TryGet(a.X, a.Y + 1).IsConnected(TryGet(a.X, a.Y));
                 }
             } else { // Vertical
                 if (a.Y > b.Y) {
