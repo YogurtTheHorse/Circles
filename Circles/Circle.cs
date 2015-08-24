@@ -96,6 +96,10 @@ namespace Circles {
         }
 
         public static Vector2 GetCenterPosition(Circle circle) {
+            return GetCenterPosition(circle.position, circle.player);
+        }
+
+        public static Vector2 GetCenterPosition(Vector2 position, int player) {
             float fieldSize = Constants.ToScreenMin(1 - Constants.FIELD_OFFSET * 2);
 
             Vector2 offset = new Vector2
@@ -105,13 +109,13 @@ namespace Circles {
             };
 
             Vector2 step = new Vector2(fieldSize / (Constants.FIELD_WIDTH - 1));
-            if (circle.player == Constants.FIRST_PLAYER) {
+            if (player == Constants.FIRST_PLAYER) {
                 offset -= step / 4;
             } else {
                 offset += step / 4;
             }
 
-            return offset + circle.position * step;
+            return offset + position * step;
         }
 
         private static Texture2D CreateTexture(int radius) {
