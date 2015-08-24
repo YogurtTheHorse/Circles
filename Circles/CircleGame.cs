@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.Input;
 using C3.XNA;
+using System.Collections.Generic;
 
 #endregion
 
@@ -24,6 +25,7 @@ namespace Circles {
         private Field CurrentField { get { return CurrentTurn == 0 ? firstPlayerField : secondPlayerField; } }
 
         private Line currentLine;
+        private List<Line> OldLines;
 
         public CircleGame() {
             instance = this;
@@ -43,6 +45,8 @@ namespace Circles {
             this.InputManager.OnMouseDown += OnMouseDown;
             this.InputManager.OnClick += OnMouseUp;
 
+            this.OldLines = new List<Line>();
+
             InitFields();
         }
 
@@ -59,7 +63,7 @@ namespace Circles {
             base.Update(gameTime);
 
             InputManager.Update();
-            UpdateLines();
+            UpdateLines(gameTime);
 
             for (int i = 0; i < Constants.FIELD_WIDTH; i++) {
                 for (int j = 0; j < Constants.FIELD_HEIGHT; j++) {
@@ -85,6 +89,8 @@ namespace Circles {
                 Vector2 end = Circle.GetPosition(currentLine.end, CurrentTurn);
                 if (InField(end) && Connect(begin, end)) {
                     NextTurn();
+                } else {
+                    OldLines.Add(currentLine);
                 }
 
                 currentLine = null;
@@ -100,9 +106,16 @@ namespace Circles {
             CurrentTurn = (++CurrentTurn) % 2;
         }
 
-        private void UpdateLines() {
+        private void UpdateLines(GameTime gameTime) {
             if (currentLine != null) {
                 currentLine.end = InputManager.GetMousePosition();
+            }
+
+            for (int i = 0; i < OldLines.Count; i++) {
+                Line l = OldLines[i];
+                if (l.Remove(gameTime)) {
+                    OldLines.RemoveAt(i);
+                }
             }
         }
 
@@ -134,6 +147,10 @@ namespace Circles {
             DrawField();
             if (currentLine != null) {
                 currentLine.Draw(spriteBatch);
+            }
+
+            foreach (Line l in OldLines) {
+                l.Draw(spriteBatch);
             }
             spriteBatch.End();
         }

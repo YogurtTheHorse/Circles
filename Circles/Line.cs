@@ -1,9 +1,13 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using C3.XNA;
+using System;
 
 namespace Circles {
     public class Line {
+        private float removeAnimationTime = 0;
+        private Vector2 animationEnd;
+
         public Vector2 begin;
         public Vector2 end;
         public Color color;
@@ -22,6 +26,20 @@ namespace Circles {
             this.end = new Vector2(end.X, end.Y);
 
             this.color = Constants.COLORS[CircleGame.CurrentTurn];
+            this.thickness = Constants.LINE_THICKNESS;
+        }
+
+        public bool Remove(GameTime gameTime) {
+            if (animationEnd == Vector2.Zero) {
+                animationEnd = end;
+            }
+
+            removeAnimationTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            float amount = 1 - removeAnimationTime / Constants.LINE_ANIMATION_TIME;
+            end = begin + (animationEnd - begin) * amount;
+
+            return amount < 0;
         }
 
         public void Draw(SpriteBatch batch) {
