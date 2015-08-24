@@ -8,16 +8,22 @@ namespace Circles {
         private Circle[,] circles;
         private int player;
 
+        private int Width;
+        private int Height;
+
         private List<Line> connections;
 
         public Field(int player) {
+            this.Width = Constants.FIELD_WIDTH;
+            this.Height = Constants.FIELD_HEIGHT;
+
             this.player = player;
-            this.circles = new Circle[Constants.FIELD_WIDTH, Constants.FIELD_HEIGHT];
+            this.circles = new Circle[Width, Height];
 
             this.connections = new List<Line>();
 
-            for (int i = 0; i < Constants.FIELD_WIDTH; i++) {
-                for (int j = 0; j < Constants.FIELD_HEIGHT; j++) {
+            for (int i = 0; i < Width; i++) {
+                for (int j = 0; j < Height; j++) {
                     this[i, j] = new Circle(i, j, player);
                 }
             }
@@ -85,8 +91,8 @@ namespace Circles {
                 l.DrawOnField(spriteBatch, player);
             }
 
-            for (int i = 0; i < Constants.FIELD_WIDTH; i++) {
-                for (int j = 0; j < Constants.FIELD_HEIGHT; j++) {
+            for (int i = 0; i < Width; i++) {
+                for (int j = 0; j < Height; j++) {
                     circles[i, j].Draw(spriteBatch);
                 }
             }
