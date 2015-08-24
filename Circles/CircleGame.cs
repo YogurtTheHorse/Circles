@@ -56,10 +56,6 @@ namespace Circles {
             CurrentState.Update(gameTime);
         }
 
-        public bool InField(Vector2 v) {
-            return new Rectangle(0, 0, Constants.FIELD_WIDTH, Constants.FIELD_HEIGHT).Contains(v);
-        }
-
         public Vector2 GetScreenSize() {
             return new Vector2
             {

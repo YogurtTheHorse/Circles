@@ -35,7 +35,7 @@ namespace Circles.States {
         // Calls in update if mouse just up
         public void OnMouseDown(InputManager.MouseButton button, Vector2 position) {
             Vector2 circlePosition = Circle.GetPosition(position, CurrentTurn);
-            if (game.InField(circlePosition)) {
+            if (CurrentField.InField(circlePosition)) {
                 Circle c = CurrentField[(int)circlePosition.X, (int)circlePosition.Y];
 
                 currentLine = new Line(Circle.GetCenterPosition(c), position);
@@ -46,7 +46,7 @@ namespace Circles.States {
             if (currentLine != null) {
                 Vector2 begin = Circle.GetPosition(currentLine.begin, CurrentTurn);
                 Vector2 end = Circle.GetPosition(currentLine.end, CurrentTurn);
-                if (game.InField(end) && Connect(begin, end)) {
+                if (CurrentField.InField(end) && Connect(begin, end)) {
                     Console.WriteLine(Circle.CheckWon());
                     NextTurn();
                 } else {

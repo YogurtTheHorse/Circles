@@ -81,9 +81,9 @@ namespace Circles {
 
             Vector2 step = new Vector2(fieldSize / (Constants.FIELD_WIDTH - 1));
             if (player == Constants.FIRST_PLAYER) {
-                offset -= step / 4;
+                offset.Y += step.Y / 2;
             } else {
-                offset += step / 4;
+                offset.X += step.X / 2;
             }
 
             screenPoint -= offset - step / 2;
@@ -107,9 +107,9 @@ namespace Circles {
 
             Vector2 step = new Vector2(fieldSize / (Constants.FIELD_WIDTH - 1));
             if (player == Constants.FIRST_PLAYER) {
-                offset -= step / 4;
+                offset.Y += step.Y / 2;
             } else {
-                offset += step / 4;
+                offset.X += step.X / 2;
             }
 
             return offset + position * step;
@@ -144,11 +144,10 @@ namespace Circles {
         }
 
         private bool IsLast() {
-
             if (player == Constants.FIRST_PLAYER) {
-                return position.Y > 0.5f && position.X + 1.5f > Constants.FIELD_WIDTH;
+                return position.X + 1.5f > Constants.FIELD_WIDTH;
             } else {
-                return position.X < Constants.FIELD_WIDTH - 1 && position.Y + 1.5f > Constants.FIELD_HEIGHT;
+                return position.Y + 1.5f > Constants.FIELD_HEIGHT;
             }
         }
 
@@ -163,7 +162,7 @@ namespace Circles {
 
                 if (i > 0) {
                     if (GameState.CurrentTurn == Constants.FIRST_PLAYER) {
-                        q.AddLast(GameState.instance.CurrentField[0, i]);
+                        q.AddLast(GameState.instance.CurrentField[0, i - 1]);
                     } else {
                         q.AddLast(GameState.instance.CurrentField[Constants.FIELD_WIDTH - 1 - i, 0]);
                     }

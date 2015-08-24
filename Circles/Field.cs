@@ -17,6 +17,12 @@ namespace Circles {
             this.Width = Constants.FIELD_WIDTH;
             this.Height = Constants.FIELD_HEIGHT;
 
+            if (player == Constants.FIRST_PLAYER) {
+                this.Height--;
+            } else {
+                this.Width--;
+            }
+
             this.player = player;
             this.circles = new Circle[Width, Height];
 
@@ -54,24 +60,28 @@ namespace Circles {
                     Swap<Point>(ref a, ref b);
                 }
                 if (player == Constants.FIRST_PLAYER) {
-                    return !TryGet(a.X + 1, a.Y + 1).IsConnected(TryGet(a.X + 1, a.Y));
+                    return !TryGet(a.X + 1, a.Y - 1).IsConnected(TryGet(a.X + 1, a.Y));
                 } else {
-                    return !TryGet(a.X, a.Y).IsConnected(TryGet(a.X, a.Y - 1));
+                    return !TryGet(a.X + 1, a.Y + 2).IsConnected(TryGet(a.X + 1, a.Y + 1));
                 }
             } else { // Vertical
                 if (a.Y > b.Y) {
                     Swap<Point>(ref a, ref b);
                 }
                 if (player == Constants.FIRST_PLAYER) {
-                    return !TryGet(a.X + 1, a.Y + 1).IsConnected(TryGet(a.X, a.Y + 1));
+                    return !TryGet(a.X, a.Y).IsConnected(TryGet(a.X + 1, a.Y));
                 } else {
-                    return !TryGet(a.X, a.Y).IsConnected(TryGet(a.X - 1, a.Y));
+                    return !TryGet(a.X - 1, a.Y + 1).IsConnected(TryGet(a.X, a.Y + 1));
                 }
             }
         }
 
+        public bool InField(Vector2 v) {
+            return new Rectangle(0, 0, Width, Height).Contains(v);
+        }
+
         private Circle TryGet(int x, int y) {
-            if (CircleGame.instance.InField(new Vector2(x, y))) {
+            if (InField(new Vector2(x, y))) {
                 return this[x, y];
             } else {
                 return new Circle(0, 0, 0);
