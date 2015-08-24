@@ -34,10 +34,6 @@ namespace Circles {
             this.connections = new List<Circle>();
         }
 
-        public void Update(GameTime gameTime) {
-            Animate(gameTime);
-        }
-
         public bool IsConnected(Circle b) {
             return connections.Contains(b);
         }
@@ -52,7 +48,7 @@ namespace Circles {
             return false;
         }
 
-        private void Animate(GameTime gameTime) {
+        public void Animate(GameTime gameTime) {
             if (animationTime <= Constants.OPEN_ANIMATION_TIME) {
                 animationTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
 

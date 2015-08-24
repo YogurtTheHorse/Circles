@@ -54,6 +54,8 @@
     <Compile Include="InputManager.cs" />
     <Compile Include="Line.cs" />
     <Compile Include="Field.cs" />
+    <Compile Include="State.cs" />
+    <Compile Include="OpeningState.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />

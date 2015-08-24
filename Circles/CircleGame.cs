@@ -20,15 +20,16 @@ namespace Circles {
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
 
-        private Field firstPlayerField, secondPlayerField;
+        public Field FirstPlayerField, SecondPlayerField;
 
+        public Field CurrentField { get { return CurrentTurn == 0 ? FirstPlayerField : SecondPlayerField; } }
 
-        public Field CurrentField { get { return CurrentTurn == 0 ? firstPlayerField : secondPlayerField; } }
-
-        public Field NextField { get { return CurrentTurn == 1 ? firstPlayerField : secondPlayerField; } }
+        public Field NextField { get { return CurrentTurn == 1 ? FirstPlayerField : SecondPlayerField; } }
 
         private Line currentLine;
         private List<Line> OldLines;
+
+        public static State CurrentState;
 
         public CircleGame() {
             instance = this;
@@ -45,17 +46,19 @@ namespace Circles {
             this.graphics.PreferMultiSampling = true;
 
             this.InputManager = new InputManager();
-            this.InputManager.OnMouseDown += OnMouseDown;
-            this.InputManager.OnClick += OnMouseUp;
+            /*this.InputManager.OnMouseDown += OnMouseDown;
+            this.InputManager.OnClick += OnMouseUp;*/
 
             this.OldLines = new List<Line>();
+
+            CurrentState = new OpeningState();
 
             InitFields();
         }
 
         public void InitFields() {
-            firstPlayerField = new Field(Constants.FIRST_PLAYER);
-            secondPlayerField = new Field(Constants.SECOND_PLAYER);
+            FirstPlayerField = new Field(Constants.FIRST_PLAYER);
+            SecondPlayerField = new Field(Constants.SECOND_PLAYER);
         }
 
         protected override void LoadContent() {
@@ -65,7 +68,9 @@ namespace Circles {
         protected override void Update(GameTime gameTime) {
             base.Update(gameTime);
 
-            InputManager.Update();
+            CurrentState.Update(gameTime);
+
+            /*InputManager.Update();
             UpdateLines(gameTime);
 
             for (int i = 0; i < Constants.FIELD_WIDTH; i++) {
@@ -73,7 +78,7 @@ namespace Circles {
                     firstPlayerField[i, j].Update(gameTime);
                     secondPlayerField[i, j].Update(gameTime);
                 }
-            }
+            }*/
         }
 
         // Calls in update if mouse just up
@@ -148,20 +153,22 @@ namespace Circles {
 
             base.Draw(gameTime);
             spriteBatch.Begin();
-            DrawField();
-            if (currentLine != null) {
+
+            CurrentState.Draw(spriteBatch);
+
+            /*if (currentLine != null) {
                 currentLine.Draw(spriteBatch);
             }
 
             foreach (Line l in OldLines) {
                 l.Draw(spriteBatch);
-            }
+            }*/
             spriteBatch.End();
         }
 
-        protected void DrawField() {
-            firstPlayerField.Draw(spriteBatch);
-            secondPlayerField.Draw(spriteBatch);
+        public void DrawField() {
+            FirstPlayerField.Draw(spriteBatch);
+            SecondPlayerField.Draw(spriteBatch);
         }
     }
 }
