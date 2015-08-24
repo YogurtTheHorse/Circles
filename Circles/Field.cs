@@ -1,5 +1,6 @@
 using System;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Circles {
     public class Field {
@@ -26,6 +27,14 @@ namespace Circles {
             Circle b = this[end];
 
             return a.Connect(b);
+        }
+
+        public void Draw(SpriteBatch spriteBatch) {
+            for (int i = 0; i < Constants.FIELD_WIDTH; i++) {
+                for (int j = 0; j < Constants.FIELD_HEIGHT; j++) {
+                    circles[i, j].Draw(spriteBatch);
+                }
+            }
         }
 
         public Circle this [Vector2 v]
