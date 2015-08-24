@@ -7,12 +7,14 @@ namespace Circles {
         public Vector2 begin;
         public Vector2 end;
         public Color color;
+        public float thickness;
 
         public Line(Vector2 begin, Vector2 end) {
             this.begin = begin;
             this.end = end;
 
             this.color = Constants.COLORS[CircleGame.CurrentTurn];
+            this.thickness = Constants.LINE_THICKNESS;
         }
 
         public Line(Point begin, Point end) {
@@ -23,7 +25,7 @@ namespace Circles {
         }
 
         public void Draw(SpriteBatch batch) {
-            Primitives2D.DrawLine(batch, begin, end, color, 10f);
+            Primitives2D.DrawLine(batch, begin, end, color, Constants.ToScreenMax(thickness));
         }
     }
 }
