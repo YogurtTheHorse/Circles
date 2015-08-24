@@ -19,14 +19,9 @@ namespace Circles {
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
 
-        private Circle[,] firstPlayerField, secondPlayerField;
+        private Field firstPlayerField, secondPlayerField;
 
-        private Circle[,] CurrentField
-        {
-            get {
-                return CurrentTurn == 0 ? firstPlayerField : secondPlayerField;
-            }
-        }
+        private Field CurrentField { get { return CurrentTurn == 0 ? firstPlayerField : secondPlayerField; } }
 
         private Line currentLine;
 
@@ -52,15 +47,8 @@ namespace Circles {
         }
 
         public void InitFields() {
-            firstPlayerField = new Circle[Constants.FIELD_WIDTH, Constants.FIELD_HEIGHT];
-            secondPlayerField = new Circle[Constants.FIELD_WIDTH, Constants.FIELD_HEIGHT];
-
-            for (int i = 0; i < Constants.FIELD_WIDTH; i++) {
-                for (int j = 0; j < Constants.FIELD_HEIGHT; j++) {
-                    firstPlayerField[i, j] = new Circle(i, j, Constants.FIRST_PLAYER);
-                    secondPlayerField[i, j] = new Circle(i, j, Constants.SECOND_PLAYER);
-                }
-            }
+            firstPlayerField = new Field(Constants.FIRST_PLAYER);
+            secondPlayerField = new Field(Constants.SECOND_PLAYER);
         }
 
         protected override void LoadContent() {
@@ -96,15 +84,21 @@ namespace Circles {
                 Vector2 begin = Circle.GetPosition(currentLine.begin, CurrentTurn);
                 Vector2 end = Circle.GetPosition(currentLine.end, CurrentTurn);
                 if (InField(end)) {
-
                     Vector2 size = begin - end;
                     if (size.LengthSquared() >= 0.99 && size.LengthSquared() <= 1.01) {
-                        NextTurn();
+                        if (Connect(begin, end)) {
+                            NextTurn();
+                        }
                     }
                 }
 
                 currentLine = null;
             }
+        }
+
+        // Returns true if connection was succesful
+        private bool Connect(Vector2 begin, Vector2 end) {
+            return true;
         }
 
         private void NextTurn() {

@@ -42,6 +42,7 @@
     <Reference Include="Tao.Sdl">
       <HintPath>..\packages\MonoGame.Framework.Linux.3.3.0.0\lib\net40\Tao.Sdl.dll</HintPath>
     </Reference>
+    <Reference Include="Mono.CSharp" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
@@ -52,6 +53,7 @@
     <Compile Include="Circle.cs" />
     <Compile Include="InputManager.cs" />
     <Compile Include="Line.cs" />
+    <Compile Include="Field.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />
