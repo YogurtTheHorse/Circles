@@ -25,7 +25,13 @@ namespace Circles {
         }
 
         public void Draw(SpriteBatch batch) {
-            Primitives2D.DrawLine(batch, begin, end, color, Constants.ToScreenMax(thickness));
+            Primitives2D.DrawLine(batch, begin, end, color, Constants.ToScreenMin(thickness));
+        }
+
+        public void DrawOnField(SpriteBatch batch, int player) {
+            Vector2 a = Circle.GetCenterPosition(begin, player);
+            Vector2 b = Circle.GetCenterPosition(end, player);
+            Primitives2D.DrawLine(batch, a, b, color, Constants.ToScreenMin(thickness));
         }
     }
 }

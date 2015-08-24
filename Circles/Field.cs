@@ -32,7 +32,7 @@ namespace Circles {
             Circle b = this[end];
 
             if (a.Connect(b)) {
-                connections.Add(new Line(Circle.GetCenterPosition(a), Circle.GetCenterPosition(b)));
+                connections.Add(new Line(begin, end));
                 return true;
             }
 
@@ -41,7 +41,7 @@ namespace Circles {
 
         public void Draw(SpriteBatch spriteBatch) {
             foreach (Line l in connections) {
-                l.Draw(spriteBatch);
+                l.DrawOnField(spriteBatch, player);
             }
 
             for (int i = 0; i < Constants.FIELD_WIDTH; i++) {
