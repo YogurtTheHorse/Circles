@@ -99,12 +99,16 @@ namespace Circles {
 
                     Vector2 size = begin - end;
                     if (size.LengthSquared() >= 0.99 && size.LengthSquared() <= 1.01) {
-                        Console.WriteLine("Added line");
+                        NextTurn();
                     }
                 }
 
                 currentLine = null;
             }
+        }
+
+        private void NextTurn() {
+            CurrentTurn = (++CurrentTurn) % 2;
         }
 
         private void UpdateLines() {
