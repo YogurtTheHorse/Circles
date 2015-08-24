@@ -45,6 +45,7 @@ namespace Circles {
         public bool Connect(Circle b) {
             if (!IsConnected(b)) {
                 connections.Add(b);
+                b.Connect(this);
                 return true;
             }
 
