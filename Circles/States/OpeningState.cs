@@ -15,12 +15,8 @@ namespace Circles.States {
         public void Update(GameTime gameTime) {
             animationTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            for (int i = 0; i < Constants.FIELD_WIDTH; i++) {
-                for (int j = 0; j < Constants.FIELD_HEIGHT; j++) {
-                    game.FirstPlayerField[i, j].OpenAnimation(gameTime);
-                    game.SecondPlayerField[i, j].OpenAnimation(gameTime);
-                }
-            }
+            game.FirstPlayerField.OpenAnimation(gameTime);
+            game.SecondPlayerField.OpenAnimation(gameTime);
 
             if (animationTime >= Constants.OPEN_ANIMATION_TIME) {
                 CircleGame.CurrentState = new GameState();
