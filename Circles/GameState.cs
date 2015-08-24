@@ -5,6 +5,8 @@ using System.Collections.Generic;
 
 namespace Circles {
     public class GameState : State {
+        public static GameState instance;
+
         private CircleGame game;
 
         private InputManager InputManager;
@@ -12,7 +14,15 @@ namespace Circles {
         private Line currentLine;
         private List<Line> OldLines;
 
+        public static int CurrentTurn = Constants.FIRST_PLAYER;
+
+        public Field CurrentField { get { return CurrentTurn == 0 ? game.FirstPlayerField : game.SecondPlayerField; } }
+
+        public Field NextField { get { return CurrentTurn == 1 ? game.FirstPlayerField : game.SecondPlayerField; } }
+
         public GameState() {
+            GameState.instance = this;
+
             this.game = CircleGame.instance;
 
             this.InputManager = new InputManager();
@@ -24,9 +34,9 @@ namespace Circles {
 
         // Calls in update if mouse just up
         public void OnMouseDown(InputManager.MouseButton button, Vector2 position) {
-            Vector2 circlePosition = Circle.GetPosition(position, CircleGame.CurrentTurn);
+            Vector2 circlePosition = Circle.GetPosition(position, CurrentTurn);
             if (game.InField(circlePosition)) {
-                Circle c = game.CurrentField[(int)circlePosition.X, (int)circlePosition.Y];
+                Circle c = CurrentField[(int)circlePosition.X, (int)circlePosition.Y];
 
                 currentLine = new Line(Circle.GetCenterPosition(c), position);
             }
@@ -34,8 +44,8 @@ namespace Circles {
 
         public void OnMouseUp(InputManager.MouseButton button, Vector2 position) {
             if (currentLine != null) {
-                Vector2 begin = Circle.GetPosition(currentLine.begin, CircleGame.CurrentTurn);
-                Vector2 end = Circle.GetPosition(currentLine.end, CircleGame.CurrentTurn);
+                Vector2 begin = Circle.GetPosition(currentLine.begin, CurrentTurn);
+                Vector2 end = Circle.GetPosition(currentLine.end, CurrentTurn);
                 if (game.InField(end) && Connect(begin, end)) {
                     Console.WriteLine(Circle.CheckWon());
                     NextTurn();
@@ -49,11 +59,11 @@ namespace Circles {
 
         // Returns true if connection was succesful
         private bool Connect(Vector2 begin, Vector2 end) {
-            return game.NextField.Allows(begin, end) && game.CurrentField.Connect(begin, end);
+            return NextField.Allows(begin, end) && CurrentField.Connect(begin, end);
         }
 
         private void NextTurn() {
-            CircleGame.CurrentTurn = (++CircleGame.CurrentTurn) % 2;
+            CurrentTurn = (++CurrentTurn) % 2;
         }
 
         public void Update(GameTime gameTime) {

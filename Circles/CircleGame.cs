@@ -13,16 +13,11 @@ using System.Collections.Generic;
 namespace Circles {
     public class CircleGame : Game {
         public static CircleGame instance;
-        public static int CurrentTurn = Constants.FIRST_PLAYER;
 
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
 
         public Field FirstPlayerField, SecondPlayerField;
-
-        public Field CurrentField { get { return CurrentTurn == 0 ? FirstPlayerField : SecondPlayerField; } }
-
-        public Field NextField { get { return CurrentTurn == 1 ? FirstPlayerField : SecondPlayerField; } }
 
         public static State CurrentState;
 

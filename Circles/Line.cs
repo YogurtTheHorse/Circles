@@ -17,7 +17,7 @@ namespace Circles {
             this.begin = begin;
             this.end = end;
 
-            this.color = Constants.COLORS[CircleGame.CurrentTurn];
+            this.color = Constants.COLORS[GameState.CurrentTurn];
             this.thickness = Constants.LINE_THICKNESS;
         }
 
@@ -25,7 +25,7 @@ namespace Circles {
             this.begin = new Vector2(begin.X, begin.Y);
             this.end = new Vector2(end.X, end.Y);
 
-            this.color = Constants.COLORS[CircleGame.CurrentTurn];
+            this.color = Constants.COLORS[GameState.CurrentTurn];
             this.thickness = Constants.LINE_THICKNESS;
         }
 

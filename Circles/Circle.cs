@@ -161,10 +161,10 @@ namespace Circles {
                 }
 
                 if (i > 0) {
-                    if (CircleGame.CurrentTurn == Constants.FIRST_PLAYER) {
-                        q.AddLast(CircleGame.instance.CurrentField[0, i]);
+                    if (GameState.CurrentTurn == Constants.FIRST_PLAYER) {
+                        q.AddLast(GameState.instance.CurrentField[0, i]);
                     } else {
-                        q.AddLast(CircleGame.instance.CurrentField[Constants.FIELD_WIDTH - 1 - i, 0]);
+                        q.AddLast(GameState.instance.CurrentField[Constants.FIELD_WIDTH - 1 - i, 0]);
                     }
                 }
             }
