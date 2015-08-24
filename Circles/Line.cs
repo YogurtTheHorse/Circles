@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using C3.XNA;
 using System;
+using Circles.States;
 
 namespace Circles {
     public class Line {
