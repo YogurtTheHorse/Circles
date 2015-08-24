@@ -45,5 +45,9 @@ namespace Circles {
         public static float ToScreenMax(float x) {
             return Math.Max(ToScreenWidth(x), ToScreenHeight(x));
         }
+
+        public static float Animate(float t, float b, float c, float d) {
+            return c * (t /= d) * t * (2.70158f * t - 1.70158f) + b;
+        }
     }
 }
