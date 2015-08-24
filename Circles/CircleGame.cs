@@ -83,13 +83,8 @@ namespace Circles {
             if (currentLine != null) {
                 Vector2 begin = Circle.GetPosition(currentLine.begin, CurrentTurn);
                 Vector2 end = Circle.GetPosition(currentLine.end, CurrentTurn);
-                if (InField(end)) {
-                    Vector2 size = begin - end;
-                    if (size.LengthSquared() >= 0.99 && size.LengthSquared() <= 1.01) {
-                        if (Connect(begin, end)) {
-                            NextTurn();
-                        }
-                    }
+                if (InField(end) && Connect(begin, end)) {
+                    NextTurn();
                 }
 
                 currentLine = null;
