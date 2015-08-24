@@ -29,32 +29,28 @@ namespace Circles {
             rhs = temp;
         }
 
-
+        // Returns true if nothing restricts connection of @begin and @end
+        // Don't try to understand this
         public bool Allows(Vector2 begin, Vector2 end) {
             Point a = new Point((int)begin.X, (int)begin.Y);
             Point b = new Point((int)end.X, (int)end.Y);
-            if (player == Constants.FIRST_PLAYER) {
-                if (a.Y == b.Y) { // Horizontal
-                    if (a.X > b.X) {
-                        Swap<Point>(ref a, ref b);
-                    }
-                    return !TryGet(a.X + 1, a.Y + 1).IsConnected(TryGet(a.X + 1, a.Y));
-                } else { // Vertical
-                    if (a.Y > b.Y) {
-                        Swap<Point>(ref a, ref b);
-                    }
-                    return !TryGet(a.X + 1, a.Y + 1).IsConnected(TryGet(a.X, a.Y + 1));
+
+            if (a.Y == b.Y) { // Horizontal
+                if (a.X > b.X) {
+                    Swap<Point>(ref a, ref b);
                 }
-            } else {
-                if (a.Y == b.Y) { // Horizontal
-                    if (a.X > b.X) {
-                        Swap<Point>(ref a, ref b);
-                    }
+                if (player == Constants.FIRST_PLAYER) {
+                    return !TryGet(a.X + 1, a.Y + 1).IsConnected(TryGet(a.X + 1, a.Y));
+                } else {
                     return !TryGet(a.X, a.Y).IsConnected(TryGet(a.X, a.Y - 1));
-                } else { // Vertical
-                    if (a.Y > b.Y) {
-                        Swap<Point>(ref a, ref b);
-                    }
+                }
+            } else { // Vertical
+                if (a.Y > b.Y) {
+                    Swap<Point>(ref a, ref b);
+                }
+                if (player == Constants.FIRST_PLAYER) {
+                    return !TryGet(a.X + 1, a.Y + 1).IsConnected(TryGet(a.X, a.Y + 1));
+                } else {
                     return !TryGet(a.X, a.Y).IsConnected(TryGet(a.X - 1, a.Y));
                 }
             }
