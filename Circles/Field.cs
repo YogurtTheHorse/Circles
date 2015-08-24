@@ -29,6 +29,14 @@ namespace Circles {
             }
         }
 
+        public void OpenAnimation(GameTime gameTime) {
+            for (int i = 0; i < Width; i++) {
+                for (int j = 0; j < Height; j++) {
+                    this[i, j].OpenAnimation(gameTime);
+                }
+            }
+        }
+
         private static void Swap<T>(ref T lhs, ref T rhs) {
             T temp = lhs;
             lhs = rhs;
