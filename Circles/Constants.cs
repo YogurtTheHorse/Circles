@@ -19,7 +19,7 @@ namespace Circles {
         };
 
         public const float OPEN_ANIMATION_TIME = 1f;
-        public const float LINE_THICKNESS = 0.005f;
+        public const float LINE_THICKNESS = 0.01f;
 
         public static Vector2 ToScreen(float x, float y) {
             return new Vector2(ToScreenWidth(x), ToScreenHeight(y));
@@ -41,7 +41,7 @@ namespace Circles {
             return Math.Min(ToScreenWidth(x), ToScreenHeight(x));
         }
 
-        public static float ToScreenMax(int x) {
+        public static float ToScreenMax(float x) {
             return Math.Max(ToScreenWidth(x), ToScreenHeight(x));
         }
     }
