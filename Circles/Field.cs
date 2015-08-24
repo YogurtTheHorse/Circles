@@ -1,4 +1,5 @@
 using System;
+using Microsoft.Xna.Framework;
 
 namespace Circles {
     public class Field {
@@ -14,6 +15,23 @@ namespace Circles {
                     this[i, j] = new Circle(i, j, player);
                 }
             }
+        }
+
+        public bool Connect(Vector2 begin, Vector2 end) {
+            if ((end - begin).LengthSquared() > 1.01 || (end - begin).LengthSquared() < 0.99) {
+                return false;
+            }
+
+            Circle a = this[begin];
+            Circle b = this[end];
+
+            return a.Connect(b);
+        }
+
+        public Circle this [Vector2 v]
+        {
+            get { return this[(int)v.X, (int)v.Y]; }
+            private set { this[(int)v.X, (int)v.Y] = value; }
         }
 
         public Circle this [int i, int j]
