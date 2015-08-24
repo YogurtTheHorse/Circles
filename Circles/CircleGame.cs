@@ -36,9 +36,9 @@ namespace Circles {
             this.IsMouseVisible = true;
             this.graphics.PreferMultiSampling = true;
 
-            CurrentState = new OpeningState();
-
             InitFields();
+
+            CurrentState = new OpeningState();
         }
 
         public void InitFields() {
