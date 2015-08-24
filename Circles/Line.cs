@@ -36,15 +36,9 @@ namespace Circles {
 
             removeAnimationTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            float amount = 1 - removeAnimationTime / Constants.LINE_ANIMATION_TIME;
-            float scale = (float)Math.Sin(Math.PI / 4f * 3f * amount) * 1.5f;
+            end = begin + (animationEnd - begin) * (1 - Constants.Animate(removeAnimationTime, 0, 1, Constants.LINE_ANIMATION_TIME));
 
-            if (scale >= 1) {
-                thickness = Constants.LINE_THICKNESS * (1 / scale);
-            }
-            end = begin + (animationEnd - begin) * scale;
-
-            return amount < 0;
+            return removeAnimationTime >= Constants.LINE_ANIMATION_TIME;
         }
 
         public void Draw(SpriteBatch batch) {
