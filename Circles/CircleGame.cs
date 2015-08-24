@@ -24,6 +24,8 @@ namespace Circles {
 
         private Field CurrentField { get { return CurrentTurn == 0 ? firstPlayerField : secondPlayerField; } }
 
+        private Field NextField { get { return CurrentTurn == 1 ? firstPlayerField : secondPlayerField; } }
+
         private Line currentLine;
         private List<Line> OldLines;
 
@@ -99,7 +101,7 @@ namespace Circles {
 
         // Returns true if connection was succesful
         private bool Connect(Vector2 begin, Vector2 end) {
-            return CurrentField.Connect(begin, end);
+            return NextField.Allows(begin, end) && CurrentField.Connect(begin, end);
         }
 
         private void NextTurn() {
