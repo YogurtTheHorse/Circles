@@ -2,7 +2,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Circles {
+namespace Circles.States {
     public class OpeningState : State {
         private CircleGame game;
         private float animationTime;

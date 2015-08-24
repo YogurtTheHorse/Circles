@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 
-namespace Circles {
+namespace Circles.States {
     public class GameState : State {
         public static GameState instance;
 

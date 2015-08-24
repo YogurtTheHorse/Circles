@@ -54,9 +54,9 @@
     <Compile Include="InputManager.cs" />
     <Compile Include="Line.cs" />
     <Compile Include="Field.cs" />
-    <Compile Include="State.cs" />
-    <Compile Include="OpeningState.cs" />
-    <Compile Include="GameState.cs" />
+    <Compile Include="States\GameState.cs" />
+    <Compile Include="States\OpeningState.cs" />
+    <Compile Include="States\State.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />
@@ -72,4 +72,7 @@
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="States\" />
+  </ItemGroup>
 </Project>
