@@ -145,5 +145,53 @@ namespace Circles {
             texture.SetData(colorData);
             return texture;
         }
+
+        private bool IsLast() {
+
+            if (player == Constants.FIRST_PLAYER) {
+                return position.Y > 0.5f && position.X + 1.5f > Constants.FIELD_WIDTH;
+            } else {
+                return position.X < Constants.FIELD_WIDTH - 1 && position.Y + 1.5f > Constants.FIELD_HEIGHT;
+            }
+        }
+
+        public static bool CheckWon() {
+            LinkedList<Circle> q = new LinkedList<Circle>();
+            bool[,] was = new bool[Constants.FIELD_WIDTH, Constants.FIELD_HEIGHT];
+
+            for (int i = 0; i < Constants.FIELD_WIDTH; i++) {
+                for (int j = 0; j < Constants.FIELD_HEIGHT; j++) {
+                    was[i, j] = false;
+                }
+
+                if (i > 0) {
+                    if (CircleGame.CurrentTurn == Constants.FIRST_PLAYER) {
+                        q.AddLast(CircleGame.instance.CurrentField[0, i]);
+                    } else {
+                        q.AddLast(CircleGame.instance.CurrentField[Constants.FIELD_WIDTH - 1 - i, 0]);
+                    }
+                }
+            }
+
+            while (q.Count > 0) {
+                Circle c = q.First.Value;
+                q.RemoveFirst();
+                if (was[(int)c.position.X, (int)c.position.Y]) {
+                    continue;
+                } else {
+                    was[(int)c.position.X, (int)c.position.Y] = true;
+                }
+
+                if (c.IsLast()) {
+                    return true;
+                }
+
+                foreach (Circle n in c.connections) {
+                    q.AddLast(n);
+                }
+            }
+
+            return false;
+        }
     }
 }

@@ -22,9 +22,10 @@ namespace Circles {
 
         private Field firstPlayerField, secondPlayerField;
 
-        private Field CurrentField { get { return CurrentTurn == 0 ? firstPlayerField : secondPlayerField; } }
 
-        private Field NextField { get { return CurrentTurn == 1 ? firstPlayerField : secondPlayerField; } }
+        public Field CurrentField { get { return CurrentTurn == 0 ? firstPlayerField : secondPlayerField; } }
+
+        public Field NextField { get { return CurrentTurn == 1 ? firstPlayerField : secondPlayerField; } }
 
         private Line currentLine;
         private List<Line> OldLines;
@@ -90,6 +91,7 @@ namespace Circles {
                 Vector2 begin = Circle.GetPosition(currentLine.begin, CurrentTurn);
                 Vector2 end = Circle.GetPosition(currentLine.end, CurrentTurn);
                 if (InField(end) && Connect(begin, end)) {
+                    Console.WriteLine(Circle.CheckWon());
                     NextTurn();
                 } else {
                     OldLines.Add(currentLine);
