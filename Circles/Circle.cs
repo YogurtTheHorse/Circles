@@ -19,6 +19,7 @@ namespace Circles {
         private Color color;
         private int player;
 
+        private float animationOffset;
         private float animationTime;
         private float radius;
 
@@ -31,6 +32,8 @@ namespace Circles {
 
             this.animationTime = 0f;
             this.radius = 0f;
+
+            this.animationOffset = 0f;
 
             this.connections = new List<Circle>();
         }
@@ -56,12 +59,34 @@ namespace Circles {
                 float scale = (float)Math.Sin(Math.PI / 4f * 3f * animationTime / Constants.OPEN_ANIMATION_TIME) * 1.5f;
                 radius = Constants.CIRCLE_RADIUS * scale;
             } else {
+                animationTime = 0f;
                 radius = Constants.CIRCLE_RADIUS;
             }
         }
 
+        public void CloseAnimation(GameTime gameTime) {
+            if (animationTime <= Constants.CLOSE_ANIMATION_TIME - Constants.LINE_ANIMATION_TIME) {
+                animationTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+                float end = Constants.CLOSE_ANIMATION_TIME - Constants.LINE_ANIMATION_TIME;
+
+                animationOffset = Constants.CloseAnimate(animationTime, 0, 1, end);
+            } else {
+                animationTime = 0f;
+            }
+        }
+
         public void Draw(SpriteBatch batch) {
-            Vector2 center = GetCenterPosition(this);
+            Vector2 animationOffset = Vector2.Zero;
+            float screenOffset = Constants.ToScreenMax(this.animationOffset);
+
+            if (player == Constants.FIRST_PLAYER) {
+                animationOffset.X = screenOffset;
+            } else {
+                animationOffset.Y = screenOffset;
+            }
+
+            Vector2 center = GetCenterPosition(this) + animationOffset;
             float r = Constants.ToScreenMin(radius);
 
             Vector2 scale = new Vector2(r / texture.Width);

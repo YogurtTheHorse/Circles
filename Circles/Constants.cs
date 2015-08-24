@@ -19,6 +19,7 @@ namespace Circles {
         };
 
         public const float OPEN_ANIMATION_TIME = 1f;
+        public const float CLOSE_ANIMATION_TIME = LINE_ANIMATION_TIME + 1f;
         public const float LINE_ANIMATION_TIME = 0.5f;
         public const float LINE_THICKNESS = 0.015f;
 
@@ -48,6 +49,10 @@ namespace Circles {
 
         public static float Animate(float t, float b, float c, float d) {
             return c * (t /= d) * t * (2.70158f * t - 1.70158f) + b;
+        }
+
+        public static float CloseAnimate(float t, float b, float c, float d) {
+            return c * (t /= d) * t * (3 * 1.70158f * t - 1.70158f) + b;
         }
     }
 }

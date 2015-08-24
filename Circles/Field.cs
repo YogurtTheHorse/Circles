@@ -43,6 +43,24 @@ namespace Circles {
             }
         }
 
+        public void CloseAnimation(GameTime gameTime) {
+            if (connections.Count > 0) {
+                for (int i = 0; i < connections.Count; i++) {
+                    Line l = connections[i];
+                    if (l.Remove(gameTime)) {
+                        connections.RemoveAt(i);
+                        i--;
+                    }
+                }
+            } else {
+                for (int i = 0; i < Width; i++) {
+                    for (int j = 0; j < Height; j++) {
+                        this[i, j].CloseAnimation(gameTime);
+                    }
+                }
+            }
+        }
+
         private static void Swap<T>(ref T lhs, ref T rhs) {
             T temp = lhs;
             lhs = rhs;
