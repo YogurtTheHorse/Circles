@@ -17,8 +17,8 @@ namespace Circles.States {
 
             for (int i = 0; i < Constants.FIELD_WIDTH; i++) {
                 for (int j = 0; j < Constants.FIELD_HEIGHT; j++) {
-                    game.FirstPlayerField[i, j].Animate(gameTime);
-                    game.SecondPlayerField[i, j].Animate(gameTime);
+                    game.FirstPlayerField[i, j].OpenAnimation(gameTime);
+                    game.SecondPlayerField[i, j].OpenAnimation(gameTime);
                 }
             }
 

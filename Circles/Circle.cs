@@ -49,7 +49,7 @@ namespace Circles {
             return false;
         }
 
-        public void Animate(GameTime gameTime) {
+        public void OpenAnimation(GameTime gameTime) {
             if (animationTime <= Constants.OPEN_ANIMATION_TIME) {
                 animationTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
