@@ -43,6 +43,14 @@ namespace Circles {
             }
         }
 
+        public void ResetAnimation() {
+            for (int i = 0; i < Width; i++) {
+                for (int j = 0; j < Height; j++) {
+                    this[i, j].ResetAnimation();
+                }
+            }
+        }
+
         public void CloseAnimation(GameTime gameTime) {
             if (connections.Count > 0) {
                 for (int i = 0; i < connections.Count; i++) {

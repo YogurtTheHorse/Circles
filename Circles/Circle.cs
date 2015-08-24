@@ -72,7 +72,9 @@ namespace Circles {
                 Console.WriteLine(animationTime);
                 animationTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-                float t = (Constants.CLOSE_ANIMATION_LAST_CIRCLE_START / Constants.FIELD_SIZE) * position.X;
+                float c = player == Constants.FIRST_PLAYER ? position.Y : position.X;
+
+                float t = (Constants.CLOSE_ANIMATION_LAST_CIRCLE_START / Constants.FIELD_SIZE) * c;
                 if (animationTime < t) {
                     return;
                 }

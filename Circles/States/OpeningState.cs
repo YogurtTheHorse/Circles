@@ -10,6 +10,9 @@ namespace Circles.States {
         public OpeningState() {
             this.game = CircleGame.instance;
             this.animationTime = 0;
+
+            this.game.FirstPlayerField.ResetAnimation();
+            this.game.SecondPlayerField.ResetAnimation();
         }
 
         public void Update(GameTime gameTime) {
@@ -18,7 +21,7 @@ namespace Circles.States {
             game.FirstPlayerField.OpenAnimation(gameTime);
             game.SecondPlayerField.OpenAnimation(gameTime);
 
-            if (animationTime >= Constants.OPEN_ANIMATION_TIME) {
+            if (animationTime > Constants.OPEN_ANIMATION_TIME) {
                 CircleGame.CurrentState = new GameState();
             }
         }

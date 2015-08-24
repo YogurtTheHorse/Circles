@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Input;
 using C3.XNA;
 using System.Collections.Generic;
 using Circles.States;
+using System.Threading;
 
 #endregion
 
@@ -37,7 +38,6 @@ namespace Circles {
             this.graphics.PreferMultiSampling = true;
 
             InitFields();
-
             CurrentState = new OpeningState();
         }
 

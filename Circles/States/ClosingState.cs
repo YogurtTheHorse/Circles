@@ -13,13 +13,16 @@ namespace Circles.States {
             this.turn = turn;
             this.game = CircleGame.instance;
             this.animationTime = 0;
+
+            this.game.FirstPlayerField.ResetAnimation();
+            this.game.SecondPlayerField.ResetAnimation();
         }
 
         public void Update(GameTime gameTime) {
             animationTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             if (animationTime >= Constants.CLOSE_ANIMATION_TIME) {
-                //CircleGame.CurrentState = new WinAnimationState(turn);
+                //CircleGame.CurrentState = new WinAnimation    State(turn);
                 return;
             }
 
