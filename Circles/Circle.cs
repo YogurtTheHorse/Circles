@@ -121,12 +121,17 @@ namespace Circles {
             float diam = radius / 2f;
             float diamsq = diam * diam;
 
+            float someProcent = diamsq / 20;
+
             for (int x = 0; x < radius; x++) {
                 for (int y = 0; y < radius; y++) {
                     int index = x * radius + y;
                     Vector2 pos = new Vector2(x - diam, y - diam);
                     if (pos.LengthSquared() <= diamsq) {
                         colorData[index] = Color.White;
+                        /*} else if (pos.LengthSquared() <= diamsq) {
+                        byte alpha = (byte)(((pos.LengthSquared() - diamsq) / someProcent) * 255);
+                        colorData[index].A = alpha;*/
                     } else {
                         colorData[index] = Color.Transparent;
                     }
