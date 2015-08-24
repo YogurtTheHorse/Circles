@@ -19,7 +19,7 @@ namespace Circles {
         };
 
         public const float OPEN_ANIMATION_TIME = 1f;
-        public const float LINE_ANIMATION_TIME = 0.1f;
+        public const float LINE_ANIMATION_TIME = 0.5f;
         public const float LINE_THICKNESS = 0.015f;
 
         public static Vector2 ToScreen(float x, float y) {

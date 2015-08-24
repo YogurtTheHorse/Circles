@@ -37,7 +37,12 @@ namespace Circles {
             removeAnimationTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             float amount = 1 - removeAnimationTime / Constants.LINE_ANIMATION_TIME;
-            end = begin + (animationEnd - begin) * amount;
+            float scale = (float)Math.Sin(Math.PI / 4f * 3f * amount) * 1.5f;
+
+            if (scale >= 1) {
+                thickness = Constants.LINE_THICKNESS * (1 / scale);
+            }
+            end = begin + (animationEnd - begin) * scale;
 
             return amount < 0;
         }
