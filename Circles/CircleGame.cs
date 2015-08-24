@@ -98,7 +98,7 @@ namespace Circles {
 
         // Returns true if connection was succesful
         private bool Connect(Vector2 begin, Vector2 end) {
-            return true;
+            return CurrentField.Connect(begin, end);
         }
 
         private void NextTurn() {
