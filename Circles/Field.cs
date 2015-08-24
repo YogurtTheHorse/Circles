@@ -23,6 +23,51 @@ namespace Circles {
             }
         }
 
+        private static void Swap<T>(ref T lhs, ref T rhs) {
+            T temp = lhs;
+            lhs = rhs;
+            rhs = temp;
+        }
+
+
+        public bool Allows(Vector2 begin, Vector2 end) {
+            Point a = new Point((int)begin.X, (int)begin.Y);
+            Point b = new Point((int)end.X, (int)end.Y);
+            if (player == Constants.FIRST_PLAYER) {
+                if (a.Y == b.Y) { // Horizontal
+                    if (a.X > b.X) {
+                        Swap<Point>(ref a, ref b);
+                    }
+                    return !TryGet(a.X + 1, a.Y + 1).IsConnected(TryGet(a.X + 1, a.Y));
+                } else { // Vertical
+                    if (a.Y > b.Y) {
+                        Swap<Point>(ref a, ref b);
+                    }
+                    return !TryGet(a.X + 1, a.Y + 1).IsConnected(TryGet(a.X, a.Y + 1));
+                }
+            } else {
+                if (a.Y == b.Y) { // Horizontal
+                    if (a.X > b.X) {
+                        Swap<Point>(ref a, ref b);
+                    }
+                    return !TryGet(a.X, a.Y).IsConnected(TryGet(a.X, a.Y - 1));
+                } else { // Vertical
+                    if (a.Y > b.Y) {
+                        Swap<Point>(ref a, ref b);
+                    }
+                    return !TryGet(a.X, a.Y).IsConnected(TryGet(a.X - 1, a.Y));
+                }
+            }
+        }
+
+        private Circle TryGet(int x, int y) {
+            if (CircleGame.instance.InField(new Vector2(x, y))) {
+                return this[x, y];
+            } else {
+                return new Circle(0, 0, 0);
+            }
+        }
+
         public bool Connect(Vector2 begin, Vector2 end) {
             if ((end - begin).LengthSquared() > 1.01 || (end - begin).LengthSquared() < 0.99) {
                 return false;
