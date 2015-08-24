@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.Input;
 using C3.XNA;
+using System.Collections.Generic;
 
 #endregion
 
@@ -20,6 +21,8 @@ namespace Circles {
         private float animationTime;
         private float radius;
 
+        private List<Circle> connections;
+
         public Circle(int i, int j, int player) {
             this.position = new Vector2(i, j);
             this.player = player;
@@ -27,10 +30,25 @@ namespace Circles {
 
             this.animationTime = 0f;
             this.radius = 0f;
+
+            this.connections = new List<Circle>();
         }
 
         public void Update(GameTime gameTime) {
             Animate(gameTime);
+        }
+
+        public bool IsConnected(Circle b) {
+            return connections.Contains(b);
+        }
+
+        public bool Connect(Circle b) {
+            if (!IsConnected(b)) {
+                connections.Add(b);
+                return true;
+            }
+
+            return false;
         }
 
         private void Animate(GameTime gameTime) {
