@@ -369,6 +369,20 @@ namespace C3.XNA {
             Vector2 offset = new Vector2((float)Math.Cos(angle - Math.PI / 2), (float)Math.Sin(angle - Math.PI / 2));
             offset *= thickness / 2;
 
+            /*Texture2D t = new Texture2D(spriteBatch.GraphicsDevice, 1, (int)thickness);
+            Color[] colorData = new Color[t.Height];
+
+            float step = (float)Math.PI / (float)t.Height;
+
+            for (int i = 0; i < t.Height; i++) {
+                float v = (float)Math.Sin(step * i);
+                v *= 255f;
+
+                colorData[i] = Color.White;
+                colorData[i].A = (byte)v;
+            }
+            t.SetData(colorData);*/
+
             // stretch the pixel between the two vectors
             spriteBatch.Draw(pixel,
                 point + offset,
