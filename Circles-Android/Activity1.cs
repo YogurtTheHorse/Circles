@@ -2,6 +2,7 @@ using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Android.Views;
+using Circles;
 
 namespace Circles_Android {
     [Activity(Label = "Circles-Android"
@@ -15,7 +16,7 @@ namespace Circles_Android {
     public class Activity1 : Microsoft.Xna.Framework.AndroidGameActivity {
         protected override void OnCreate(Bundle bundle) {
             base.OnCreate(bundle);
-            var g = new Game1();
+            var g = new CircleGame();
             SetContentView((View)g.Services.GetService(typeof(View)));
             g.Run();
         }
