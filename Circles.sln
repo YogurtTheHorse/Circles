@@ -1,17 +1,42 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Circles", "Circles\Circles.csproj", "{34D52C7E-C9E4-4C9E-A171-68AD5783826E}"
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Circles-Core", "Circles\Circles-Core.csproj", "{34D52C7E-C9E4-4C9E-A171-68AD5783826E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Circles-Windows", "Circles-Windows\Circles-Windows.csproj", "{F69DDE2E-A777-4F93-B156-68FF7C6E9FBD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Circles-Linux", "Circle-Linux\Circles-Linux.csproj", "{27AC5ABD-BD84-4A70-BC8A-C10895C8E823}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
 		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{34D52C7E-C9E4-4C9E-A171-68AD5783826E}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{34D52C7E-C9E4-4C9E-A171-68AD5783826E}.Debug|x86.ActiveCfg = Debug|x86
 		{34D52C7E-C9E4-4C9E-A171-68AD5783826E}.Debug|x86.Build.0 = Debug|x86
+		{34D52C7E-C9E4-4C9E-A171-68AD5783826E}.Release|Any CPU.ActiveCfg = Release|x86
 		{34D52C7E-C9E4-4C9E-A171-68AD5783826E}.Release|x86.ActiveCfg = Release|x86
 		{34D52C7E-C9E4-4C9E-A171-68AD5783826E}.Release|x86.Build.0 = Release|x86
+		{F69DDE2E-A777-4F93-B156-68FF7C6E9FBD}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{F69DDE2E-A777-4F93-B156-68FF7C6E9FBD}.Debug|x86.ActiveCfg = Debug|x86
+		{F69DDE2E-A777-4F93-B156-68FF7C6E9FBD}.Debug|x86.Build.0 = Debug|x86
+		{F69DDE2E-A777-4F93-B156-68FF7C6E9FBD}.Release|Any CPU.ActiveCfg = Release|x86
+		{F69DDE2E-A777-4F93-B156-68FF7C6E9FBD}.Release|x86.ActiveCfg = Release|x86
+		{F69DDE2E-A777-4F93-B156-68FF7C6E9FBD}.Release|x86.Build.0 = Release|x86
+		{27AC5ABD-BD84-4A70-BC8A-C10895C8E823}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{27AC5ABD-BD84-4A70-BC8A-C10895C8E823}.Debug|x86.ActiveCfg = Debug|x86
+		{27AC5ABD-BD84-4A70-BC8A-C10895C8E823}.Debug|x86.Build.0 = Debug|x86
+		{27AC5ABD-BD84-4A70-BC8A-C10895C8E823}.Release|Any CPU.ActiveCfg = Release|x86
+		{27AC5ABD-BD84-4A70-BC8A-C10895C8E823}.Release|x86.ActiveCfg = Release|x86
+		{27AC5ABD-BD84-4A70-BC8A-C10895C8E823}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal

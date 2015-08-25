@@ -1,9 +1,9 @@
 
 #----------------------------- Global Properties ----------------------------#
 
-/outputDir:.\
-/intermediateDir:.\
-/platform:Linux
+/outputDir:bin/Android
+/intermediateDir:obj/Android
+/platform:Android
 /config:
 /profile:Reach
 /compress:False
@@ -12,10 +12,4 @@
 
 
 #---------------------------------- Content ---------------------------------#
-
-#begin fonts/Roboto.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:TextureFormat=Compressed
-/build:fonts/Roboto.spritefont
 
