@@ -23,6 +23,8 @@ namespace Circles {
 
         public static State CurrentState;
 
+        public static Texture2D FirstWon, SecondWon, Replay;
+
         public CircleGame() {
             instance = this;
 
@@ -38,7 +40,7 @@ namespace Circles {
             this.graphics.PreferMultiSampling = true;
 
             InitFields();
-            CurrentState = new OpeningState();
+            CurrentState = new GameState();
         }
 
         public void InitFields() {
@@ -48,6 +50,10 @@ namespace Circles {
 
         protected override void LoadContent() {
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            FirstWon = Content.Load<Texture2D>("1st-won");
+            SecondWon = Content.Load<Texture2D>("2nd-won");
+            Replay = Content.Load<Texture2D>("replay");
         }
 
         protected override void Update(GameTime gameTime) {
