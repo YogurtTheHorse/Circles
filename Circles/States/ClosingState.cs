@@ -22,7 +22,7 @@ namespace Circles.States {
             animationTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             if (animationTime >= Constants.CLOSE_ANIMATION_TIME) {
-                CircleGame.CurrentState = new OpeningWinState(turn);
+                CircleGame.CurrentState = new PreWinState(turn);
                 return;
             }
 

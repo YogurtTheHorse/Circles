@@ -4,14 +4,14 @@ using Microsoft.Xna.Framework.Graphics;
 using C3.XNA;
 
 namespace Circles.States {
-    public class OpeningWinState : State {
+    public class PreWinState : State {
         private int turn;
         private float animationTime;
         private CircleGame game;
         private float lineWidth;
         private float imagesHeight = 0f;
 
-        public OpeningWinState(int turn) {
+        public PreWinState(int turn) {
             this.turn = turn;
             this.game = CircleGame.instance;
             this.animationTime = 0f;
