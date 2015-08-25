@@ -21,6 +21,7 @@ namespace Circles {
         public const float OPEN_ANIMATION_TIME = 1f;
         public const float CLOSE_ANIMATION_LAST_CIRCLE_START = (CLOSE_ANIMATION_TIME - LINE_ANIMATION_TIME) / 10f;
         public const float CLOSE_ANIMATION_TIME = LINE_ANIMATION_TIME + 2f;
+        public const float OPEN_WIN_SCREEN_ANIMATION_TIME = LINE_ANIMATION_TIME + 0.3f;
         public const float LINE_ANIMATION_TIME = 0.5f;
         public const float LINE_THICKNESS = 0.015f;
 
