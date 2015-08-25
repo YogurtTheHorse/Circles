@@ -60,6 +60,7 @@
     <Compile Include="Field.cs" />
     <Compile Include="States\GameState.cs" />
     <Compile Include="States\OpeningState.cs" />
+    <Compile Include="States\OpeningWinState.cs" />
     <Compile Include="States\State.cs" />
     <Compile Include="States\ClosingState.cs" />
   </ItemGroup>
