@@ -131,14 +131,14 @@ namespace Circles {
         }
 
         public void Draw(SpriteBatch spriteBatch) {
-            foreach (Line l in connections) {
-                l.DrawOnField(spriteBatch, player);
-            }
-
             for (int i = 0; i < Width; i++) {
                 for (int j = 0; j < Height; j++) {
                     circles[i, j].Draw(spriteBatch);
                 }
+            }
+
+            foreach (Line l in connections) {
+                l.DrawOnField(spriteBatch, player);
             }
         }
 

@@ -88,6 +88,8 @@ namespace Circles.States {
         }
 
         public void Draw(SpriteBatch spriteBatch) {
+            game.DrawField();
+
             if (currentLine != null) {
                 currentLine.Draw(spriteBatch);
             }
@@ -95,8 +97,6 @@ namespace Circles.States {
             foreach (Line l in OldLines) {
                 l.Draw(spriteBatch);
             }
-
-            game.DrawField();
         }
     }
 
