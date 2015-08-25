@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.Input;
 using C3.XNA;
+using Microsoft.Xna.Framework.Input.Touch;
 
 #endregion
 
@@ -24,23 +25,26 @@ namespace Circles {
         public bool IsMouseDown { get; private set; }
 
         private MouseState OldState;
+        private TouchCollection OldTouchState;
 
         public InputManager() {
             this.OldState = new MouseState();
+            this.OldTouchState = new TouchCollection();
             this.IsMouseDown = false;
         }
 
         public void Update() {
             MouseState newState = Mouse.GetState();
+            TouchCollection newTouchState = TouchPanel.GetState();
 
-            if (IsDown(newState) && !IsDown(OldState)) {
+            if ((IsDown(newState) && !IsDown(OldState)) || (newTouchState.Count > 0 && OldTouchState.Count == 0)) {
                 if (OnMouseDown != null) {
                     OnMouseDown(GetButton(newState), GetMousePosition());
                 }
                 IsMouseDown = true;
             }
 
-            if (!IsDown(newState) && IsMouseDown) {
+            if ((!IsDown(newState) || newTouchState.Count == 0) && IsMouseDown) {
                 if (OnClick != null) {
                     OnClick(GetButton(OldState), GetMousePosition());
                 }
@@ -63,7 +67,11 @@ namespace Circles {
         }
 
         public Vector2 GetMousePosition() {
-            return new Vector2(OldState.Position.X, OldState.Position.Y);
+            if (OldTouchState.Count > 0) {
+                return OldTouchState[0].Position;
+            } else {
+                return new Vector2(OldState.Position.X, OldState.Position.Y);
+            }
         }
 
     }
