@@ -26,8 +26,14 @@ namespace Circles.States {
                 return;
             }
 
-            game.FirstPlayerField.CloseAnimation(gameTime);
-            game.SecondPlayerField.CloseAnimation(gameTime);
+            float fieldAnimation = (Constants.CLOSE_ANIMATION_TIME - Constants.LINE_ANIMATION_TIME) / 2;
+
+            if (animationTime < Constants.LINE_ANIMATION_TIME + fieldAnimation) {
+                game.FirstPlayerField.CloseAnimation(gameTime);
+            }
+            if (animationTime < Constants.LINE_ANIMATION_TIME || animationTime > Constants.LINE_ANIMATION_TIME + fieldAnimation) {
+                game.SecondPlayerField.CloseAnimation(gameTime);
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch) {

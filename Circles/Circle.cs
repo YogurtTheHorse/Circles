@@ -78,9 +78,9 @@ namespace Circles {
                     return;
                 }
 
-                float end = Constants.CLOSE_ANIMATION_TIME - Constants.LINE_ANIMATION_TIME - Constants.CLOSE_ANIMATION_LAST_CIRCLE_START;
+                float end = (Constants.CLOSE_ANIMATION_TIME - Constants.LINE_ANIMATION_TIME) / 2 - Constants.CLOSE_ANIMATION_LAST_CIRCLE_START;
 
-                animationOffset = Constants.CloseAnimate(animationTime - t, 0, 1, end);
+                animationOffset = Constants.CloseAnimate(animationTime- t, 0, 1, end);
             }
         }
 
