@@ -63,6 +63,7 @@
     <Compile Include="States\OpeningWinState.cs" />
     <Compile Include="States\State.cs" />
     <Compile Include="States\ClosingState.cs" />
+    <Compile Include="States\WinState.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />
