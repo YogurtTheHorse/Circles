@@ -22,8 +22,7 @@ namespace Circles.States {
             animationTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             if (animationTime >= Constants.OPEN_WIN_SCREEN_ANIMATION_TIME) {
-                //CircleGame.CurrentState = new WinState(turn);
-                animationTime = Constants.OPEN_WIN_SCREEN_ANIMATION_TIME;
+                CircleGame.CurrentState = new WinState(turn);
             }
 
             if (animationTime <= Constants.LINE_ANIMATION_TIME) {
