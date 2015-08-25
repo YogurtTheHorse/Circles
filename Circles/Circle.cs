@@ -69,7 +69,6 @@ namespace Circles {
 
         public void CloseAnimation(GameTime gameTime) {
             if (animationTime <= Constants.CLOSE_ANIMATION_TIME - Constants.LINE_ANIMATION_TIME) {
-                Console.WriteLine(animationTime);
                 animationTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
                 float c = player == Constants.FIRST_PLAYER ? position.Y : position.X;
