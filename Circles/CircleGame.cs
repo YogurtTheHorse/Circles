@@ -40,7 +40,7 @@ namespace Circles {
             this.graphics.PreferMultiSampling = true;
 
             InitFields();
-            CurrentState = new GameState();
+            CurrentState = new OpeningState();
         }
 
         public void InitFields() {
