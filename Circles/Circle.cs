@@ -13,7 +13,7 @@ using Circles.States;
 
 namespace Circles {
     public class Circle {
-        private static Texture2D texture = CreateTexture(300);
+        private static Texture2D texture = CreateTexture(100);
 
         private Vector2 position;
         private Color color;
@@ -155,17 +155,18 @@ namespace Circles {
             float diam = radius / 2f;
             float diamsq = diam * diam;
 
-            float someProcent = diamsq / 20;
+            // DON'T change this. It will broke antialiasing. Don't event try
+            float someProcent = diamsq / 2;
 
             for (int x = 0; x < radius; x++) {
                 for (int y = 0; y < radius; y++) {
                     int index = x * radius + y;
                     Vector2 pos = new Vector2(x - diam, y - diam);
-                    if (pos.LengthSquared() <= diamsq) {
+                    if (pos.LengthSquared() <= diamsq - someProcent) {
                         colorData[index] = Color.White;
-                        /*} else if (pos.LengthSquared() <= diamsq) {
-                        byte alpha = (byte)(((pos.LengthSquared() - diamsq) / someProcent) * 255);
-                        colorData[index].A = alpha;*/
+                    } else if (pos.LengthSquared() <= diamsq) {
+                        colorData[index] = Color.White;
+                        colorData[index].A = (byte)(255 - AliasingFunction(pos.LengthSquared() - someProcent, 0, 255, someProcent));
                     } else {
                         colorData[index] = Color.Transparent;
                     }
@@ -174,6 +175,14 @@ namespace Circles {
 
             texture.SetData(colorData);
             return texture;
+        }
+
+        private static float AliasingFunction(float t, float b, float c, float d) {
+            if ((t /= d / 2) < 1) {
+                return c / 2 * t * t * t * t + b;
+            }
+
+            return -c / 2 * ((t -= 2) * t * t * t - 2) + b;
         }
 
         private bool IsLast() {
