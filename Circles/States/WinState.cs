@@ -27,7 +27,7 @@ namespace Circles.States {
         }
 
         private void OnDown(InputManager.MouseButton button, Vector2 position) {
-            //CircleGame.CurrentState = new PreWinState(turn, false);
+            CircleGame.CurrentState = new PreWinState(turn, false);
         }
 
         public void Draw(SpriteBatch spriteBatch) {

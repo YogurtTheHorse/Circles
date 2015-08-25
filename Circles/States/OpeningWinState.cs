@@ -6,34 +6,50 @@ using C3.XNA;
 namespace Circles.States {
     public class PreWinState : State {
         private int turn;
-        private float animationTime;
+        private bool isOpening;
+
         private CircleGame game;
-        private float lineWidth;
+        private float animationTime = 0f;
+        private float lineWidth = 0f;
         private float imagesHeight = 0f;
 
-        public PreWinState(int turn) {
+        public PreWinState(int turn, bool isOpening) {
             this.turn = turn;
+            this.isOpening = isOpening;
+
             this.game = CircleGame.instance;
-            this.animationTime = 0f;
-            this.lineWidth = 0f;
         }
 
         public void Update(GameTime gameTime) {
             animationTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             if (animationTime >= Constants.OPEN_WIN_SCREEN_ANIMATION_TIME) {
-                CircleGame.CurrentState = new WinState(turn);
+                CircleGame.CurrentState = isOpening ? (new WinState(turn) as State) : (new OpeningState() as State);
             }
 
-            if (animationTime <= Constants.LINE_ANIMATION_TIME) {
-                lineWidth = Constants.Animate(animationTime, 0, 0.5f, Constants.LINE_ANIMATION_TIME);
+            if (isOpening) {
+                if (animationTime <= Constants.LINE_ANIMATION_TIME) {
+                    lineWidth = Constants.Animate(animationTime, 0, 0.5f, Constants.LINE_ANIMATION_TIME);
+                } else {
+                    lineWidth = 0.5f;
+
+                    float time = animationTime - Constants.LINE_ANIMATION_TIME;
+                    float doneWhen = Constants.OPEN_WIN_SCREEN_ANIMATION_TIME - Constants.LINE_ANIMATION_TIME;
+
+                    imagesHeight = Constants.Animate(time, 0, 1, doneWhen);
+                }
             } else {
-                lineWidth = 0.5f;
+                float l = Constants.OPEN_WIN_SCREEN_ANIMATION_TIME - Constants.LINE_ANIMATION_TIME;
+                if (animationTime > l) {
+                    lineWidth = 0.5f - Constants.Animate(animationTime - l, 0, 0.5f, Constants.LINE_ANIMATION_TIME);
+                    imagesHeight = 0;
+                } else {
+                    lineWidth = 0.5f;
+                    
+                    float doneWhen = Constants.OPEN_WIN_SCREEN_ANIMATION_TIME - Constants.LINE_ANIMATION_TIME;
 
-                float time = animationTime - Constants.LINE_ANIMATION_TIME;
-                float doneWhen = Constants.OPEN_WIN_SCREEN_ANIMATION_TIME - Constants.LINE_ANIMATION_TIME;
-
-                imagesHeight = Constants.Animate(time, 0, 1, doneWhen);
+                    imagesHeight = 1 - Constants.Animate(animationTime, 0, 1, doneWhen);
+                }
             }
         }
 

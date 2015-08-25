@@ -40,6 +40,7 @@ namespace Circles {
             this.graphics.PreferMultiSampling = true;
 
             InitFields();
+            //CurrentState = new PreWinState(0, true);
             CurrentState = new OpeningState();
         }
 
