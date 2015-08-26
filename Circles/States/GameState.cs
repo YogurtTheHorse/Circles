@@ -49,7 +49,11 @@ namespace Circles.States {
                 Vector2 begin = Circle.GetPosition(currentLine.begin, CurrentTurn);
                 Vector2 end = Circle.GetPosition(currentLine.end, CurrentTurn);
                 if (CurrentField.InField(end) && Connect(begin, end)) {
-                    NextTurn();
+                    if (Circle.CheckWon()) {
+                        CircleGame.CurrentState = new ClosingState(CurrentTurn);
+                    } else {
+                        NextTurn();
+                    }
                 } else {
                     OldLines.Add(currentLine);
                 }
