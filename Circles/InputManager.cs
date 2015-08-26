@@ -71,14 +71,14 @@ namespace Circles {
 
 			if (IsTouching(newTouchState) && !IsTouching(OldTouchState)) {
 				if (OnMouseDown != null) {
-					OnMouseDown(MouseButton.Left, GetMousePosition());
+					OnMouseDown(MouseButton.Left, GetTouchPosition(newTouchState));
 				}
 				IsMouseDown = true;
 			}
 
-			if (!IsTouching(newTouchState) && IsMouseDown) {
+			if (!IsTouching(newTouchState) && IsTouching(OldTouchState)) {
 				if (OnClick != null) {
-					OnClick(MouseButton.Left, GetMousePosition());
+					OnClick(MouseButton.Left, GetTouchPosition(OldTouchState));
 				}
 				IsMouseDown = false;
 			}
@@ -86,13 +86,15 @@ namespace Circles {
 			OldTouchState = newTouchState;
         }
 
-		bool IsTouching (TouchCollection touchCollection) {
-			foreach (TouchLocation tl in touchCollection) {
-				if (tl.State == TouchLocationState.Moved || tl.State == TouchLocationState.Pressed) {
-					return true;
-				}
-			}
-			return false;
+        private Vector2 GetTouchPosition(TouchCollection touchCollection) {
+            foreach (TouchLocation t in touchCollection) {
+                return t.Position;
+            }
+            return Vector2.Zero;
+        }
+
+        private bool IsTouching (TouchCollection touchCollection) {
+			return touchCollection.Count > 0;
 		}
 
         private bool IsDown(MouseState state) {
@@ -108,15 +110,8 @@ namespace Circles {
         }
 
         public Vector2 GetMousePosition() {
-			if (IsMobile) {
-				foreach (TouchLocation tl in OldTouchState) {
-					if (tl.State == TouchLocationState.Moved || tl.State == TouchLocationState.Pressed) {
-						return tl.Position;
-					} else {
-						Console.WriteLine (tl.State);
-					}
-				}
-				return Vector2.Zero;
+            if (IsMobile) {
+                return GetTouchPosition(OldTouchState);
             } else {
                 return new Vector2(OldState.Position.X, OldState.Position.Y);
             }
