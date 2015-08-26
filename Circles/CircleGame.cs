@@ -16,7 +16,7 @@ namespace Circles {
     public class CircleGame : Game {
         public static CircleGame instance;
         public static bool IsMobile;
-        public static SpriteFont Font;
+        public static SpriteFont Font, BigFont;
         public static Texture2D FirstWon, SecondWon, DrawWom, Replay;
         public static Texture2D[] WonTextures;
 
@@ -42,10 +42,16 @@ namespace Circles {
             this.IsMouseVisible = true;
             this.graphics.PreferMultiSampling = true;
             this.graphics.IsFullScreen = IsMobile;
-			this.graphics.SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight | 
-												  DisplayOrientation.Portrait | DisplayOrientation.PortraitDown;
-            
-            CurrentState = new OpeningState();
+
+            Color color = Constants.COLORS[Constants.DRAW];
+            Texture2D first = StringToTexture("  Lines  ", BigFont);
+            Texture2D second = StringToTexture("");
+
+            PreSelectState.OnSelectHandler onChoose = delegate () {
+                CircleGame.CurrentState = new OpeningState();
+            };
+
+            CurrentState = new PreSelectState(color, first, second, onChoose, true);
         }
 
         public void InitFields() {
@@ -57,6 +63,7 @@ namespace Circles {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             Font = Content.Load<SpriteFont>("Roboto");
+            BigFont = Content.Load<SpriteFont>("Roboto-Big");
 
             FirstWon = StringToTexture("1st palyer won!");
             SecondWon = StringToTexture("2nd palyer won!");
@@ -68,14 +75,18 @@ namespace Circles {
         }
 
         private Texture2D StringToTexture(string label) {
-            Vector2 size = Font.MeasureString(label);
+            return StringToTexture(label, Font);
+        }
+
+        private Texture2D StringToTexture(string label, SpriteFont font) {
+            Vector2 size = font.MeasureString(label);
             RenderTarget2D renderTarget = new RenderTarget2D(GraphicsDevice, (int)size.X, (int)size.Y);
 
             GraphicsDevice.SetRenderTarget(renderTarget);
             GraphicsDevice.Clear(Color.Transparent);
 
             spriteBatch.Begin();
-            spriteBatch.DrawString(Font, label, Vector2.Zero, Color.White);
+            spriteBatch.DrawString(font, label, Vector2.Zero, Color.White);
             spriteBatch.End();
 
             GraphicsDevice.SetRenderTarget(null);
