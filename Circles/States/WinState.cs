@@ -39,7 +39,7 @@ namespace Circles.States {
             Primitives2D.DrawLine(spriteBatch, a, b, color, lineThikness);
 
             // Draw won label
-            Texture2D wonTexture = turn == Constants.FIRST_PLAYER ? CircleGame.FirstWon : CircleGame.SecondWon;
+            Texture2D wonTexture = CircleGame.WonTextures[turn];
 
             float width = Constants.ToScreenWidth(lineWidth) * 0.9f;
             float height = (width * wonTexture.Height) / wonTexture.Width;
