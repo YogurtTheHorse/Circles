@@ -41,6 +41,7 @@ namespace Circles {
             this.Window.AllowUserResizing = true;
             this.IsMouseVisible = true;
             this.graphics.PreferMultiSampling = true;
+            this.graphics.IsFullScreen = IsMobile;
             
             CurrentState = new OpeningState();
         }
