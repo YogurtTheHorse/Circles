@@ -17,7 +17,7 @@ namespace Circles {
         public static CircleGame instance;
         public static bool IsMobile;
         public static SpriteFont Font;
-        public static Texture2D FirstWon, SecondWon, Replay;
+        public static Texture2D FirstWon, SecondWon, DrawWom, Replay;
 
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
@@ -56,6 +56,7 @@ namespace Circles {
 
             FirstWon = StringToTexture("1st palyer won!");
             SecondWon = StringToTexture("2nd palyer won!");
+            DrawWom = StringToTexture("Seems like it's draw");
             Replay = StringToTexture("Replay?");
         }
 
