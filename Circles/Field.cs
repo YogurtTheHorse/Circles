@@ -78,20 +78,24 @@ namespace Circles {
         public bool CanMove(Field secondField) {
             for (int i = 0; i < Width; i++) {
                 for (int j = 0; j < Height; j++) {
-                    if (!CanMove(i, j, secondField)) {
-                        return false;
+                    if (CanMove(i, j, secondField)) {
+                        return true;
                     }
                 }
             }
 
-            return true;
+            return false;
         }
 
         private bool CanMove(int i, int j, Field secondField) {
-            return secondField.Allows(new Vector2(i, j), new Vector2(i + 1, j)) ||
-                   secondField.Allows(new Vector2(i, j), new Vector2(i - 1, j)) ||
-                   secondField.Allows(new Vector2(i, j), new Vector2(i, j + 1)) ||
-                   secondField.Allows(new Vector2(i, j), new Vector2(i, j - 1));
+            return CanMove(new Vector2(i, j), new Vector2(i + 1, j), secondField) ||
+                   CanMove(new Vector2(i, j), new Vector2(i - 1, j), secondField) ||
+                   CanMove(new Vector2(i, j), new Vector2(i, j + 1), secondField) ||
+                   CanMove(new Vector2(i, j), new Vector2(i, j - 1), secondField);
+        }
+
+        private bool CanMove(Vector2 a, Vector2 b, Field secondField) {
+            return InField(a) && InField(b) && secondField.Allows(a, b) && !TryGet(a).IsConnected(TryGet(b));
         }
 
         // Returns true if nothing restricts connection of @begin and @end
@@ -128,6 +132,14 @@ namespace Circles {
         private Circle TryGet(int x, int y) {
             if (InField(new Vector2(x, y))) {
                 return this[x, y];
+            } else {
+                return new Circle(0, 0, 0);
+            }
+        }
+
+        private Circle TryGet(Vector2 v) {
+            if (InField(v)) {
+                return this[v];
             } else {
                 return new Circle(0, 0, 0);
             }

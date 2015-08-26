@@ -49,11 +49,7 @@ namespace Circles.States {
                 Vector2 begin = Circle.GetPosition(currentLine.begin, CurrentTurn);
                 Vector2 end = Circle.GetPosition(currentLine.end, CurrentTurn);
                 if (CurrentField.InField(end) && Connect(begin, end)) {
-                    if (Circle.CheckWon()) {
-                        CircleGame.CurrentState = new ClosingState(CurrentTurn);
-                    } else {
-                        NextTurn();
-                    }
+                    NextTurn();
                 } else {
                     OldLines.Add(currentLine);
                 }
@@ -71,13 +67,12 @@ namespace Circles.States {
             CurrentTurn = (++CurrentTurn) % 2;
 
             if (!CanMove()) {
-                // draw
+                CircleGame.CurrentState = new ClosingState(Constants.DRAW);
             }
         }
 
         private bool CanMove() {
-            return game.FirstPlayerField.CanMove(game.SecondPlayerField) && 
-                   game.SecondPlayerField.CanMove(game.FirstPlayerField);
+            return CurrentField.CanMove(NextField);
         }
 
         public void Update(GameTime gameTime) {
