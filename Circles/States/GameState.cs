@@ -14,7 +14,7 @@ namespace Circles.States {
         private Line currentLine;
         private List<Line> OldLines;
 
-        public static int CurrentTurn = Constants.FIRST_PLAYER;
+        public static int CurrentTurn;
 
         public Field CurrentField { get { return CurrentTurn == 0 ? game.FirstPlayerField : game.SecondPlayerField; } }
 
@@ -22,6 +22,7 @@ namespace Circles.States {
 
         public GameState() {
             GameState.instance = this;
+            CurrentTurn = Constants.FIRST_PLAYER;
 
             this.game = CircleGame.instance;
 

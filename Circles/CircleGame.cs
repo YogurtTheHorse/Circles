@@ -40,9 +40,7 @@ namespace Circles {
             this.Window.AllowUserResizing = true;
             this.IsMouseVisible = true;
             this.graphics.PreferMultiSampling = true;
-
-            InitFields();
-            //CurrentState = new PreWinState(0, true);
+            
             CurrentState = new OpeningState();
         }
 

@@ -11,8 +11,7 @@ namespace Circles.States {
             this.game = CircleGame.instance;
             this.animationTime = 0;
 
-            this.game.FirstPlayerField.ResetAnimation();
-            this.game.SecondPlayerField.ResetAnimation();
+            this.game.InitFields();
         }
 
         public void Update(GameTime gameTime) {
