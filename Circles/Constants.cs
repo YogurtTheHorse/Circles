@@ -12,10 +12,12 @@ namespace Circles {
 
         public const int FIRST_PLAYER = 0;
         public const int SECOND_PLAYER = 1;
+        public const int DRAW = 2;
         public static Color[] COLORS = new Color[]
         {
             new Color(235, 73, 73),
-            new Color(99, 200, 225)
+            new Color(99, 200, 225),
+            Color.Black
         };
 
         public const float OPEN_ANIMATION_TIME = 1f;
