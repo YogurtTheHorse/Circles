@@ -16,6 +16,8 @@ namespace Circles {
     public class CircleGame : Game {
         public static CircleGame instance;
         public static bool IsMobile;
+        public static SpriteFont Font;
+        public static Texture2D FirstWon, SecondWon, Replay;
 
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
@@ -23,8 +25,6 @@ namespace Circles {
         public Field FirstPlayerField, SecondPlayerField;
 
         public static State CurrentState;
-
-        public static Texture2D FirstWon, SecondWon, Replay;
 
         public CircleGame(bool isMobile) {
             instance = this;
@@ -57,6 +57,8 @@ namespace Circles {
             FirstWon = Content.Load<Texture2D>("1st-won");
             SecondWon = Content.Load<Texture2D>("2nd-won");
             Replay = Content.Load<Texture2D>("replay");
+
+            Font = Content.Load<SpriteFont>("Roboto");
         }
 
         protected override void Update(GameTime gameTime) {
