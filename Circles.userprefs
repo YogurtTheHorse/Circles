@@ -1,8 +1,10 @@
-﻿<Properties StartupItem="Circles/Circles.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Circles/CircleGame.cs">
+﻿<Properties StartupItem="Circles-Android\Circles-Android.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" PreferredExecutionTarget="Android.192.168.99.100:5555" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Circles\States\GameState.cs">
     <Files>
-      <File FileName="Circles/CircleGame.cs" Line="17" Column="19" />
+      <File FileName="Circles\InputManager.cs" Line="57" Column="38" />
+      <File FileName="Circles\CircleGame.cs" Line="29" Column="17" />
+      <File FileName="Circles\States\GameState.cs" Line="94" Column="67" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

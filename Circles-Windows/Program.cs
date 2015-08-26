@@ -12,7 +12,7 @@ namespace Circles_Windows {
         /// </summary>
         [STAThread]
         static void Main() {
-            using (var game = new CircleGame())
+            using (var game = new CircleGame(false))
                 game.Run();
         }
     }

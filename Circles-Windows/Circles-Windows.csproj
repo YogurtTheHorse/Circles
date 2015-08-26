@@ -3,8 +3,6 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{F69DDE2E-A777-4F93-B156-68FF7C6E9FBD}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -59,7 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Circles\Circles-Core.csproj">
-      <Project>{34d52c7e-c9e4-4c9e-a171-68ad5783826e}</Project>
+      <Project>{34D52C7E-C9E4-4C9E-A171-68AD5783826E}</Project>
       <Name>Circles-Core</Name>
     </ProjectReference>
   </ItemGroup>

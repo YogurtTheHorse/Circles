@@ -15,6 +15,7 @@ using System.Threading;
 namespace Circles {
     public class CircleGame : Game {
         public static CircleGame instance;
+        public static bool IsMobile;
 
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
@@ -25,8 +26,9 @@ namespace Circles {
 
         public static Texture2D FirstWon, SecondWon, Replay;
 
-        public CircleGame() {
+        public CircleGame(bool isMobile) {
             instance = this;
+            IsMobile = isMobile;
 
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";

@@ -12,7 +12,7 @@ namespace Circle_Linux {
         /// </summary>
         [STAThread]
         static void Main() {
-            using (var game = new CircleGame())
+            using (var game = new CircleGame(false))
                 game.Run();
         }
     }
