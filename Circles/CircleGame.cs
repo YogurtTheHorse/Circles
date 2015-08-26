@@ -52,11 +52,27 @@ namespace Circles {
         protected override void LoadContent() {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            FirstWon = Content.Load<Texture2D>("1st-won");
-            SecondWon = Content.Load<Texture2D>("2nd-won");
-            Replay = Content.Load<Texture2D>("replay");
-
             Font = Content.Load<SpriteFont>("Roboto");
+
+            FirstWon = StringToTexture("1st palyer won!");
+            SecondWon = StringToTexture("2nd palyer won!");
+            Replay = StringToTexture("Replay?");
+        }
+
+        private Texture2D StringToTexture(string label) {
+            Vector2 size = Font.MeasureString(label);
+            RenderTarget2D renderTarget = new RenderTarget2D(GraphicsDevice, (int)size.X, (int)size.Y);
+
+            GraphicsDevice.SetRenderTarget(renderTarget);
+            GraphicsDevice.Clear(Color.Transparent);
+
+            spriteBatch.Begin();
+            spriteBatch.DrawString(Font, label, Vector2.Zero, Color.White);
+            spriteBatch.End();
+
+            GraphicsDevice.SetRenderTarget(null);
+
+            return (Texture2D)renderTarget;
         }
 
         protected override void Update(GameTime gameTime) {
