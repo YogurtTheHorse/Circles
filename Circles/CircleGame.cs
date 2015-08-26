@@ -42,6 +42,8 @@ namespace Circles {
             this.IsMouseVisible = true;
             this.graphics.PreferMultiSampling = true;
             this.graphics.IsFullScreen = IsMobile;
+			this.graphics.SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight | 
+												  DisplayOrientation.Portrait | DisplayOrientation.PortraitDown;
             
             CurrentState = new OpeningState();
         }

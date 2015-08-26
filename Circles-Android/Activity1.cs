@@ -11,12 +11,13 @@ namespace Circles_Android {
         , Theme = "@style/Theme.Splash"
         , AlwaysRetainTaskState = true
         , LaunchMode = Android.Content.PM.LaunchMode.SingleInstance
-        , ScreenOrientation = ScreenOrientation.SensorLandscape
+		, ScreenOrientation = ScreenOrientation.SensorPortrait
         , ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden | ConfigChanges.ScreenSize)]
     public class Activity1 : Microsoft.Xna.Framework.AndroidGameActivity {
         protected override void OnCreate(Bundle bundle) {
             base.OnCreate(bundle);
             var g = new CircleGame(true);
+
             SetContentView((View)g.Services.GetService(typeof(View)));
             g.Run();
         }
