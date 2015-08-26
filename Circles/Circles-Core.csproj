@@ -57,10 +57,10 @@
     <Compile Include="Field.cs" />
     <Compile Include="States\GameState.cs" />
     <Compile Include="States\OpeningState.cs" />
-    <Compile Include="States\OpeningWinState.cs" />
+    <Compile Include="States\PreSelectState.cs" />
     <Compile Include="States\State.cs" />
     <Compile Include="States\ClosingState.cs" />
-    <Compile Include="States\WinState.cs" />
+    <Compile Include="States\SelectState.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />

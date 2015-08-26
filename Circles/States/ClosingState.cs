@@ -22,7 +22,14 @@ namespace Circles.States {
             animationTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             if (animationTime >= Constants.CLOSE_ANIMATION_TIME) {
-                CircleGame.CurrentState = new PreWinState(turn, true);
+                Color color = Constants.COLORS[turn];
+                Texture2D wonTexture = CircleGame.WonTextures[turn];
+
+                PreSelectState.OnSelectHandler onChoose = delegate () {
+                    CircleGame.CurrentState = new OpeningState();
+                };
+
+                CircleGame.CurrentState = new PreSelectState(color, wonTexture, CircleGame.Replay, onChoose, true);
                 return;
             }
 
