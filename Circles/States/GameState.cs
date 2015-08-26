@@ -2,6 +2,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Circles.States {
     public class GameState : State {
@@ -68,6 +69,15 @@ namespace Circles.States {
 
         private void NextTurn() {
             CurrentTurn = (++CurrentTurn) % 2;
+
+            if (!CanMove()) {
+                // draw
+            }
+        }
+
+        private bool CanMove() {
+            return game.FirstPlayerField.CanMove(game.SecondPlayerField) && 
+                   game.SecondPlayerField.CanMove(game.FirstPlayerField);
         }
 
         public void Update(GameTime gameTime) {

@@ -75,6 +75,25 @@ namespace Circles {
             rhs = temp;
         }
 
+        public bool CanMove(Field secondField) {
+            for (int i = 0; i < Width; i++) {
+                for (int j = 0; j < Height; j++) {
+                    if (!CanMove(i, j, secondField)) {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        private bool CanMove(int i, int j, Field secondField) {
+            return secondField.Allows(new Vector2(i, j), new Vector2(i + 1, j)) ||
+                   secondField.Allows(new Vector2(i, j), new Vector2(i - 1, j)) ||
+                   secondField.Allows(new Vector2(i, j), new Vector2(i, j + 1)) ||
+                   secondField.Allows(new Vector2(i, j), new Vector2(i, j - 1));
+        }
+
         // Returns true if nothing restricts connection of @begin and @end
         // Don't try to understand this
         public bool Allows(Vector2 begin, Vector2 end) {
@@ -142,14 +161,12 @@ namespace Circles {
             }
         }
 
-        public Circle this [Vector2 v]
-        {
+        public Circle this[Vector2 v] {
             get { return this[(int)v.X, (int)v.Y]; }
             private set { this[(int)v.X, (int)v.Y] = value; }
         }
 
-        public Circle this [int i, int j]
-        {
+        public Circle this[int i, int j] {
             get { return circles[i, j]; }
             private set { circles[i, j] = value; }
         }
