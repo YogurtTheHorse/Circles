@@ -46,3 +46,9 @@
 /processorParam:TextureFormat=Color
 /build:replay.png
 
+#begin Roboto.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:Roboto.spritefont
+

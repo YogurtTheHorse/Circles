@@ -62,6 +62,7 @@
     <None Include="Content\1st-won.xnb" />
     <None Include="Content\2nd-won.xnb" />
     <None Include="Content\replay.xnb" />
+    <None Include="Content\Roboto.xnb" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
   </ItemGroup>
