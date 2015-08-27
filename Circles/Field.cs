@@ -32,28 +32,28 @@ namespace Lines {
 
             for (int i = 0; i < Width; i++) {
                 for (int j = 0; j < Height; j++) {
-                    this[i, j] = new Circle(i, j, player);
+                    this[i, j] = new Circle(i, j, player, false);
                 }
             }
 
             if (player == Constants.FIRST_PLAYER) {
-                firstMainCircle = new Circle(-1, (Height - 1)/ 2f, player);
-                secondMainCircle = new Circle(Width, (Height - 1) / 2f, player);
+                firstMainCircle = new Circle(-1, (Height - 1)/ 2f, player, true);
+                secondMainCircle = new Circle(Width, (Height - 1) / 2f, player, true);
             } else {
-                firstMainCircle = new Circle((Width - 1) / 2f, -1, player);
-                secondMainCircle = new Circle((Width - 1) / 2f, Height, player);
+                firstMainCircle = new Circle((Width - 1) / 2f, -1, player, true);
+                secondMainCircle = new Circle((Width - 1) / 2f, Height, player, true);
             }
         }
 
         public void OpenAnimation(GameTime gameTime) {
             for (int i = 0; i < Width; i++) {
                 for (int j = 0; j < Height; j++) {
-                    this[i, j].OpenAnimation(gameTime, false);
+                    this[i, j].OpenAnimation(gameTime);
                 }
             }
 
-            firstMainCircle.OpenAnimation(gameTime, true);
-            secondMainCircle.OpenAnimation(gameTime, true);
+            firstMainCircle.OpenAnimation(gameTime);
+            secondMainCircle.OpenAnimation(gameTime);
         }
 
         public void ResetAnimation() {
@@ -62,6 +62,8 @@ namespace Lines {
                     this[i, j].ResetAnimation();
                 }
             }
+            firstMainCircle.ResetAnimation();
+            secondMainCircle.ResetAnimation();
         }
 
         public void CloseAnimation(GameTime gameTime) {
@@ -79,6 +81,8 @@ namespace Lines {
                         this[i, j].CloseAnimation(gameTime);
                     }
                 }
+                firstMainCircle.CloseAnimation(gameTime);
+                secondMainCircle.CloseAnimation(gameTime);
             }
         }
 
@@ -150,7 +154,7 @@ namespace Lines {
             if (InField(new Vector2(x, y))) {
                 return this[x, y];
             } else {
-                return new Circle(0, 0, 0);
+                return new Circle(0, 0, 0, false);
             }
         }
 
@@ -158,7 +162,7 @@ namespace Lines {
             if (InField(v)) {
                 return this[v];
             } else {
-                return new Circle(0, 0, 0);
+                return new Circle(0, 0, 0, false);
             }
         }
 

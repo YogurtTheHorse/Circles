@@ -12,6 +12,7 @@ namespace Lines.Utils {
         private Vector2 position;
         private Color color;
         private int player;
+        private bool isBig;
 
         private float animationOffset;
         private float animationTime;
@@ -19,10 +20,11 @@ namespace Lines.Utils {
 
         private List<Circle> connections;
 
-        public Circle(float i, float j, int player) {
+        public Circle(float i, float j, int player, bool isBig) {
             this.position = new Vector2(i, j);
             this.player = player;
             this.color = Constants.COLORS[player];
+            this.isBig = isBig;
 
             this.animationTime = 0f;
             this.radius = 0f;
@@ -46,7 +48,7 @@ namespace Lines.Utils {
             return false;
         }
 
-        public void OpenAnimation(GameTime gameTime, bool isBig) {
+        public void OpenAnimation(GameTime gameTime) {
             if (animationTime < Constants.OPEN_ANIMATION_TIME) {
                 animationTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
@@ -83,10 +85,18 @@ namespace Lines.Utils {
             Vector2 animationOffset = Vector2.Zero;
             float screenOffset = Constants.ToScreenMax(this.animationOffset);
 
-            if (player == Constants.FIRST_PLAYER) {
-                animationOffset.X = screenOffset;
-            } else {
-                animationOffset.Y = screenOffset;
+            if (isBig) {
+                if (player == Constants.FIRST_PLAYER) {
+                    animationOffset.X = position.X > 0 ? screenOffset : -screenOffset;
+                } else {
+                    animationOffset.Y = position.Y > 0 ? screenOffset : -screenOffset;
+                }
+            } else { 
+                if (player == Constants.FIRST_PLAYER) {
+                    animationOffset.X = screenOffset;
+                } else {
+                    animationOffset.Y = screenOffset;
+                }
             }
 
             Vector2 center = GetCenterPosition(this) + animationOffset;
