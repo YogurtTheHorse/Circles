@@ -13,6 +13,8 @@ namespace Lines {
 
         private List<Line> connections;
 
+        private Circle firstMainCircle, secondMainCircle;
+
         public Field(int player) {
             this.Width = Constants.FIELD_WIDTH;
             this.Height = Constants.FIELD_HEIGHT;
@@ -33,14 +35,25 @@ namespace Lines {
                     this[i, j] = new Circle(i, j, player);
                 }
             }
+
+            if (player == Constants.FIRST_PLAYER) {
+                firstMainCircle = new Circle(-1, (Height - 1)/ 2f, player);
+                secondMainCircle = new Circle(Width, (Height - 1) / 2f, player);
+            } else {
+                firstMainCircle = new Circle((Width - 1) / 2f, -1, player);
+                secondMainCircle = new Circle((Width - 1) / 2f, Height, player);
+            }
         }
 
         public void OpenAnimation(GameTime gameTime) {
             for (int i = 0; i < Width; i++) {
                 for (int j = 0; j < Height; j++) {
-                    this[i, j].OpenAnimation(gameTime);
+                    this[i, j].OpenAnimation(gameTime, false);
                 }
             }
+
+            firstMainCircle.OpenAnimation(gameTime, true);
+            secondMainCircle.OpenAnimation(gameTime, true);
         }
 
         public void ResetAnimation() {
@@ -171,6 +184,9 @@ namespace Lines {
                     circles[i, j].Draw(spriteBatch);
                 }
             }
+
+            firstMainCircle.Draw(spriteBatch);
+            secondMainCircle.Draw(spriteBatch);
 
             foreach (Line l in connections) {
                 l.DrawOnField(spriteBatch, player);

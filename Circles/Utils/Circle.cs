@@ -7,7 +7,7 @@ using Lines.States;
 
 namespace Lines.Utils {
     public class Circle {
-        private static Texture2D texture = CreateTexture(100);
+        private static Texture2D texture = CreateTexture(300);
 
         private Vector2 position;
         private Color color;
@@ -19,7 +19,7 @@ namespace Lines.Utils {
 
         private List<Circle> connections;
 
-        public Circle(int i, int j, int player) {
+        public Circle(float i, float j, int player) {
             this.position = new Vector2(i, j);
             this.player = player;
             this.color = Constants.COLORS[player];
@@ -46,7 +46,7 @@ namespace Lines.Utils {
             return false;
         }
 
-        public void OpenAnimation(GameTime gameTime) {
+        public void OpenAnimation(GameTime gameTime, bool isBig) {
             if (animationTime < Constants.OPEN_ANIMATION_TIME) {
                 animationTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
@@ -55,6 +55,7 @@ namespace Lines.Utils {
             } else {
                 radius = Constants.CIRCLE_RADIUS;
             }
+            radius *= isBig ? 3 : 1;
         }
 
         public void ResetAnimation() {
@@ -106,7 +107,7 @@ namespace Lines.Utils {
                 Y = (LinesGame.instance.GetScreenHeight() - fieldSize) / 2
             };
 
-            Vector2 step = new Vector2(fieldSize / (Constants.FIELD_WIDTH - 1));
+            Vector2 step = new Vector2(fieldSize / (Constants.FIELD_WIDTH + 1));
             if (player == Constants.FIRST_PLAYER) {
                 offset.Y += step.Y / 2;
             } else {
@@ -116,7 +117,7 @@ namespace Lines.Utils {
             screenPoint -= offset - step / 2;
             screenPoint /= step;
 
-            return new Vector2((int)screenPoint.X, (int)screenPoint.Y);
+            return new Vector2((int)screenPoint.X - 1, (int)screenPoint.Y - 1);
         }
 
         public static Vector2 GetCenterPosition(Circle circle) {
@@ -132,14 +133,14 @@ namespace Lines.Utils {
                 Y = (LinesGame.instance.GetScreenHeight() - fieldSize) / 2
             };
 
-            Vector2 step = new Vector2(fieldSize / (Constants.FIELD_WIDTH - 1));
+            Vector2 step = new Vector2(fieldSize / (Constants.FIELD_WIDTH + 1));
             if (player == Constants.FIRST_PLAYER) {
                 offset.Y += step.Y / 2;
             } else {
                 offset.X += step.X / 2;
             }
 
-            return offset + position * step;
+            return offset + (new Vector2(1, 1) + position) * step;
         }
 
         private static Texture2D CreateTexture(int radius) {
