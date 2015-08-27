@@ -11,7 +11,7 @@ using Lines.States;
 
 #endregion
 
-namespace Lines {
+namespace Lines.Utils {
     public class Circle {
         private static Texture2D texture = CreateTexture(100);
 

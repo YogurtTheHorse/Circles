@@ -9,6 +9,7 @@ using C3.XNA;
 using System.Collections.Generic;
 using Lines.States;
 using System.Threading;
+using Lines.Utils;
 
 #endregion
 

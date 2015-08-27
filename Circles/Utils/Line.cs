@@ -4,7 +4,7 @@ using C3.XNA;
 using System;
 using Lines.States;
 
-namespace Lines {
+namespace Lines.Utils {
     public class Line {
         private float removeAnimationTime = 0;
         private Vector2 animationEnd;

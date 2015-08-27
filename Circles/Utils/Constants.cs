@@ -1,7 +1,7 @@
 using System;
 using Microsoft.Xna.Framework;
 
-namespace Lines {
+namespace Lines.Utils {
     public class Constants {
         public const int FIELD_SIZE = 5;
         public const int FIELD_WIDTH = FIELD_SIZE;
