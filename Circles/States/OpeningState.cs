@@ -12,8 +12,6 @@ namespace Lines.States {
             this.animationTime = 0;
 
             this.game.InitFields();
-
-            Constants.RandomColorScheme();
         }
 
         public void Update(GameTime gameTime) {

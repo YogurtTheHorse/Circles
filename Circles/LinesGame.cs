@@ -57,6 +57,8 @@ namespace Lines {
         }
 
         public void InitFields() {
+            Constants.RandomColorScheme();
+
             FirstPlayerField = new Field(Constants.FIRST_PLAYER);
             SecondPlayerField = new Field(Constants.SECOND_PLAYER);
         }
