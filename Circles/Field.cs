@@ -93,6 +93,7 @@ namespace Lines {
 
         public void RemoveConnections() {
             connections.Clear();
+            mainCirclesConnections.Clear();
         }
 
         private static void Swap<T>(ref T lhs, ref T rhs) {
