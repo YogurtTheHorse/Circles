@@ -37,6 +37,9 @@ namespace Lines.States {
 
             if (animationTime < Constants.LINE_ANIMATION_TIME + fieldAnimation) {
                 game.FirstPlayerField.CloseAnimation(gameTime);
+                if (animationTime > Constants.LINE_ANIMATION_TIME) {
+                    game.SecondPlayerField.RemoveConnections();
+                }
             }
             if (animationTime < Constants.LINE_ANIMATION_TIME || animationTime > Constants.LINE_ANIMATION_TIME + fieldAnimation) {
                 game.SecondPlayerField.CloseAnimation(gameTime);
