@@ -13,12 +13,7 @@ namespace Lines.Utils {
         public const int FIRST_PLAYER = 0;
         public const int SECOND_PLAYER = 1;
         public const int DRAW = 2;
-        public static Color[] COLORS = new Color[]
-        {
-            new Color(235, 73, 73),
-            new Color(99, 200, 225),
-            Color.Black
-        };
+        public static Color[] COLORS;
 
         public const float OPEN_ANIMATION_TIME = 1f;
         public const float CLOSE_ANIMATION_LAST_CIRCLE_START = (CLOSE_ANIMATION_TIME - LINE_ANIMATION_TIME) / 10f;
@@ -26,6 +21,29 @@ namespace Lines.Utils {
         public const float OPEN_WIN_SCREEN_ANIMATION_TIME = LINE_ANIMATION_TIME + 0.3f;
         public const float LINE_ANIMATION_TIME = 0.5f;
         public const float LINE_THICKNESS = 0.015f;
+
+        public static void RandomColorScheme() {
+            Color[][] colorScemes = new Color[][] {
+                new Color[] {
+                    new Color(235, 73, 73),
+                    new Color(99, 200, 225),
+                    Color.Black
+                },
+                new Color[] {
+                    new Color(190, 128, 190),
+                    new Color(91, 98, 190),
+                    Color.Black
+                },
+                new Color[] {
+                    new Color(235, 172, 95),
+                    new Color(48, 190, 56),
+                    Color.Black
+                }
+            };
+
+            Random rand = new Random();
+            COLORS = colorScemes[rand.Next(colorScemes.Length)];
+        }
 
         public static Vector2 ToScreen(float x, float y) {
             return new Vector2(ToScreenWidth(x), ToScreenHeight(y));

@@ -36,6 +36,8 @@ namespace Lines {
             this.graphics.PreferMultiSampling = true;
             this.graphics.IsFullScreen = IsMobile;
 
+            Constants.RandomColorScheme();
+
             Color color = Constants.COLORS[Constants.DRAW];
             Texture2D first = StringToTexture("  Lines  ", BigFont);
             Texture2D second = StringToTexture("");
