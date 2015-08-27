@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input.Touch;
 
 #endregion
 
-namespace Circles {
+namespace Lines {
     public class InputManager {
         public enum MouseButton {
             Left = 0,
@@ -35,7 +35,7 @@ namespace Circles {
             this.OldTouchState = new TouchCollection();
             this.IsMouseDown = false;
             
-            this.IsMobile = CircleGame.IsMobile;
+            this.IsMobile = LinesGame.IsMobile;
         }
 
         public void Update() {

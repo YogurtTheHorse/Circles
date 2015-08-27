@@ -6,9 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Circles.States {
+namespace Lines.States {
     public class SelectState : State {
-        private CircleGame game;
+        private LinesGame game;
         private float lineWidth;
         private InputManager inputManager;
 
@@ -25,7 +25,7 @@ namespace Circles.States {
             this.onFirst = onFirst;
             this.onSecond = onSecond;
 
-            this.game = CircleGame.instance;
+            this.game = LinesGame.instance;
             this.lineWidth = 0.5f;
 
             this.inputManager = new InputManager();
@@ -44,9 +44,9 @@ namespace Circles.States {
             }
 
             if (position.Y < Constants.ToScreenHeight(0.5f)) {
-                CircleGame.CurrentState = new PreSelectState(color, first, second, onFirst, false);
+                LinesGame.CurrentState = new PreSelectState(color, first, second, onFirst, false);
             } else {
-                CircleGame.CurrentState = new PreSelectState(color, first, second, onSecond, false);
+                LinesGame.CurrentState = new PreSelectState(color, first, second, onSecond, false);
             }
         }
 

@@ -1,7 +1,7 @@
-﻿using Circles;
+﻿using Lines;
 using System;
 
-namespace Circle_Linux {
+namespace Lines.Linux {
 #if WINDOWS || LINUX
     /// <summary>
     /// The main class.
@@ -12,7 +12,7 @@ namespace Circle_Linux {
         /// </summary>
         [STAThread]
         static void Main() {
-            using (var game = new CircleGame(false))
+            using (var game = new LinesGame(false))
                 game.Run();
         }
     }

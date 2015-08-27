@@ -2,7 +2,7 @@ using System;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 
-namespace Circles.States {
+namespace Lines.States {
     public interface State {
         void Update(GameTime gameTime);
 

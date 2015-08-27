@@ -2,9 +2,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using C3.XNA;
 using System;
-using Circles.States;
+using Lines.States;
 
-namespace Circles {
+namespace Lines {
     public class Line {
         private float removeAnimationTime = 0;
         private Vector2 animationEnd;

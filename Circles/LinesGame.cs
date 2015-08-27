@@ -7,14 +7,14 @@ using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.Input;
 using C3.XNA;
 using System.Collections.Generic;
-using Circles.States;
+using Lines.States;
 using System.Threading;
 
 #endregion
 
-namespace Circles {
-    public class CircleGame : Game {
-        public static CircleGame instance;
+namespace Lines {
+    public class LinesGame : Game {
+        public static LinesGame instance;
         public static bool IsMobile;
         public static SpriteFont Font, BigFont;
         public static Texture2D FirstWon, SecondWon, DrawWom, Replay;
@@ -27,7 +27,7 @@ namespace Circles {
 
         public static State CurrentState;
 
-        public CircleGame(bool isMobile) {
+        public LinesGame(bool isMobile) {
             instance = this;
             IsMobile = isMobile;
 
@@ -48,7 +48,7 @@ namespace Circles {
             Texture2D second = StringToTexture("");
 
             PreSelectState.OnSelectHandler onChoose = delegate () {
-                CircleGame.CurrentState = new OpeningState();
+                LinesGame.CurrentState = new OpeningState();
             };
 
             CurrentState = new PreSelectState(color, first, second, onChoose, true);

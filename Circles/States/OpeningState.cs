@@ -2,13 +2,13 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Circles.States {
+namespace Lines.States {
     public class OpeningState : State {
-        private CircleGame game;
+        private LinesGame game;
         private float animationTime;
 
         public OpeningState() {
-            this.game = CircleGame.instance;
+            this.game = LinesGame.instance;
             this.animationTime = 0;
 
             this.game.InitFields();
@@ -21,7 +21,7 @@ namespace Circles.States {
             game.SecondPlayerField.OpenAnimation(gameTime);
 
             if (animationTime > Constants.OPEN_ANIMATION_TIME) {
-                CircleGame.CurrentState = new GameState();
+                LinesGame.CurrentState = new GameState();
             }
         }
 

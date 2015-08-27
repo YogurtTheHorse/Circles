@@ -3,15 +3,15 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 
-namespace Circles.States {
+namespace Lines.States {
     public class ClosingState : State {
         private int turn;
         private float animationTime;
-        private CircleGame game;
+        private LinesGame game;
 
         public ClosingState(int turn) {
             this.turn = turn;
-            this.game = CircleGame.instance;
+            this.game = LinesGame.instance;
             this.animationTime = 0;
 
             this.game.FirstPlayerField.ResetAnimation();
@@ -23,13 +23,13 @@ namespace Circles.States {
 
             if (animationTime >= Constants.CLOSE_ANIMATION_TIME) {
                 Color color = Constants.COLORS[turn];
-                Texture2D wonTexture = CircleGame.WonTextures[turn];
+                Texture2D wonTexture = LinesGame.WonTextures[turn];
 
                 PreSelectState.OnSelectHandler onChoose = delegate () {
-                    CircleGame.CurrentState = new OpeningState();
+                    LinesGame.CurrentState = new OpeningState();
                 };
 
-                CircleGame.CurrentState = new PreSelectState(color, wonTexture, CircleGame.Replay, onChoose, true);
+                LinesGame.CurrentState = new PreSelectState(color, wonTexture, LinesGame.Replay, onChoose, true);
                 return;
             }
 

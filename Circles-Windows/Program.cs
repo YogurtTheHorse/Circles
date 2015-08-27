@@ -1,7 +1,7 @@
-﻿using Circles;
+﻿using Lines;
 using System;
 
-namespace Circles_Windows {
+namespace Lines.Windows {
 #if WINDOWS || LINUX
     /// <summary>
     /// The main class.
@@ -12,7 +12,7 @@ namespace Circles_Windows {
         /// </summary>
         [STAThread]
         static void Main() {
-            using (var game = new CircleGame(false))
+            using (var game = new LinesGame(false))
                 game.Run();
         }
     }

@@ -7,11 +7,11 @@ using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.Input;
 using C3.XNA;
 using System.Collections.Generic;
-using Circles.States;
+using Lines.States;
 
 #endregion
 
-namespace Circles {
+namespace Lines {
     public class Circle {
         private static Texture2D texture = CreateTexture(100);
 
@@ -108,8 +108,8 @@ namespace Circles {
 
             Vector2 offset = new Vector2
             {
-                X = (CircleGame.instance.GetScreenWidth() - fieldSize) / 2,
-                Y = (CircleGame.instance.GetScreenHeight() - fieldSize) / 2
+                X = (LinesGame.instance.GetScreenWidth() - fieldSize) / 2,
+                Y = (LinesGame.instance.GetScreenHeight() - fieldSize) / 2
             };
 
             Vector2 step = new Vector2(fieldSize / (Constants.FIELD_WIDTH - 1));
@@ -134,8 +134,8 @@ namespace Circles {
 
             Vector2 offset = new Vector2
             {
-                X = (CircleGame.instance.GetScreenWidth() - fieldSize) / 2,
-                Y = (CircleGame.instance.GetScreenHeight() - fieldSize) / 2
+                X = (LinesGame.instance.GetScreenWidth() - fieldSize) / 2,
+                Y = (LinesGame.instance.GetScreenHeight() - fieldSize) / 2
             };
 
             Vector2 step = new Vector2(fieldSize / (Constants.FIELD_WIDTH - 1));
@@ -149,7 +149,7 @@ namespace Circles {
         }
 
         private static Texture2D CreateTexture(int radius) {
-            Texture2D texture = new Texture2D(CircleGame.instance.GraphicsDevice, radius, radius);
+            Texture2D texture = new Texture2D(LinesGame.instance.GraphicsDevice, radius, radius);
             Color[] colorData = new Color[radius * radius];
 
             float diam = radius / 2f;

@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 
-namespace Circles {
+namespace Lines {
     public class Field {
         private Circle[,] circles;
         private int player;

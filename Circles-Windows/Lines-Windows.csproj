@@ -56,9 +56,9 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Circles\Circles-Core.csproj">
+    <ProjectReference Include="..\Circles\Lines-Core.csproj">
       <Project>{34D52C7E-C9E4-4C9E-A171-68AD5783826E}</Project>
-      <Name>Circles-Core</Name>
+      <Name>Lines-Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

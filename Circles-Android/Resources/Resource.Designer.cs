@@ -11,7 +11,7 @@
 
 [assembly: global::Android.Runtime.ResourceDesignerAttribute("Circles_Android.Resource", IsApplication=true)]
 
-namespace Circles_Android
+namespace Lines_Android
 {
 	
 	

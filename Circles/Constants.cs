@@ -1,7 +1,7 @@
 using System;
 using Microsoft.Xna.Framework;
 
-namespace Circles {
+namespace Lines {
     public class Constants {
         public const int FIELD_SIZE = 5;
         public const int FIELD_WIDTH = FIELD_SIZE;
@@ -36,11 +36,11 @@ namespace Circles {
         }
 
         public static float ToScreenWidth(float w) {
-            return w * CircleGame.instance.GetScreenWidth();
+            return w * LinesGame.instance.GetScreenWidth();
         }
 
         public static float ToScreenHeight(float h) {
-            return h * CircleGame.instance.GetScreenHeight();
+            return h * LinesGame.instance.GetScreenHeight();
         }
 
         public static float ToScreenMin(float x) {

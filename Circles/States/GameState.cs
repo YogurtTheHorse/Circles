@@ -4,11 +4,11 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace Circles.States {
+namespace Lines.States {
     public class GameState : State {
         public static GameState instance;
 
-        private CircleGame game;
+        private LinesGame game;
 
         private InputManager InputManager;
 
@@ -25,7 +25,7 @@ namespace Circles.States {
             GameState.instance = this;
             CurrentTurn = Constants.FIRST_PLAYER;
 
-            this.game = CircleGame.instance;
+            this.game = LinesGame.instance;
 
             this.InputManager = new InputManager();
             this.InputManager.OnMouseDown += OnMouseDown;
@@ -50,7 +50,7 @@ namespace Circles.States {
                 Vector2 end = Circle.GetPosition(currentLine.end, CurrentTurn);
                 if (CurrentField.InField(end) && Connect(begin, end)) {
                     if (Circle.CheckWon()) {
-                        CircleGame.CurrentState = new ClosingState(CurrentTurn);
+                        LinesGame.CurrentState = new ClosingState(CurrentTurn);
                     } else {
                         NextTurn();
                     }
@@ -71,7 +71,7 @@ namespace Circles.States {
             CurrentTurn = (++CurrentTurn) % 2;
 
             if (!CanMove()) {
-                CircleGame.CurrentState = new ClosingState(Constants.DRAW);
+                LinesGame.CurrentState = new ClosingState(Constants.DRAW);
             }
         }
 

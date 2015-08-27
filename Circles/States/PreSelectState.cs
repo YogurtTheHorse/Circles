@@ -3,13 +3,13 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using C3.XNA;
 
-namespace Circles.States {
+namespace Lines.States {
     public class PreSelectState : State {
         public delegate void OnSelectHandler();
         
         private bool isOpening;
 
-        private CircleGame game;
+        private LinesGame game;
         private float animationTime = 0f;
         private float lineWidth = 0f;
         private float imagesHeight = 0f;
@@ -28,7 +28,7 @@ namespace Circles.States {
             this.onSecond = onSecond;
             this.isOpening = isOpening;
 
-            this.game = CircleGame.instance;
+            this.game = LinesGame.instance;
         }
 
         public PreSelectState(Color color, Texture2D first, Texture2D second, OnSelectHandler onFirst, bool isOpening) {
@@ -38,7 +38,7 @@ namespace Circles.States {
             this.onFirst = onFirst;
             this.isOpening = isOpening;
 
-            this.game = CircleGame.instance;
+            this.game = LinesGame.instance;
         }
 
         public void Update(GameTime gameTime) {
@@ -46,7 +46,7 @@ namespace Circles.States {
 
             if (animationTime >= Constants.OPEN_WIN_SCREEN_ANIMATION_TIME) {
                 if (isOpening) {
-                    CircleGame.CurrentState = new SelectState(color, first, second, onFirst, onSecond);
+                    LinesGame.CurrentState = new SelectState(color, first, second, onFirst, onSecond);
                 } else {
                     onFirst();
                 }
