@@ -81,6 +81,9 @@ namespace Lines.States {
         public void Update(GameTime gameTime) {
             InputManager.Update();
             UpdateLines(gameTime);
+
+            CurrentField.Update(gameTime);
+            NextField.Update(gameTime);
         }
 
         private void UpdateLines(GameTime gameTime) {

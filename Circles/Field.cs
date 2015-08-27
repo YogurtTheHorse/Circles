@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Lines.Utils;
+using System;
 
 namespace Lines {
     public class Field {
@@ -11,7 +12,7 @@ namespace Lines {
         private int Width;
         private int Height;
 
-        private List<Line> connections;
+        private List<Line> connections, mainCirclesConnections;
 
         private Circle firstMainCircle, secondMainCircle;
 
@@ -29,6 +30,7 @@ namespace Lines {
             this.circles = new Circle[Width, Height];
 
             this.connections = new List<Line>();
+            this.mainCirclesConnections = new List<Line>();
 
             for (int i = 0; i < Width; i++) {
                 for (int j = 0; j < Height; j++) {
@@ -74,6 +76,9 @@ namespace Lines {
                         connections.RemoveAt(i);
                         i--;
                     }
+                }
+                foreach (Line l in mainCirclesConnections) {
+                    l.Remove(gameTime);
                 }
             } else {
                 for (int i = 0; i < Width; i++) {
@@ -176,10 +181,39 @@ namespace Lines {
 
             if (a.Connect(b)) {
                 connections.Add(new Line(begin, end));
+                CheckForEdge(a.position);
+                CheckForEdge(b.position);
                 return true;
             }
 
             return false;
+        }
+
+        private void CheckForEdge(Vector2 v) {
+            Line lineToAdd = null;
+            if (player == Constants.FIRST_PLAYER) {
+                if (v.X == 0) {
+                    lineToAdd = new Line(firstMainCircle.position, v);
+                } else if (v.X == Width - 1) {
+                    lineToAdd = new Line(secondMainCircle.position, v);
+                }
+            } else {
+                if (v.Y == 0) {
+                    lineToAdd = new Line(firstMainCircle.position, v);
+                } else if (v.Y == Height - 1) {
+                    lineToAdd = new Line(secondMainCircle.position, v);
+                }
+            }
+            if (lineToAdd != null) {
+                lineToAdd.SetAnimationPosition(lineToAdd.begin);
+                mainCirclesConnections.Add(lineToAdd);
+            }
+        }
+
+        public void Update(GameTime gameTime) {
+            foreach (Line l in mainCirclesConnections) {
+                l.Grow(gameTime);
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch) {
@@ -193,6 +227,10 @@ namespace Lines {
             secondMainCircle.Draw(spriteBatch);
 
             foreach (Line l in connections) {
+                l.DrawOnField(spriteBatch, player);
+            }
+
+            foreach (Line l in mainCirclesConnections) {
                 l.DrawOnField(spriteBatch, player);
             }
         }

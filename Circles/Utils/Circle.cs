@@ -10,7 +10,7 @@ namespace Lines.Utils {
         private static Texture2D texture = CreateTexture(300);
         private static Texture2D bigTexture = CreateTexture(900);
 
-        private Vector2 position;
+        public Vector2 position { get; private set; }
         private Color color;
         private int player;
         private bool isBig;
