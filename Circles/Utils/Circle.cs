@@ -8,6 +8,7 @@ using Lines.States;
 namespace Lines.Utils {
     public class Circle {
         private static Texture2D texture = CreateTexture(300);
+        private static Texture2D bigTexture = CreateTexture(600);
 
         private Vector2 position;
         private Color color;
@@ -82,6 +83,8 @@ namespace Lines.Utils {
         }
 
         public void Draw(SpriteBatch batch) {
+            Texture2D texture = isBig ? bigTexture : Circle.texture;
+
             Vector2 animationOffset = Vector2.Zero;
             float screenOffset = Constants.ToScreenMax(this.animationOffset);
 
@@ -117,7 +120,7 @@ namespace Lines.Utils {
                 Y = (LinesGame.instance.GetScreenHeight() - fieldSize) / 2
             };
 
-            Vector2 step = new Vector2(fieldSize / (Constants.FIELD_WIDTH + 1));
+            Vector2 step = new Vector2(fieldSize / (Constants.FIELD_WIDTH + 1.5f));
             if (player == Constants.FIRST_PLAYER) {
                 offset.Y += step.Y / 2;
             } else {
@@ -127,7 +130,7 @@ namespace Lines.Utils {
             screenPoint -= offset - step / 2;
             screenPoint /= step;
 
-            return new Vector2((int)screenPoint.X - 1, (int)screenPoint.Y - 1);
+            return new Vector2((int)(screenPoint.X - 1.5f), (int)(screenPoint.Y - 1.5f));
         }
 
         public static Vector2 GetCenterPosition(Circle circle) {
@@ -143,14 +146,14 @@ namespace Lines.Utils {
                 Y = (LinesGame.instance.GetScreenHeight() - fieldSize) / 2
             };
 
-            Vector2 step = new Vector2(fieldSize / (Constants.FIELD_WIDTH + 1));
+            Vector2 step = new Vector2(fieldSize / (Constants.FIELD_WIDTH + 1.5f));
             if (player == Constants.FIRST_PLAYER) {
                 offset.Y += step.Y / 2;
             } else {
                 offset.X += step.X / 2;
             }
 
-            return offset + (new Vector2(1, 1) + position) * step;
+            return offset + (new Vector2(1.5f, 1.5f) + position) * step;
         }
 
         private static Texture2D CreateTexture(int radius) {

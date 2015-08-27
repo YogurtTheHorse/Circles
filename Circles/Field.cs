@@ -37,11 +37,11 @@ namespace Lines {
             }
 
             if (player == Constants.FIRST_PLAYER) {
-                firstMainCircle = new Circle(-1, (Height - 1)/ 2f, player, true);
-                secondMainCircle = new Circle(Width, (Height - 1) / 2f, player, true);
+                firstMainCircle = new Circle(-1.5f, (Height - 1) / 2f, player, true);
+                secondMainCircle = new Circle(Width + 0.5f, (Height - 1) / 2f, player, true);
             } else {
-                firstMainCircle = new Circle((Width - 1) / 2f, -1, player, true);
-                secondMainCircle = new Circle((Width - 1) / 2f, Height, player, true);
+                firstMainCircle = new Circle((Width - 1) / 2f, -1.5f, player, true);
+                secondMainCircle = new Circle((Width - 1) / 2f, Height + 0.5f, player, true);
             }
         }
 
