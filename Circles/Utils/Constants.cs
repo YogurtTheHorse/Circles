@@ -8,7 +8,7 @@ namespace Lines.Utils {
         public const int FIELD_HEIGHT = FIELD_SIZE;
         public const float FIELD_OFFSET = 0.15f;
 
-        public const float CIRCLE_RADIUS = 0.05f;
+        public const float CIRCLE_RADIUS = 0.04f;
 
         public const int FIRST_PLAYER = 0;
         public const int SECOND_PLAYER = 1;
