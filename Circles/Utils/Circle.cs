@@ -1,15 +1,9 @@
-#region Using Statements
 using System;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Storage;
-using Microsoft.Xna.Framework.Input;
-using C3.XNA;
 using System.Collections.Generic;
 using Lines.States;
-
-#endregion
 
 namespace Lines.Utils {
     public class Circle {

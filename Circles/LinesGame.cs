@@ -1,17 +1,8 @@
-﻿#region Using Statements
-using System;
-
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Storage;
-using Microsoft.Xna.Framework.Input;
-using C3.XNA;
-using System.Collections.Generic;
-using Lines.States;
-using System.Threading;
-using Lines.Utils;
 
-#endregion
+using Lines.States;
+using Lines.Utils;
 
 namespace Lines {
     public class LinesGame : Game {
