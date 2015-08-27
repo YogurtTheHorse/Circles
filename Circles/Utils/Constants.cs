@@ -58,5 +58,9 @@ namespace Lines.Utils {
         public static float CloseAnimate(float t, float b, float c, float d) {
             return c * (t /= d) * t * (3 * 1.70158f * t - 1.70158f) + b;
         }
+
+        public static float SelectScreenAnimate(float t, float b, float c, float d) {
+            return c * ((t = t / d - 1) * t * ((1.70158f + 1) * t + 1.70158f) + 1) + b;
+        }
     }
 }

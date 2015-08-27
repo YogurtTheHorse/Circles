@@ -56,7 +56,7 @@ namespace Lines.States {
 
             if (isOpening) {
                 if (animationTime <= Constants.LINE_ANIMATION_TIME) {
-                    lineWidth = Constants.Animate(animationTime, 0, 0.5f, Constants.LINE_ANIMATION_TIME);
+                    lineWidth = Constants.SelectScreenAnimate(animationTime, 0, 0.5f, Constants.LINE_ANIMATION_TIME);
                 } else {
                     lineWidth = 0.5f;
 
