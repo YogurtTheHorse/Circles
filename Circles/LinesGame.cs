@@ -3,17 +3,24 @@ using Microsoft.Xna.Framework.Graphics;
 
 using Lines.States;
 using Lines.Utils;
+using Microsoft.Xna.Framework.Media;
+using System;
 
 namespace Lines {
     public class LinesGame : Game {
         public static LinesGame instance;
         public static bool IsMobile;
-        public static SpriteFont Font, BigFont;
+
         public static Texture2D FirstWon, SecondWon, DrawWom, Replay;
         public static Texture2D[] WonTextures;
 
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
+
+        public static SpriteFont Font, BigFont;
+
+        private int currentSong = 0;
+        private Song[] songs;
 
         public Field FirstPlayerField, SecondPlayerField;
 
@@ -67,6 +74,18 @@ namespace Lines {
             WonTextures = new Texture2D[] { FirstWon, SecondWon, DrawWom };
 
             Replay = StringToTexture("Replay?");
+
+            /*songs = new Song[] {
+                Song.FromUri("song17", new Uri("Content/song17.wav", UriKind.Relative)),
+                Song.FromUri("song18", new Uri("Content/song18.wav", UriKind.Relative))
+
+            };*/
+            
+            //MediaPlayer.Play(songs[currentSong]);
+            MediaPlayer.IsRepeating = true;
+            MediaPlayer.MediaStateChanged += delegate (object sender, EventArgs args) {
+                MediaPlayer.Play(songs[(++currentSong) % songs.Length]);
+            };
         }
 
         private Texture2D StringToTexture(string label) {

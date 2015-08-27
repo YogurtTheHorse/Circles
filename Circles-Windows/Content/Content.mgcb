@@ -25,3 +25,21 @@
 /processorParam:TextureFormat=Compressed
 /build:Roboto-Big.spritefont
 
+#begin song17.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:song17.mp3
+
+#begin song18_0.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:song18_0.mp3
+
+#begin song21_0.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:song21_0.mp3
+
