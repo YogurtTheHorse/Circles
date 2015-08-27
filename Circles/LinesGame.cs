@@ -38,6 +38,7 @@ namespace Lines {
         protected override void Initialize() {
             base.Initialize();
 
+            this.Window.Title = "Lines";
             this.Window.AllowUserResizing = true;
             this.IsMouseVisible = true;
             this.graphics.PreferMultiSampling = true;
