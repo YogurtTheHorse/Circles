@@ -8,7 +8,7 @@ using Lines.States;
 namespace Lines.Utils {
     public class Circle {
         private static Texture2D texture = CreateTexture(300);
-        private static Texture2D bigTexture = CreateTexture(600);
+        private static Texture2D bigTexture = CreateTexture(900);
 
         private Vector2 position;
         private Color color;
@@ -174,7 +174,10 @@ namespace Lines.Utils {
                         colorData[index] = Color.White;
                     } else if (pos.LengthSquared() <= diamsq) {
                         colorData[index] = Color.White;
-                        colorData[index].A = (byte)(255 - AliasingFunction(pos.LengthSquared() - someProcent, 0, 255, someProcent));
+
+                        byte scale = (byte)(255 - AliasingFunction(pos.LengthSquared() - someProcent, 0, 255, someProcent));
+
+                        colorData[index].A = scale;
                     } else {
                         colorData[index] = Color.Transparent;
                     }
