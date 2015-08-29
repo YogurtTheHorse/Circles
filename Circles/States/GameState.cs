@@ -11,7 +11,7 @@ namespace Lines.States {
 
         protected InputManager InputManager;
 
-        protected Line currentLine;
+        protected Line currentLine, secondPlayerLine;
         protected List<Line> OldLines;
 
         public static int CurrentTurn;
@@ -87,7 +87,7 @@ namespace Lines.States {
         }
 
         private void UpdateLines(GameTime gameTime) {
-            if (currentLine != null) {
+            if (currentLine != null && InputManager.InBounds()) {
                 currentLine.end = InputManager.GetMousePosition();
             }
 
@@ -99,7 +99,7 @@ namespace Lines.States {
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch) {
+        public virtual void Draw(SpriteBatch spriteBatch) {
             game.DrawField();
 
             if (currentLine != null) {

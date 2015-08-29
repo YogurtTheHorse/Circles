@@ -82,7 +82,7 @@ namespace Lines {
 			OldTouchState = newTouchState;
         }
 
-        private bool InBounds() {
+        public bool InBounds() {
             return new Rectangle(0,
                 0,
                 (int)LinesGame.instance.GetScreenWidth(),

@@ -82,6 +82,32 @@ namespace Lines.Utils {
             }
         }
 
+        public static Vector2 ToField(Vector2 v) {
+            float fieldSize = Constants.ToScreenMin(1 - Constants.FIELD_OFFSET * 2);
+
+            Vector2 offset = new Vector2 {
+                X = (LinesGame.instance.GetScreenWidth() - fieldSize) / 2,
+                Y = (LinesGame.instance.GetScreenHeight() - fieldSize) / 2
+            };
+
+            Vector2 step = new Vector2(fieldSize / (Constants.FIELD_WIDTH + 1.5f));
+
+            return (v - GetCenterPosition(Vector2.Zero, 0)) / step;
+        }
+
+        public static Vector2 FromField(Vector2 v) {
+            float fieldSize = Constants.ToScreenMin(1 - Constants.FIELD_OFFSET * 2);
+
+            Vector2 offset = new Vector2 {
+                X = (LinesGame.instance.GetScreenWidth() - fieldSize) / 2,
+                Y = (LinesGame.instance.GetScreenHeight() - fieldSize) / 2
+            };
+
+            Vector2 step = new Vector2(fieldSize / (Constants.FIELD_WIDTH + 1.5f));
+
+            return (v * step) + GetCenterPosition(Vector2.Zero, 0);
+        }
+
         public void Draw(SpriteBatch batch) {
             Texture2D texture = isBig ? bigTexture : Circle.texture;
 

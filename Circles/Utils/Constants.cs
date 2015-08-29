@@ -45,6 +45,14 @@ namespace Lines.Utils {
             COLORS = colorScemes[rand.Next(colorScemes.Length)];
         }
 
+        public static Vector2 ToField(Vector2 v) {
+            return Circle.ToField(v);
+        }
+
+        public static Vector2 FromField(Vector2 v) {
+            return Circle.FromField(v);
+        }
+
         public static Vector2 ToScreen(float x, float y) {
             return new Vector2(ToScreenWidth(x), ToScreenHeight(y));
         }
