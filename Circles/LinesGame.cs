@@ -25,6 +25,8 @@ namespace Lines {
 
         public static State CurrentState;
 
+        public static Network.LinesClient client;
+
         public LinesGame(bool isMobile) {
             instance = this;
             IsMobile = isMobile;
@@ -46,14 +48,18 @@ namespace Lines {
 
             Color color = Constants.COLORS[Constants.DRAW];
             Texture2D first = StringToTexture("  Lines  ", BigFont);
-            Texture2D second = StringToTexture("        Play        ");
-            Texture2D third = StringToTexture(" ");
+            Texture2D second = StringToTexture("        Local game        ");
+            Texture2D third = StringToTexture("Fing game");
 
-            PreSelectState.OnSelectHandler onChoose = delegate () {
-                LinesGame.CurrentState = new OpeningState();
+            PreSelectState.OnSelectHandler onChooseLocal = delegate () {
+                LinesGame.CurrentState = new OpeningState(true);
             };
 
-            CurrentState = new PreSelectState(color, first, second, third, onChoose, true);
+            PreSelectState.OnSelectHandler onChooseMulti = delegate () {
+                LinesGame.CurrentState = new WaitForServerState();
+            };
+
+            CurrentState = new PreSelectState(color, first, second, third, onChooseLocal, onChooseMulti, true);
         }
 
         public void InitFields() {

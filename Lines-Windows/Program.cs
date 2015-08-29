@@ -1,7 +1,7 @@
 ﻿using Lines;
 using System;
 
-namespace Lines.Linux {
+namespace Lines.Windows {
 #if WINDOWS || LINUX
     /// <summary>
     /// The main class.

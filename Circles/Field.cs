@@ -34,7 +34,7 @@ namespace Lines {
 
             for (int i = 0; i < Width; i++) {
                 for (int j = 0; j < Height; j++) {
-                    this[i, j] = new Circle(i, j, player, false);
+                    this.circles[i, j] = new Circle((float)i, (float)j, player, false);
                 }
             }
 
@@ -188,6 +188,17 @@ namespace Lines {
             }
 
             return false;
+        }
+
+        public void ForceConnect(Vector2 begin, Vector2 end) {
+            Circle a = this[begin];
+            Circle b = this[end];
+
+            a.Connect(b);
+
+            connections.Add(new Line(begin, end));
+            CheckForEdge(a.position);
+            CheckForEdge(b.position);
         }
 
         private void CheckForEdge(Vector2 v) {

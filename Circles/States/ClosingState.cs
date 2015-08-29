@@ -25,7 +25,7 @@ namespace Lines.States {
                 Texture2D wonTexture = LinesGame.WonTextures[turn];
 
                 PreSelectState.OnSelectHandler onChoose = delegate () {
-                    LinesGame.CurrentState = new OpeningState();
+                    LinesGame.CurrentState = new OpeningState(false);
                 };
 
                 LinesGame.CurrentState = new PreSelectState(color, wonTexture, LinesGame.ToMainMenu, LinesGame.Replay, onChoose, true);

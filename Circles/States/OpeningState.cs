@@ -6,8 +6,10 @@ namespace Lines.States {
     public class OpeningState : State {
         private LinesGame game;
         private float animationTime;
+        private bool isLocal;
 
-        public OpeningState() {
+        public OpeningState(bool isLocal) {
+            this.isLocal = isLocal;
             this.game = LinesGame.instance;
             this.animationTime = 0;
 
@@ -21,7 +23,11 @@ namespace Lines.States {
             game.SecondPlayerField.OpenAnimation(gameTime);
 
             if (animationTime > Constants.OPEN_ANIMATION_TIME) {
-                LinesGame.CurrentState = new GameState();
+                if (isLocal) {
+                    LinesGame.CurrentState = new GameState();
+                } else {
+                    LinesGame.CurrentState = new NetGameState();
+                }
             }
         }
 

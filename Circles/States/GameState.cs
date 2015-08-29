@@ -7,12 +7,12 @@ namespace Lines.States {
     public class GameState : State {
         public static GameState instance;
 
-        private LinesGame game;
+        protected LinesGame game;
 
-        private InputManager InputManager;
+        protected InputManager InputManager;
 
-        private Line currentLine;
-        private List<Line> OldLines;
+        protected Line currentLine;
+        protected List<Line> OldLines;
 
         public static int CurrentTurn;
 
@@ -34,7 +34,7 @@ namespace Lines.States {
         }
 
         // Calls in update if mouse just up
-        public void OnMouseDown(InputManager.MouseButton button, Vector2 position) {
+        public virtual void OnMouseDown(InputManager.MouseButton button, Vector2 position) {
             Vector2 circlePosition = Circle.GetPosition(position, CurrentTurn);
             if (CurrentField.InField(circlePosition)) {
                 Circle c = CurrentField[(int)circlePosition.X, (int)circlePosition.Y];
@@ -43,7 +43,7 @@ namespace Lines.States {
             }
         }
 
-        public void OnMouseUp(InputManager.MouseButton button, Vector2 position) {
+        public virtual void OnMouseUp(InputManager.MouseButton button, Vector2 position) {
             if (currentLine != null) {
                 Vector2 begin = Circle.GetPosition(currentLine.begin, CurrentTurn);
                 Vector2 end = Circle.GetPosition(currentLine.end, CurrentTurn);
@@ -78,7 +78,7 @@ namespace Lines.States {
             return CurrentField.CanMove(NextField);
         }
 
-        public void Update(GameTime gameTime) {
+        public virtual void Update(GameTime gameTime) {
             InputManager.Update();
             UpdateLines(gameTime);
 

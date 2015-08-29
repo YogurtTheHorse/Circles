@@ -157,6 +157,10 @@ namespace Lines.Utils {
         }
 
         private static Texture2D CreateTexture(int radius) {
+            if (LinesGame.instance == null) { // Server
+                return null;
+            }
+
             Texture2D texture = new Texture2D(LinesGame.instance.GraphicsDevice, radius, radius);
             Color[] colorData = new Color[radius * radius];
 
