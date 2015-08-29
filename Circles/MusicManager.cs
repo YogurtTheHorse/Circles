@@ -2,14 +2,15 @@
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Lines {
     public class MusicManager {
         private Dictionary<string, TimeSpan> songStarts;
-        private Song[] songs;
+        private SoundEffect[] songs;
         private int currentSongNumber;
 
-        private Song currentSong {
+        private SoundEffect currentSong {
             get {
                 return songs[currentSongNumber];
             }
@@ -18,8 +19,9 @@ namespace Lines {
         public MusicManager() {
             songStarts = new Dictionary<string, TimeSpan>();
 
-            songs = new Song[] {
-                LinesGame.instance.Content.Load<Song>("song17")
+            songs = new SoundEffect[] {
+                LinesGame.instance.Content.Load<SoundEffect>("song17"),
+                LinesGame.instance.Content.Load<SoundEffect>("song18")
                 //Song.FromUri("song17", new Uri("Content/song17.wav", UriKind.Relative)),
                 //Song.FromUri("song18", new Uri("Content/song18.wav", UriKind.Relative))
             };
@@ -31,7 +33,7 @@ namespace Lines {
             currentSongNumber = (++currentSongNumber) % songs.Length;
             songStarts[currentSong.Name] = gameTime.TotalGameTime;
 
-            MediaPlayer.Play(currentSong);
+            currentSong.Play();
         }
 
         public void Update(GameTime gameTime) {

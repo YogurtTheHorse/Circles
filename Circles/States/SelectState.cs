@@ -1,4 +1,5 @@
-﻿using C3.XNA;
+﻿using System;
+using C3.XNA;
 
 using Lines.Utils;
 
@@ -12,13 +13,15 @@ namespace Lines.States {
         private InputManager inputManager;
 
         private Color color;
+        private Texture2D title;
         private Texture2D first;
         private Texture2D second;
         private PreSelectState.OnSelectHandler onFirst;
         private PreSelectState.OnSelectHandler onSecond;
 
-        public SelectState(Color color, Texture2D first, Texture2D second, PreSelectState.OnSelectHandler onFirst, PreSelectState.OnSelectHandler onSecond) {
+        public SelectState(Color color, Texture2D title, Texture2D first, Texture2D second, PreSelectState.OnSelectHandler onFirst, PreSelectState.OnSelectHandler onSecond) {
             this.color = color;
+            this.title = title;
             this.first = first;
             this.second = second;
             this.onFirst = onFirst;
@@ -43,13 +46,25 @@ namespace Lines.States {
             }
 
             if (position.Y < Constants.ToScreenHeight(0.5f)) {
-                LinesGame.CurrentState = new PreSelectState(color, first, second, onFirst, false);
+                LinesGame.CurrentState = new PreSelectState(color, title, first, second, onFirst, false);
             } else {
-                LinesGame.CurrentState = new PreSelectState(color, first, second, onSecond, false);
+                LinesGame.CurrentState = new PreSelectState(color, title, first, second, onSecond, false);
             }
         }
 
         public void Draw(SpriteBatch spriteBatch) {
+            DrawTitle(spriteBatch);
+            DrawButtons(spriteBatch);
+        }
+
+        private void DrawTitle(SpriteBatch spriteBatch) {
+            Vector2 pos = Constants.ToScreen(0.5f, -1 + 6f / 5f);
+            float scale = Constants.ToScreenWidth(0.4f) / title.Width;
+
+            spriteBatch.Draw(title, pos, null, color, 0f, new Vector2(title.Width / 2, title.Height / 2), scale, SpriteEffects.None, 0);
+        }
+
+        private void DrawButtons(SpriteBatch spriteBatch) {
             Vector2 a = Constants.ToScreen(0.5f - lineWidth / 2, 0.5f);
             Vector2 b = Constants.ToScreen(0.5f + lineWidth / 2, 0.5f);
             float lineThikness = Constants.ToScreenMin(Constants.LINE_THICKNESS) / 5f;

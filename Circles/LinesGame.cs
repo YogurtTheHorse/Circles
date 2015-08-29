@@ -11,7 +11,7 @@ namespace Lines {
         public static LinesGame instance;
         public static bool IsMobile;
 
-        public static Texture2D FirstWon, SecondWon, DrawWom, Replay;
+        public static Texture2D FirstWon, SecondWon, DrawWom, Replay, ToMainMenu;
         public static Texture2D[] WonTextures;
 
         private GraphicsDeviceManager graphics;
@@ -46,13 +46,14 @@ namespace Lines {
 
             Color color = Constants.COLORS[Constants.DRAW];
             Texture2D first = StringToTexture("  Lines  ", BigFont);
-            Texture2D second = StringToTexture(" ");
+            Texture2D second = StringToTexture("        Play        ");
+            Texture2D third = StringToTexture(" ");
 
             PreSelectState.OnSelectHandler onChoose = delegate () {
                 LinesGame.CurrentState = new OpeningState();
             };
 
-            CurrentState = new PreSelectState(color, first, second, onChoose, true);
+            CurrentState = new PreSelectState(color, first, second, third, onChoose, true);
         }
 
         public void InitFields() {
@@ -75,6 +76,7 @@ namespace Lines {
             WonTextures = new Texture2D[] { FirstWon, SecondWon, DrawWom };
 
             Replay = StringToTexture("Replay?");
+            ToMainMenu = StringToTexture("Go to main menu");
 
             MusicManager = new MusicManager();
         }

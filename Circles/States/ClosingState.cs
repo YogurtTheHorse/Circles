@@ -28,7 +28,7 @@ namespace Lines.States {
                     LinesGame.CurrentState = new OpeningState();
                 };
 
-                LinesGame.CurrentState = new PreSelectState(color, wonTexture, LinesGame.Replay, onChoose, true);
+                LinesGame.CurrentState = new PreSelectState(color, wonTexture, LinesGame.ToMainMenu, LinesGame.Replay, onChoose, true);
                 return;
             }
 
