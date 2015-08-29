@@ -19,7 +19,7 @@ namespace Lines.States {
         // Calls in update if mouse just up
         public override void OnMouseDown(InputManager.MouseButton button, Vector2 position) {
             Vector2 circlePosition = Circle.GetPosition(position, CurrentTurn);
-            if (CurrentField.InField(circlePosition)) {
+            if (CurrentField.InField(circlePosition) && CurrentTurn == client.PlayerIndex) {
                 Circle c = CurrentField[(int)circlePosition.X, (int)circlePosition.Y];
 
                 currentLine = new Line(Circle.GetCenterPosition(c), position);
