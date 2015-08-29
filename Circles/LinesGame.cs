@@ -19,8 +19,7 @@ namespace Lines {
 
         public static SpriteFont Font, BigFont;
 
-        private int currentSong = 0;
-        private Song[] songs;
+        private MusicManager MusicManager;
 
         public Field FirstPlayerField, SecondPlayerField;
 
@@ -47,7 +46,7 @@ namespace Lines {
 
             Color color = Constants.COLORS[Constants.DRAW];
             Texture2D first = StringToTexture("  Lines  ", BigFont);
-            Texture2D second = StringToTexture("");
+            Texture2D second = StringToTexture(" ");
 
             PreSelectState.OnSelectHandler onChoose = delegate () {
                 LinesGame.CurrentState = new OpeningState();
@@ -77,17 +76,7 @@ namespace Lines {
 
             Replay = StringToTexture("Replay?");
 
-            /*songs = new Song[] {
-                Song.FromUri("song17", new Uri("Content/song17.wav", UriKind.Relative)),
-                Song.FromUri("song18", new Uri("Content/song18.wav", UriKind.Relative))
-
-            };*/
-            
-            //MediaPlayer.Play(songs[currentSong]);
-            MediaPlayer.IsRepeating = true;
-            MediaPlayer.MediaStateChanged += delegate (object sender, EventArgs args) {
-                MediaPlayer.Play(songs[(++currentSong) % songs.Length]);
-            };
+            MusicManager = new MusicManager();
         }
 
         private Texture2D StringToTexture(string label) {
@@ -113,6 +102,8 @@ namespace Lines {
         protected override void Update(GameTime gameTime) {
             base.Update(gameTime);
 
+            MusicManager.Update(gameTime);
+        
             CurrentState.Update(gameTime);
         }
 
