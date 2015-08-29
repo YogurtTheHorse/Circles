@@ -2,6 +2,7 @@
 using Lines.Network;
 using Microsoft.Xna.Framework;
 using Lines.Utils;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Lines.States {
     public class NetGameState : GameState {
@@ -14,6 +15,8 @@ namespace Lines.States {
             client.OnNextTurn += OnNextTurn;
 
             client.OnConnectCircles += OnConnectCircles;
+
+            client.OnCurrentLineChanged += OnCurrentLiineChanged;
         }
 
         // Calls in update if mouse just up
@@ -38,12 +41,17 @@ namespace Lines.States {
             }
         }
 
+        private void OnCurrentLiineChanged(Line newLine) {
+            secondPlayerLine = newLine;
+        }
+
         private void OnNextTurn(int turn) {
             CurrentTurn = turn;
         }
 
         private void OnConnectCircles(int turn, Vector2 begin, Vector2 end) {
             OnNextTurn(turn);
+            secondPlayerLine = null;
             CurrentField.ForceConnect(begin, end);
         }
 
@@ -51,6 +59,17 @@ namespace Lines.States {
             base.Update(gameTime);
 
             client.Update();
+            if (client.PlayerIndex == CurrentTurn && currentLine != null) {
+                client.SendCurrentLine(currentLine);
+            }
+        }
+
+        public override void Draw(SpriteBatch spriteBatch) {
+            base.Draw(spriteBatch);
+            
+            if (secondPlayerLine != null) {
+                secondPlayerLine.Draw(spriteBatch);
+            }
         }
     }
 }

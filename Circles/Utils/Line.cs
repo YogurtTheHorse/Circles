@@ -5,11 +5,16 @@ using C3.XNA;
 
 using Lines.States;
 using System;
+using Lidgren.Network;
+using Lines.Utils;
+using Lines.Network;
 
 namespace Lines.Utils {
     public class Line {
         private float removeAnimationTime = 0;
         private Vector2 animationEnd;
+
+        private int turn;
 
         private bool wasGrowing;
 
@@ -26,16 +31,56 @@ namespace Lines.Utils {
 
             this.color = Constants.COLORS[GameState.CurrentTurn];
             this.thickness = Constants.LINE_THICKNESS;
+
+            this.turn = GameState.CurrentTurn;
         }
 
-        public Line(Point begin, Point end) {
-            this.begin = new Vector2(begin.X, begin.Y);
-            this.end = new Vector2(end.X, end.Y);
+        public Line(Point begin, Point end) : 
+            this(new Vector2(begin.X, begin.Y), new Vector2(end.X, end.Y)) { }
 
-            this.wasGrowing = false;
+        public static void Write(NetOutgoingMessage message, Line l, bool isServer=false) {
+            message.Write(l.removeAnimationTime);
+            if (isServer) {
+                message.Write(l.animationEnd);
+            } else {
+                message.Write(Constants.ToField(l.animationEnd));
+            }
+            message.Write(l.turn);
+            message.Write(l.wasGrowing);
+            if (isServer) {
+                message.Write(l.begin);
+                message.Write(l.end);
+            } else {
+                message.Write(Constants.ToField(l.begin));
+                message.Write(Constants.ToField(l.end));
+            }
+            message.Write(l.thickness);
+        }
 
-            this.color = Constants.COLORS[GameState.CurrentTurn];
-            this.thickness = Constants.LINE_THICKNESS;
+        public static Line ReadLine(NetIncomingMessage message, bool isServer=false) {
+            float removeAnimation = message.ReadFloat();
+            Vector2 animationEnd = message.ReadVector2();
+            int turn = message.ReadInt32(); 
+            bool wasGrowing = message.ReadBoolean();
+            Vector2 begin = message.ReadVector2();
+            Vector2 end = message.ReadVector2();
+            float thickness = message.ReadFloat();
+
+            if (!isServer) {
+                animationEnd = Constants.FromField(animationEnd);
+                begin = Constants.FromField(begin);
+                end = Constants.FromField(end);
+            }
+
+            Line l = new Line (begin, end);
+            l.removeAnimationTime = removeAnimation;
+            l.animationEnd = animationEnd;
+            l.turn = turn;
+            l.color = Constants.COLORS[turn];
+            l.wasGrowing = wasGrowing;
+            l.thickness = thickness;
+
+            return l;
         }
 
         public bool Remove(GameTime gameTime) {

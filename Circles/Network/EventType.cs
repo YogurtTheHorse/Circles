@@ -3,6 +3,7 @@
         GameStarted,
         ConnectCircles,
         RemoveLine,
-        NextTurn
+        NextTurn,
+        CurrentLine
     }
 }

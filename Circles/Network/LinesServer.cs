@@ -1,4 +1,5 @@
 ﻿using Lidgren.Network;
+using Lines.Network;
 using Lines.Utils;
 using Microsoft.Xna.Framework;
 using System;
@@ -80,6 +81,7 @@ namespace Lines.Network {
         private void WorkWithData(NetIncomingMessage inc) {
             int ind = inc.ReadInt32();
             EventType e = (EventType)inc.ReadByte();
+            NetOutgoingMessage msg = server.CreateMessage();
 
             switch (e) {
                 case EventType.ConnectCircles:
@@ -90,7 +92,6 @@ namespace Lines.Network {
 
                     if (ind == CurrentTurn && Connect(begin, end)) {
                         log("He did it");
-                        NetOutgoingMessage msg = server.CreateMessage();
                         msg.Write((byte)EventType.ConnectCircles);
                         msg.Write(CurrentTurn);
                         msg.Write(begin);
@@ -101,7 +102,6 @@ namespace Lines.Network {
                         NextTurn();
                     } else {
                         log("Lol no");
-                        NetOutgoingMessage msg = server.CreateMessage();
                         msg.Write((byte)EventType.RemoveLine);
                         msg.Write(CurrentTurn);
                         msg.Write(begin);
@@ -109,6 +109,14 @@ namespace Lines.Network {
 
                         server.SendToAll(msg, NetDeliveryMethod.ReliableOrdered);
                     }
+                    break;
+
+                case EventType.CurrentLine:
+                    Line l = Line.ReadLine(inc, true);
+
+                    msg.Write((byte)EventType.CurrentLine);
+                    Line.Write(msg, l, true);
+                    server.SendToAll(msg, inc.SenderConnection, NetDeliveryMethod.ReliableOrdered, 0);
                     break;
             }
         }

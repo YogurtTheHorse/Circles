@@ -1,7 +1,9 @@
 ﻿using System;
 using Lidgren.Network;
 using Lines.States;
+using Lines.Utils;
 using Microsoft.Xna.Framework;
+using Lines.Network;
 
 namespace Lines.Network {
     public class LinesClient {
@@ -9,11 +11,15 @@ namespace Lines.Network {
         public delegate void OnGameStartedHandler(int yourIndex);
         public delegate void OnConnectCirclesHandler(int turn, Vector2 begin, Vector2 end);
         public delegate void OnNextTurnHandler(int turn);
+        public delegate void OnRemoveLineChangedHandler(Line currentLine);
+        public delegate void OnCurrentLineChangedHandler(Line newLine);
 
         public OnConnectHandler OnConnect;
         public OnGameStartedHandler OnGameStarted;
         public OnConnectCirclesHandler OnConnectCircles;
         public OnNextTurnHandler OnNextTurn;
+        public OnRemoveLineChangedHandler OnRemoveLineChanged;
+        public OnCurrentLineChangedHandler OnCurrentLineChanged;
 
         private NetPeerConfiguration config;
         private NetClient client;
@@ -61,6 +67,14 @@ namespace Lines.Network {
             }
         }
 
+        public void SendCurrentLine(Line currentLine) {
+            NetOutgoingMessage msg = CreateMessage();
+            msg.Write((byte)EventType.CurrentLine);
+            Line.Write(msg, currentLine);
+
+            client.SendMessage(msg, NetDeliveryMethod.ReliableOrdered);
+        }
+
         public void ConnectCircles(Vector2 begin, Vector2 end) {
             NetOutgoingMessage msg = CreateMessage();
             msg.Write((byte)EventType.ConnectCircles);
@@ -100,6 +114,12 @@ namespace Lines.Network {
                 case EventType.NextTurn:
                     if (OnNextTurn != null) {
                         OnNextTurn(msg.ReadInt32());
+                    }
+                    break;
+
+                case EventType.CurrentLine:
+                    if (OnCurrentLineChanged != null)    {
+                        OnCurrentLineChanged(Line.ReadLine(msg));
                     }
                     break;
             }
