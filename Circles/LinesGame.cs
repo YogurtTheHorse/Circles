@@ -87,20 +87,22 @@ namespace Lines {
             MusicManager = new MusicManager();
         }
 
-        private Texture2D StringToTexture(string label) {
+        public static Texture2D StringToTexture(string label) {
             return StringToTexture(label, Font);
         }
 
-        private Texture2D StringToTexture(string label, SpriteFont font) {
+        public static Texture2D StringToTexture(string label, SpriteFont font) {
+            GraphicsDevice GraphicsDevice = instance.GraphicsDevice;
+
             Vector2 size = font.MeasureString(label);
             RenderTarget2D renderTarget = new RenderTarget2D(GraphicsDevice, (int)size.X, (int)size.Y);
 
             GraphicsDevice.SetRenderTarget(renderTarget);
             GraphicsDevice.Clear(Color.Transparent);
 
-            spriteBatch.Begin();
-            spriteBatch.DrawString(font, label, Vector2.Zero, Color.White);
-            spriteBatch.End();
+            instance.spriteBatch.Begin();
+            instance.spriteBatch.DrawString(font, label, Vector2.Zero, Color.White);
+            instance.spriteBatch.End();
 
             GraphicsDevice.SetRenderTarget(null);
 

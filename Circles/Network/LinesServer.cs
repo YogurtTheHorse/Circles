@@ -99,13 +99,15 @@ namespace Lines.Network {
 
                         server.SendToAll(msg, NetDeliveryMethod.ReliableOrdered);
 
+                        if (Circle.CheckWon(CurrentField, CurrentTurn)) {
+                            SendWon();
+                        }
+
                         NextTurn();
                     } else {
                         log("Lol no");
                         msg.Write((byte)EventType.RemoveLine);
-                        msg.Write(CurrentTurn);
-                        msg.Write(begin);
-                        msg.Write(end);
+                        Line.Write(msg, Line.ReadLine(inc, true), true);
 
                         server.SendToAll(msg, NetDeliveryMethod.ReliableOrdered);
                     }
@@ -119,6 +121,22 @@ namespace Lines.Network {
                     server.SendToAll(msg, inc.SenderConnection, NetDeliveryMethod.ReliableOrdered, 0);
                     break;
             }
+        }
+
+        private void SendWon() {
+            log(CurrentTurn + " won. Sad but true");
+            NetOutgoingMessage msg = server.CreateMessage();
+
+            msg.Write((byte)EventType.Won);
+            msg.Write(CurrentTurn);
+
+            server.SendToAll(msg, NetDeliveryMethod.ReliableOrdered);
+
+            foreach (NetConnection conn in server.Connections) {
+                conn.Disconnect("gg");
+            }
+
+            serverWorking = false;
         }
 
         private void StartGame() {

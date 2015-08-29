@@ -234,7 +234,7 @@ namespace Lines.Utils {
             }
         }
 
-        public static bool CheckWon() {
+        public static bool CheckWon(Field currentField, int currentTurn) {
             LinkedList<Circle> q = new LinkedList<Circle>();
             bool[,] was = new bool[Constants.FIELD_WIDTH, Constants.FIELD_HEIGHT];
 
@@ -245,9 +245,9 @@ namespace Lines.Utils {
 
                 if (i > 0) {
                     if (GameState.CurrentTurn == Constants.FIRST_PLAYER) {
-                        q.AddLast(GameState.instance.CurrentField[0, i - 1]);
+                        q.AddLast(currentField[0, i - 1]);
                     } else {
-                        q.AddLast(GameState.instance.CurrentField[Constants.FIELD_WIDTH - 1 - i, 0]);
+                        q.AddLast(currentField[Constants.FIELD_WIDTH - 1 - i, 0]);
                     }
                 }
             }
@@ -271,6 +271,10 @@ namespace Lines.Utils {
             }
 
             return false;
+        }
+
+        public static bool CheckWon() {
+            return CheckWon(GameState.instance.CurrentField, GameState.CurrentTurn);
         }
     }
 }

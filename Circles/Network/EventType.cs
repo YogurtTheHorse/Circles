@@ -4,6 +4,7 @@
         ConnectCircles,
         RemoveLine,
         NextTurn,
-        CurrentLine
+        CurrentLine,
+        Won
     }
 }

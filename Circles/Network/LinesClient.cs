@@ -13,13 +13,15 @@ namespace Lines.Network {
         public delegate void OnNextTurnHandler(int turn);
         public delegate void OnRemoveLineChangedHandler(Line currentLine);
         public delegate void OnCurrentLineChangedHandler(Line newLine);
+        public delegate void OnWonHandler(int winnerIndex);
 
         public OnConnectHandler OnConnect;
         public OnGameStartedHandler OnGameStarted;
         public OnConnectCirclesHandler OnConnectCircles;
         public OnNextTurnHandler OnNextTurn;
-        public OnRemoveLineChangedHandler OnRemoveLineChanged;
+        public OnRemoveLineChangedHandler OnRemoveLine;
         public OnCurrentLineChangedHandler OnCurrentLineChanged;
+        public OnWonHandler OnWon;
 
         private NetPeerConfiguration config;
         private NetClient client;
@@ -75,11 +77,12 @@ namespace Lines.Network {
             client.SendMessage(msg, NetDeliveryMethod.ReliableOrdered);
         }
 
-        public void ConnectCircles(Vector2 begin, Vector2 end) {
+        public void ConnectCircles(Vector2 begin, Vector2 end, Line currentLine) {
             NetOutgoingMessage msg = CreateMessage();
             msg.Write((byte)EventType.ConnectCircles);
             msg.Write(begin);
             msg.Write(end);
+            Line.Write(msg, currentLine);
             
             client.SendMessage(msg, NetDeliveryMethod.ReliableOrdered);
         }
@@ -114,6 +117,18 @@ namespace Lines.Network {
                 case EventType.NextTurn:
                     if (OnNextTurn != null) {
                         OnNextTurn(msg.ReadInt32());
+                    }
+                    break;
+
+                case EventType.RemoveLine:
+                    if (OnRemoveLine != null) {
+                        OnRemoveLine(Line.ReadLine(msg));
+                    }
+                    break;
+
+                case EventType.Won:
+                    if (OnWon != null) {
+                        OnWon(msg.ReadInt32());
                     }
                     break;
 

@@ -177,14 +177,16 @@ namespace Lines {
                 return false;
             }
 
-            Circle a = this[begin];
-            Circle b = this[end];
+            if (InField(begin) && InField(end)) {
+                Circle a = this[begin];
+                Circle b = this[end];
 
-            if (a.Connect(b)) {
-                connections.Add(new Line(begin, end));
-                CheckForEdge(a.position);
-                CheckForEdge(b.position);
-                return true;
+                if (a.Connect(b)) {
+                    connections.Add(new Line(begin, end));
+                    CheckForEdge(a.position);
+                    CheckForEdge(b.position);
+                    return true;
+                }
             }
 
             return false;

@@ -16,10 +16,16 @@ namespace Lines.States {
 
             client.OnConnectCircles += OnConnectCircles;
 
-            client.OnCurrentLineChanged += OnCurrentLiineChanged;
+            client.OnCurrentLineChanged += OnCurrentLineChanged;
+            client.OnRemoveLine += OnRemoveLine;
+
+            client.OnWon += OnWon;
         }
 
-        // Calls in update if mouse just up
+        public void OnWon(int winnerIndex) {
+            LinesGame.CurrentState = new ClosingState(winnerIndex, true, winnerIndex == client.PlayerIndex);
+        }
+        
         public override void OnMouseDown(InputManager.MouseButton button, Vector2 position) {
             Vector2 circlePosition = Circle.GetPosition(position, CurrentTurn);
             if (CurrentField.InField(circlePosition) && CurrentTurn == client.PlayerIndex) {
@@ -33,20 +39,24 @@ namespace Lines.States {
             if (currentLine != null) {
                 Vector2 begin = Circle.GetPosition(currentLine.begin, CurrentTurn);
                 Vector2 end = Circle.GetPosition(currentLine.end, CurrentTurn);
-                if (CurrentField.InField(end)) {
-                    client.ConnectCircles(begin, end);
-                }
+
+                client.ConnectCircles(begin, end, currentLine);
 
                 currentLine = null;
             }
         }
 
-        private void OnCurrentLiineChanged(Line newLine) {
+        private void OnCurrentLineChanged(Line newLine) {
             secondPlayerLine = newLine;
         }
 
         private void OnNextTurn(int turn) {
             CurrentTurn = turn;
+        }
+
+        private void OnRemoveLine(Line removeLine) {
+            OldLines.Add(removeLine);
+            secondPlayerLine = null;
         }
 
         private void OnConnectCircles(int turn, Vector2 begin, Vector2 end) {
