@@ -3,6 +3,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
+using Lines.Utils;
 
 namespace Lines {
     public class InputManager {
@@ -17,6 +18,7 @@ namespace Lines {
         public event ClickContainer OnMouseDown;
 
         public bool IsMouseDown { get; private set; }
+        public object Constans { get; private set; }
 
         private MouseState OldState;
         private TouchCollection OldTouchState;
@@ -44,14 +46,14 @@ namespace Lines {
 			MouseState newState = Mouse.GetState();
 
 			if (IsDown(newState) && !IsDown(OldState)) {
-				if (OnMouseDown != null) {
+				if (OnMouseDown != null && InBounds()) {
 					OnMouseDown(GetButton(newState), GetMousePosition());
 				}
 				IsMouseDown = true;
 			}
 
 			if (!IsDown(newState) && IsMouseDown) {
-				if (OnClick != null) {
+				if (OnClick != null && InBounds()) {
 					OnClick(GetButton(OldState), GetMousePosition());
 				}
 				IsMouseDown = false;
@@ -64,20 +66,28 @@ namespace Lines {
 			TouchCollection newTouchState = TouchPanel.GetState();
 
 			if (IsTouching(newTouchState) && !IsTouching(OldTouchState)) {
-				if (OnMouseDown != null) {
+				if (OnMouseDown != null && InBounds()) {
 					OnMouseDown(MouseButton.Left, GetTouchPosition(newTouchState));
 				}
 				IsMouseDown = true;
 			}
 
 			if (!IsTouching(newTouchState) && IsTouching(OldTouchState)) {
-				if (OnClick != null) {
+				if (OnClick != null && InBounds()) {
 					OnClick(MouseButton.Left, GetTouchPosition(OldTouchState));
 				}
 				IsMouseDown = false;
 			}
 
 			OldTouchState = newTouchState;
+        }
+
+        private bool InBounds() {
+            return new Rectangle(0,
+                0,
+                (int)LinesGame.instance.GetScreenWidth(),
+                (int)LinesGame.instance.GetScreenHeight()
+            ).Contains(GetMousePosition());
         }
 
         private Vector2 GetTouchPosition(TouchCollection touchCollection) {
