@@ -57,6 +57,7 @@
     <Compile Include="Network\LinesServer.cs" />
     <Compile Include="Network\NetworkGlobals.cs" />
     <Compile Include="States\NetGameState.cs" />
+    <Compile Include="States\PreMainMenu.cs" />
     <Compile Include="States\WaitForServerState.cs" />
     <Compile Include="Utils\Constants.cs" />
     <Compile Include="Primitives2D.cs" />

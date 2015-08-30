@@ -11,6 +11,7 @@ namespace Lines {
         public static LinesGame instance;
         public static bool IsMobile;
 
+        public static Texture2D GameTitle, LocalGame, MultiplayerGame;
         public static Texture2D FirstWon, SecondWon, DrawWom, Replay, ToMainMenu;
         public static Texture2D[] WonTextures;
 
@@ -45,21 +46,6 @@ namespace Lines {
             this.graphics.IsFullScreen = IsMobile;
 
             Constants.RandomColorScheme();
-
-            Color color = Constants.COLORS[Constants.DRAW];
-            Texture2D first = StringToTexture("  Lines  ", BigFont);
-            Texture2D second = StringToTexture("        Local game        ");
-            Texture2D third = StringToTexture("Find game");
-
-            PreSelectState.OnSelectHandler onChooseLocal = delegate () {
-                LinesGame.CurrentState = new OpeningState(true);
-            };
-
-            PreSelectState.OnSelectHandler onChooseMulti = delegate () {
-                LinesGame.CurrentState = new WaitForServerState();
-            };
-
-            CurrentState = new PreSelectState(color, first, second, third, onChooseLocal, onChooseMulti, true);
         }
 
         public void InitFields() {
@@ -75,6 +61,10 @@ namespace Lines {
             Font = Content.Load<SpriteFont>("Roboto");
             BigFont = Content.Load<SpriteFont>("Roboto-Big");
 
+            GameTitle = StringToTexture("  Lines  ", BigFont);
+            LocalGame = StringToTexture("        Local game        ");
+            MultiplayerGame = StringToTexture("LAN Multiplayer (Beta)");
+
             FirstWon = StringToTexture("1st palyer won!");
             SecondWon = StringToTexture("2nd palyer won!");
             DrawWom = StringToTexture("Seems like it's draw");
@@ -85,6 +75,12 @@ namespace Lines {
             ToMainMenu = StringToTexture("Go to main menu");
 
             MusicManager = new MusicManager();
+        }
+
+        protected override void BeginRun() {
+            base.BeginRun();
+
+            CurrentState = new PreMainMenu(true);
         }
 
         public static Texture2D StringToTexture(string label) {

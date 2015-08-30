@@ -33,7 +33,7 @@ namespace Lines.States {
                     Texture2D third = LinesGame.StringToTexture("");
 
                     PreSelectState.OnSelectHandler onChoose = delegate () {
-                        LinesGame.CurrentState = new ClosingState(turn);
+                        LinesGame.CurrentState = new PreMainMenu(true);
                     };
 
                     LinesGame.CurrentState = new PreSelectState(color, first, second, third, onChoose, true);
