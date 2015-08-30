@@ -88,6 +88,22 @@ namespace Lines.Network {
             }
         }
 
+        public void PlayerDisconnect() {
+            Log("Someone disconnected. Stoping game");
+            NetOutgoingMessage msg = server.CreateMessage();
+
+            msg.Write((byte)EventType.Disconnected);
+            msg.Write("Another player disconnected");
+
+            SendToAll(msg);
+
+            foreach (NetConnection conn in connections) {
+                conn.Disconnect("bg");
+            }
+
+            LobbieWorking = false;
+        }
+
         public void WorkWithData(NetIncomingMessage inc) {
             int ind = inc.ReadInt32();
             EventType e = (EventType)inc.ReadByte();
@@ -141,7 +157,7 @@ namespace Lines.Network {
             Log(CurrentTurn + " won. Sad but true");
             NetOutgoingMessage msg = server.CreateMessage();
 
-            msg.Write((byte)EventType.Won);
+            msg.Write((byte)EventType.OnWon);
             msg.Write(CurrentTurn);
 
             SendToAll(msg);

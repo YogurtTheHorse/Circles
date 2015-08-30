@@ -70,6 +70,8 @@ namespace Lines.States {
             }
         }
 
-        public void OnExit() { }
+        public void OnExit() {
+            LinesGame.client.Disconnect();
+        }
     }
 }

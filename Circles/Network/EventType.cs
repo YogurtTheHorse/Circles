@@ -5,6 +5,7 @@
         RemoveLine,
         NextTurn,
         CurrentLine,
-        Won
+        OnWon,
+        Disconnected
     }
 }

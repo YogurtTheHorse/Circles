@@ -64,6 +64,13 @@ namespace Lines.Network {
                     case NetIncomingMessageType.Data:
                         ((Lobbie)inc.SenderConnection.Tag).WorkWithData(inc);
                         break;
+
+                    case NetIncomingMessageType.StatusChanged:
+                        NetConnectionStatus s = (NetConnectionStatus)inc.ReadByte();
+                        if (s == NetConnectionStatus.Disconnected) {
+                            ((Lobbie)inc.SenderConnection.Tag).PlayerDisconnect();
+                        }
+                        break;
                 }
             }
 

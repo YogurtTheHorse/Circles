@@ -14,6 +14,7 @@ namespace Lines.Network {
         public delegate void OnRemoveLineChangedHandler(Line currentLine);
         public delegate void OnCurrentLineChangedHandler(Line newLine);
         public delegate void OnWonHandler(int winnerIndex);
+        public delegate void OnDisconnectHandler(string reason);
 
         public OnConnectHandler OnConnect;
         public OnGameStartedHandler OnGameStarted;
@@ -22,6 +23,7 @@ namespace Lines.Network {
         public OnRemoveLineChangedHandler OnRemoveLine;
         public OnCurrentLineChangedHandler OnCurrentLineChanged;
         public OnWonHandler OnWon;
+        public OnDisconnectHandler OnDisconnect;
 
         private NetPeerConfiguration config;
         private NetClient client;
@@ -78,6 +80,12 @@ namespace Lines.Network {
                     tickTime -= 1f;
                     client.DiscoverLocalPeers(NetworkGlobals.Port);
                 }
+            }
+        }
+
+        public void Disconnect() {
+            if (connection != null) {
+                client.Disconnect("Lol goodbye");
             }
         }
 
@@ -138,7 +146,7 @@ namespace Lines.Network {
                     }
                     break;
 
-                case EventType.Won:
+                case EventType.OnWon:
                     if (OnWon != null) {
                         OnWon(msg.ReadInt32());
                     }
@@ -147,6 +155,12 @@ namespace Lines.Network {
                 case EventType.CurrentLine:
                     if (OnCurrentLineChanged != null)    {
                         OnCurrentLineChanged(Line.ReadLine(msg));
+                    }
+                    break;
+
+                case EventType.Disconnected:
+                    if (OnDisconnect != null) {
+                        OnDisconnect(msg.ReadString());
                     }
                     break;
             }

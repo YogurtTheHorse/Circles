@@ -20,6 +20,11 @@ namespace Lines.States {
             client.OnRemoveLine += OnRemoveLine;
 
             client.OnWon += OnWon;
+            client.OnDisconnect += OnDisconnect;
+        }
+
+        private void OnDisconnect(string reason) {
+            LinesGame.CurrentState = new ClosingState(Constants.NOONE, true, false);
         }
 
         public void OnWon(int winnerIndex) {
@@ -82,6 +87,12 @@ namespace Lines.States {
             if (secondPlayerLine != null) {
                 secondPlayerLine.Draw(spriteBatch);
             }
+        }
+
+        public override void OnExit() {
+            base.OnExit();
+
+            client.Disconnect();
         }
     }
 }

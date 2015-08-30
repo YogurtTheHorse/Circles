@@ -111,6 +111,6 @@ namespace Lines.States {
             }
         }
 
-        public void OnExit() { }
+        public virtual void OnExit() { }
     }
 }

@@ -13,6 +13,7 @@ namespace Lines.Utils {
         public const int FIRST_PLAYER = 0;
         public const int SECOND_PLAYER = 1;
         public const int DRAW = 2;
+        public const int NOONE = DRAW;
         public static Color[] COLORS;
 
         public const float CHANGE_STATUS_ANIMATION_TIME = 1f;

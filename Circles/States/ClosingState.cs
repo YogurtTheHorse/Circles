@@ -28,8 +28,11 @@ namespace Lines.States {
             animationTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             if (animationTime >= Constants.CLOSE_ANIMATION_TIME) {
-                if (isNetGame) {Color color = Constants.COLORS[turn];
-                    Texture2D first = LinesGame.StringToTexture(amWon ? "You won" : "You lose", LinesGame.BigFont);
+                if (isNetGame) {
+                    string text = turn == Constants.NOONE ? "Opponent disconnected" : (amWon ? "You won" : "You lose");
+
+                    Color color = Constants.COLORS[turn];
+                    Texture2D first = LinesGame.StringToTexture(text, LinesGame.BigFont);
                     Texture2D second = LinesGame.StringToTexture("Go to main menu");
                     Texture2D third = LinesGame.StringToTexture("");
 

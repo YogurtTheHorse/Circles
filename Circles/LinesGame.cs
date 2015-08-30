@@ -129,6 +129,12 @@ namespace Lines {
             return GraphicsDevice.Viewport.Height;
         }
 
+        protected override void OnExiting(object sender, EventArgs args) {
+            base.OnExiting(sender, args);
+
+            CurrentState.OnExit();
+        }
+
         protected override void Draw(GameTime gameTime) {
             graphics.GraphicsDevice.Clear(Color.White);
 
