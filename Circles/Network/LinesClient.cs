@@ -30,15 +30,18 @@ namespace Lines.Network {
 
         public int PlayerIndex = 2;
 
+        private float tickTime;
+
         public LinesClient() {
             config = NetworkGlobals.GetConfig();
             client = new NetClient(config);
 
+            tickTime = 1f;
+
             client.Start();
-            client.DiscoverLocalPeers(NetworkGlobals.Port);
         }
 
-        public void Update() {
+        public void Update(GameTime gameTime) {
             NetIncomingMessage msg;
             while ((msg = client.ReadMessage()) != null) {
                 switch (msg.MessageType) {
@@ -66,6 +69,15 @@ namespace Lines.Network {
                         break;
                 }
                 client.Recycle(msg);
+            }
+
+            if (connection == null) {
+                tickTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+                while (tickTime >= 1f) {
+                    tickTime -= 1f;
+                    client.DiscoverLocalPeers(NetworkGlobals.Port);
+                }
             }
         }
 

@@ -68,7 +68,7 @@ namespace Lines.States {
         public override void Update(GameTime gameTime) {
             base.Update(gameTime);
 
-            client.Update();
+            client.Update(gameTime);
             if (client.PlayerIndex == CurrentTurn && currentLine != null) {
                 client.SendCurrentLine(currentLine);
             }

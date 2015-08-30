@@ -25,6 +25,7 @@ namespace Lines.States {
 
         private void OnConnect() {
             realStatus = "Waiting for second player...";
+            animationTime = Constants.OPEN_WIN_SCREEN_ANIMATION_TIME - 0.001f;
         }
 
         private void GameStarted(int yourIndex) {
@@ -45,7 +46,7 @@ namespace Lines.States {
         }
 
         public void Update(GameTime gameTime) {
-            LinesGame.client.Update();
+            LinesGame.client.Update(gameTime);
 
             if (animationTime < 0) {
                 if (currentStatus != realStatus) {
