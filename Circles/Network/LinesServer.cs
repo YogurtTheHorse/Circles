@@ -74,8 +74,15 @@ namespace Lines.Network {
                 }
             }
 
-            foreach (Lobbie l in Lobbies) {
+            for (int i = 0; i < Lobbies.Count; i++) {
+                Lobbie l = Lobbies[i];
+
                 l.Update();
+                if (!l.LobbieWorking) {
+                    log("Lobbie " + l.GetHash() + " deleted. Now we have " + Lobbies.Count + " lobbies");
+                    Lobbies.RemoveAt(i);
+                    i--;
+                }
             }
         }
     }
