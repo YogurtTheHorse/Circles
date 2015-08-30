@@ -49,7 +49,7 @@ namespace Lines {
             Color color = Constants.COLORS[Constants.DRAW];
             Texture2D first = StringToTexture("  Lines  ", BigFont);
             Texture2D second = StringToTexture("        Local game        ");
-            Texture2D third = StringToTexture("Fing game");
+            Texture2D third = StringToTexture("Find game");
 
             PreSelectState.OnSelectHandler onChooseLocal = delegate () {
                 LinesGame.CurrentState = new OpeningState(true);
