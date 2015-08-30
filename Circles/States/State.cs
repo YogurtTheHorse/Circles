@@ -6,5 +6,7 @@ namespace Lines.States {
         void Update(GameTime gameTime);
 
         void Draw(SpriteBatch batch);
+
+        void OnExit();
     }
 }

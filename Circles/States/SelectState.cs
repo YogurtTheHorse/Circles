@@ -85,5 +85,7 @@ namespace Lines.States {
                                                      (int)replayWidth, (int)height);
             spriteBatch.Draw(second, replayDestRect, null, color);
         }
+
+        public void OnExit() { }
     }
 }

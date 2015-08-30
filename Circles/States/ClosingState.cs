@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Lines.Utils;
+using System;
 
 namespace Lines.States {
     public class ClosingState : State {
@@ -66,5 +67,7 @@ namespace Lines.States {
         public void Draw(SpriteBatch spriteBatch) {
             game.DrawField();
         }
+
+        public void OnExit() { }
     }
 }

@@ -110,6 +110,7 @@ namespace Lines.States {
                 l.Draw(spriteBatch);
             }
         }
-    }
 
+        public void OnExit() { }
+    }
 }

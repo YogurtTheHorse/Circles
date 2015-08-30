@@ -112,5 +112,7 @@ namespace Lines.States {
                                                        second.Width, (int)(second.Height * imagesHeight));
             spriteBatch.Draw(second, replayDestRect, replaySourceRect, color);
         }
+
+        public void OnExit() { }
     }
 }

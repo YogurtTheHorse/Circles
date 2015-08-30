@@ -34,5 +34,7 @@ namespace Lines.States {
         public void Draw(SpriteBatch spriteBatch) {
             game.DrawField();
         }
+
+        public void OnExit() { }
     }
 }

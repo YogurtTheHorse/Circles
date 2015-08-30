@@ -67,7 +67,9 @@ namespace Lines.States {
                 }
 
                 animationScale = Constants.Animate(animationTime, 0, 1, Constants.CHANGE_STATUS_ANIMATION_TIME);
-            } 
+            }
         }
+
+        public void OnExit() { }
     }
 }
