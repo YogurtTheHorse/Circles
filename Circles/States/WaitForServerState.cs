@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Lines.Utils;
 
 namespace Lines.States {
-    public class WaitForServerState : State {
+    public class WaitForServerState : IState {
         private string realStatus;
         private string currentStatus;
 

@@ -7,7 +7,7 @@ using Lines.Utils;
 using System;
 
 namespace Lines.States {
-    public class PreSelectState : State {
+    public class PreSelectState : IState {
         public delegate void OnSelectHandler();
         
         private bool isOpening;

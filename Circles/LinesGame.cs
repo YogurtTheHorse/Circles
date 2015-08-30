@@ -24,7 +24,7 @@ namespace Lines {
 
         public Field FirstPlayerField, SecondPlayerField;
 
-        public static State CurrentState;
+        public static IState CurrentState;
 
         public static Network.LinesClient client;
 

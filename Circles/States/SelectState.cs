@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Lines.States {
-    public class SelectState : State {
+    public class SelectState : IState {
         private LinesGame game;
         private float lineWidth;
         private InputManager inputManager;

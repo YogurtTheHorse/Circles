@@ -4,7 +4,7 @@ using Lines.Utils;
 using System;
 
 namespace Lines.States {
-    public class ClosingState : State {
+    public class ClosingState : IState {
         private int turn;
         private float animationTime;
         private LinesGame game;

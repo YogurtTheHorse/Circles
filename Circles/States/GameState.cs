@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Lines.Utils;
 
 namespace Lines.States {
-    public class GameState : State {
+    public class GameState : IState {
         public static GameState instance;
 
         protected LinesGame game;

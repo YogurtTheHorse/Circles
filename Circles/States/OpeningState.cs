@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Lines.Utils;
 
 namespace Lines.States {
-    public class OpeningState : State {
+    public class OpeningState : IState {
         private LinesGame game;
         private float animationTime;
         private bool isLocal;
