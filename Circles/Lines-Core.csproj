@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="MusicManager.cs" />
     <Compile Include="Network\EventType.cs" />
+    <Compile Include="Network\Lobbie.cs" />
     <Compile Include="Network\MonoGameExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LinesGame.cs" />

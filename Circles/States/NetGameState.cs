@@ -47,7 +47,9 @@ namespace Lines.States {
         }
 
         private void OnCurrentLineChanged(Line newLine) {
-            secondPlayerLine = newLine;
+            if (client.PlayerIndex != CurrentTurn) {
+                secondPlayerLine = newLine;
+            }
         }
 
         private void OnNextTurn(int turn) {
