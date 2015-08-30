@@ -55,6 +55,8 @@ namespace Lines.Network {
             conn.Tag = this;
 
             connections.Add(conn);
+
+            log(conn.RemoteEndPoint + " connected.");
         }
 
         public void Update() {
@@ -157,6 +159,8 @@ namespace Lines.Network {
 
         private void NextTurn() {
             CurrentTurn = (++CurrentTurn) % 2;
+
+            log(CurrentTurn + " turn.");
 
             NetOutgoingMessage msg = server.CreateMessage();
             msg.Write((byte)EventType.NextTurn);
