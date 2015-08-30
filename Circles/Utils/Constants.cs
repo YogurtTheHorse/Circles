@@ -15,6 +15,7 @@ namespace Lines.Utils {
         public const int DRAW = 2;
         public static Color[] COLORS;
 
+        public const float CHANGE_STATUS_ANIMATION_TIME = 1f;
         public const float OPEN_ANIMATION_TIME = 1f;
         public const float CLOSE_ANIMATION_LAST_CIRCLE_START = (CLOSE_ANIMATION_TIME - LINE_ANIMATION_TIME) / 10f;
         public const float CLOSE_ANIMATION_TIME = LINE_ANIMATION_TIME + 2f;
