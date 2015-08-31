@@ -244,7 +244,7 @@ namespace Lines.Utils {
                 }
 
                 if (i > 0) {
-                    if (GameState.CurrentTurn == Constants.FIRST_PLAYER) {
+                    if (currentTurn == Constants.FIRST_PLAYER) {
                         q.AddLast(currentField[0, i - 1]);
                     } else {
                         q.AddLast(currentField[Constants.FIELD_WIDTH - 1 - i, 0]);
