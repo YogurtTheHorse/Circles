@@ -159,6 +159,7 @@ namespace Lines.Network {
                     if (OnWon != null) {
                         OnWon(msg.ReadInt32());
                     }
+                    Disconnect();
                     break;
 
                 case EventType.CurrentLine:

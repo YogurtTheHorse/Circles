@@ -41,7 +41,17 @@ namespace Lines.Network {
         }
 
         public bool IsFull() {
-            return connections.Count == 2;
+            if (connections.Count == 2) {
+                foreach(NetConnection con in connections) {
+                    if (con.Status != NetConnectionStatus.Connected) {
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+
+            return false;
         }
 
         public string GetHash() {
@@ -161,12 +171,6 @@ namespace Lines.Network {
             msg.Write(CurrentTurn);
 
             SendToAll(msg);
-
-            foreach (NetConnection conn in connections) {
-                conn.Disconnect("gg");
-            }
-
-            LobbieWorking = false;
         }
 
         private bool Connect(Vector2 begin, Vector2 end) {
@@ -176,7 +180,7 @@ namespace Lines.Network {
         private void NextTurn() {
             CurrentTurn = (++CurrentTurn) % 2;
 
-            log(CurrentTurn + " turn.");
+            Log(CurrentTurn + " turn.");
 
             NetOutgoingMessage msg = server.CreateMessage();
             msg.Write((byte)EventType.NextTurn);
