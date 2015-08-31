@@ -32,7 +32,7 @@ namespace Lines.States {
 
         public static void OnHost() {
             LinesGame.server = new LinesServer();
-            LinesGame.server.StartInNewThread((s) => { });
+            LinesGame.server.StartInNewThread((s) => { System.Diagnostics.Debug.WriteLine("Server: " + s); });
             OnJoin();
         }
 
