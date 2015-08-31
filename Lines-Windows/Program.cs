@@ -39,7 +39,7 @@ namespace Lines.Windows {
                 client.Send(mail);
 
                 MessageBox.Show("Your hash is " + hash + ". We automatically sent error report to support.\n\n" +
-                    "If you want know more - contact us: linesbugs@gmail.com", "Error report");
+                    "If you want know more - contact me: yegorf1@gmail.com", "Error report");
             }
         }
 
