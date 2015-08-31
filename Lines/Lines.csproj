@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{66A36752-35B8-40BF-91B3-BC0132B21333}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Lines</RootNamespace>
+    <AssemblyName>Lines</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MonoGamePlatform>Windows</MonoGamePlatform>
+    <MonoGameContentBuilderExe>
+    </MonoGameContentBuilderExe>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Windows\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;WINDOWS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Windows\Release\</OutputPath>
+    <DefineConstants>TRACE;WINDOWS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Lidgren.Network\Encryption\NetAESEncryption.cs" />
+    <Compile Include="Lidgren.Network\Encryption\NetBlockEncryptionBase.cs" />
+    <Compile Include="Lidgren.Network\Encryption\NetCryptoProviderBase.cs" />
+    <Compile Include="Lidgren.Network\Encryption\NetCryptoProviderEncryption.cs" />
+    <Compile Include="Lidgren.Network\Encryption\NetDESEncryption.cs" />
+    <Compile Include="Lidgren.Network\Encryption\NetEncryption.cs" />
+    <Compile Include="Lidgren.Network\Encryption\NetRC2Encryption.cs" />
+    <Compile Include="Lidgren.Network\Encryption\NetTripleDESEncryption.cs" />
+    <Compile Include="Lidgren.Network\Encryption\NetXorEncryption.cs" />
+    <Compile Include="Lidgren.Network\Encryption\NetXteaEncryption.cs" />
+    <Compile Include="Lidgren.Network\NamespaceDoc.cs" />
+    <Compile Include="Lidgren.Network\NetBigInteger.cs" />
+    <Compile Include="Lidgren.Network\NetBitVector.cs" />
+    <Compile Include="Lidgren.Network\NetBitWriter.cs" />
+    <Compile Include="Lidgren.Network\NetBuffer.cs" />
+    <Compile Include="Lidgren.Network\NetBuffer.Peek.cs" />
+    <Compile Include="Lidgren.Network\NetBuffer.Read.cs" />
+    <Compile Include="Lidgren.Network\NetBuffer.Read.Reflection.cs" />
+    <Compile Include="Lidgren.Network\NetBuffer.Write.cs" />
+    <Compile Include="Lidgren.Network\NetBuffer.Write.Reflection.cs" />
+    <Compile Include="Lidgren.Network\NetClient.cs" />
+    <Compile Include="Lidgren.Network\NetConnection.cs" />
+    <Compile Include="Lidgren.Network\NetConnection.Handshake.cs" />
+    <Compile Include="Lidgren.Network\NetConnection.Latency.cs" />
+    <Compile Include="Lidgren.Network\NetConnection.MTU.cs" />
+    <Compile Include="Lidgren.Network\NetConnectionStatistics.cs" />
+    <Compile Include="Lidgren.Network\NetConnectionStatus.cs" />
+    <Compile Include="Lidgren.Network\NetConstants.cs" />
+    <Compile Include="Lidgren.Network\NetDeliveryMethod.cs" />
+    <Compile Include="Lidgren.Network\NetException.cs" />
+    <Compile Include="Lidgren.Network\NetFragmentationHelper.cs" />
+    <Compile Include="Lidgren.Network\NetFragmentationInfo.cs" />
+    <Compile Include="Lidgren.Network\NetIncomingMessage.cs" />
+    <Compile Include="Lidgren.Network\NetIncomingMessageType.cs" />
+    <Compile Include="Lidgren.Network\NetMessageType.cs" />
+    <Compile Include="Lidgren.Network\NetNatIntroduction.cs" />
+    <Compile Include="Lidgren.Network\NetOutgoingMessage.cs" />
+    <Compile Include="Lidgren.Network\NetPeer.cs" />
+    <Compile Include="Lidgren.Network\NetPeer.Discovery.cs" />
+    <Compile Include="Lidgren.Network\NetPeer.Fragmentation.cs" />
+    <Compile Include="Lidgren.Network\NetPeer.Internal.cs" />
+    <Compile Include="Lidgren.Network\NetPeer.LatencySimulation.cs" />
+    <Compile Include="Lidgren.Network\NetPeer.Logging.cs" />
+    <Compile Include="Lidgren.Network\NetPeer.MessagePools.cs" />
+    <Compile Include="Lidgren.Network\NetPeer.Send.cs" />
+    <Compile Include="Lidgren.Network\NetPeerConfiguration.cs" />
+    <Compile Include="Lidgren.Network\NetPeerStatistics.cs" />
+    <Compile Include="Lidgren.Network\NetPeerStatus.cs" />
+    <Compile Include="Lidgren.Network\NetQueue.cs" />
+    <Compile Include="Lidgren.Network\NetRandom.cs" />
+    <Compile Include="Lidgren.Network\NetRandom.Implementations.cs" />
+    <Compile Include="Lidgren.Network\NetRandomSeed.cs" />
+    <Compile Include="Lidgren.Network\NetReceiverChannelBase.cs" />
+    <Compile Include="Lidgren.Network\NetReliableOrderedReceiver.cs" />
+    <Compile Include="Lidgren.Network\NetReliableSenderChannel.cs" />
+    <Compile Include="Lidgren.Network\NetReliableSequencedReceiver.cs" />
+    <Compile Include="Lidgren.Network\NetReliableUnorderedReceiver.cs" />
+    <Compile Include="Lidgren.Network\NetSenderChannelBase.cs" />
+    <Compile Include="Lidgren.Network\NetSendResult.cs" />
+    <Compile Include="Lidgren.Network\NetServer.cs" />
+    <Compile Include="Lidgren.Network\NetSRP.cs" />
+    <Compile Include="Lidgren.Network\NetStoredReliableMessage.cs" />
+    <Compile Include="Lidgren.Network\NetTime.cs" />
+    <Compile Include="Lidgren.Network\NetTuple.cs" />
+    <Compile Include="Lidgren.Network\NetUnreliableSenderChannel.cs" />
+    <Compile Include="Lidgren.Network\NetUnreliableSequencedReceiver.cs" />
+    <Compile Include="Lidgren.Network\NetUnreliableUnorderedReceiver.cs" />
+    <Compile Include="Lidgren.Network\NetUPnP.cs" />
+    <Compile Include="Lidgren.Network\NetUtility.cs" />
+    <Compile Include="Lidgren.Network\Platform\PlatformAndroid.cs" />
+    <Compile Include="Lidgren.Network\Platform\PlatformConstrained.cs" />
+    <Compile Include="Lidgren.Network\Platform\PlatformWin32.cs" />
+    <Compile Include="Lidgren.Network\Platform\PlatformWinRT.cs" />
+    <Compile Include="Lines\Field.cs" />
+    <Compile Include="Lines\InputManager.cs" />
+    <Compile Include="Lines\LinesGame.cs" />
+    <Compile Include="Lines\MusicManager.cs" />
+    <Compile Include="Lines\Network\EventType.cs" />
+    <Compile Include="Lines\Network\LinesClient.cs" />
+    <Compile Include="Lines\Network\LinesServer.cs" />
+    <Compile Include="Lines\Network\Lobbie.cs" />
+    <Compile Include="Lines\Network\MonoGameExtensions.cs" />
+    <Compile Include="Lines\Network\NetworkGlobals.cs" />
+    <Compile Include="Lines\Primitives2D.cs" />
+    <Compile Include="Lines\States\ClosingState.cs" />
+    <Compile Include="Lines\States\GameState.cs" />
+    <Compile Include="Lines\States\NetGameState.cs" />
+    <Compile Include="Lines\States\OpeningState.cs" />
+    <Compile Include="Lines\States\PreMainMenu.cs" />
+    <Compile Include="Lines\States\PreSelectState.cs" />
+    <Compile Include="Lines\States\SelectState.cs" />
+    <Compile Include="Lines\States\State.cs" />
+    <Compile Include="Lines\States\WaitForServerState.cs" />
+    <Compile Include="Lines\Utils\Circle.cs" />
+    <Compile Include="Lines\Utils\Constants.cs" />
+    <Compile Include="Lines\Utils\Line.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="MonoGame.Framework, Version=3.4.0.459, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MonoGame.Framework.WindowsGL.3.4.0.459\lib\net40\MonoGame.Framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="OpenTK, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
+      <HintPath>..\packages\MonoGame.Framework.WindowsGL.3.4.0.459\lib\net40\OpenTK.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <MonoGameContentReference Include="Content\Content.mgcb" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

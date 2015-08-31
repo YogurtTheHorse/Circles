@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Profile>Reach</Profile>
+  <Platform>Windows</Platform>
+  <Config />
+  <SourceFiles>
+    <File>E:/Dev/Lines/Lines/Content/1st-won.png</File>
+    <File>E:/Dev/Lines/Lines/Content/2nd-won.png</File>
+    <File>E:/Dev/Lines/Lines/Content/replay.png</File>
+    <File>E:/Dev/Lines/Lines/Content/Roboto.spritefont</File>
+    <File>E:/Dev/Lines/Lines/Content/Roboto-Big.spritefont</File>
+    <File>E:/Dev/Lines/Lines/Content/song17.mp3</File>
+    <File>E:/Dev/Lines/Lines/Content/song17.wav</File>
+    <File>E:/Dev/Lines/Lines/Content/song18.wav</File>
+    <File>E:/Dev/Lines/Lines/Content/song18_0.mp3</File>
+    <File>E:/Dev/Lines/Lines/Content/song21_0.mp3</File>
+  </SourceFiles>
+</SourceFileCollection>
