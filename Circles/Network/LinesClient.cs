@@ -65,6 +65,8 @@ namespace Lines.Network {
                         switch (status) {
                             case NetConnectionStatus.Disconnected:
                                 connection = null;
+                                string s = msg.ReadString();
+                                s += "";
                                 break;
 
                             case NetConnectionStatus.Connected:

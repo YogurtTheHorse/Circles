@@ -11,6 +11,7 @@ namespace Lines {
         public static LinesGame instance;
         public static bool IsMobile;
 
+        public static Texture2D Host, Join;
         public static Texture2D Empty, LANGame, GlobalGame;
         public static Texture2D GameTitle, LocalGame, MultiplayerGame;
         public static Texture2D FirstWon, SecondWon, DrawWom, Replay, ToMainMenu;
@@ -28,6 +29,7 @@ namespace Lines {
         public static IState CurrentState;
 
         public static Network.LinesClient client;
+        public static Network.LinesServer server;
 
         public LinesGame(bool isMobile) {
             instance = this;
@@ -78,6 +80,9 @@ namespace Lines {
             Empty = StringToTexture(" ");
             LANGame = StringToTexture("         LAN Game         ");
             GlobalGame = StringToTexture("Internet game");
+
+            Host = StringToTexture("           Host           ");
+            Join = StringToTexture("Join");
 
             MusicManager = new MusicManager();
         }
@@ -136,6 +141,10 @@ namespace Lines {
 
         protected override void OnExiting(object sender, EventArgs args) {
             base.OnExiting(sender, args);
+
+            if (server != null) {
+                server.Stop();
+            }
 
             CurrentState.OnExit();
         }

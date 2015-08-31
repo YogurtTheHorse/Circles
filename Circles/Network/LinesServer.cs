@@ -4,6 +4,7 @@ using Lines.Utils;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace Lines.Network {
     public class LinesServer {
@@ -23,6 +24,13 @@ namespace Lines.Network {
             Lobbies = new List<Lobbie>();
         }
 
+        public void StartInNewThread(Action<string> log) {
+            Thread t = new Thread(delegate () {
+                Start(log);
+            });
+            t.Start();
+        }
+
         public void Start(Action<string> log) {
             this.log = log;
 
@@ -32,6 +40,10 @@ namespace Lines.Network {
             log("Server started at 0.0.0.0:" + NetworkGlobals.Port);
             while (serverWorking) {
                 Update();
+            }
+
+            foreach (NetConnection c in server.Connections) {
+                c.Disconnect("bye");
             }
         }
 
@@ -84,6 +96,10 @@ namespace Lines.Network {
                     i--;
                 }
             }
+        }
+
+        public void Stop() {
+            serverWorking = false;
         }
     }
 }

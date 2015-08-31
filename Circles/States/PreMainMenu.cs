@@ -1,4 +1,5 @@
-﻿using Lines.Utils;
+﻿using Lines.Network;
+using Lines.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,16 @@ namespace Lines.States {
         }
 
         public static void OnLan() {
+            LinesGame.CurrentState = new PreSelectState(instance.color, LinesGame.Empty, LinesGame.Host, LinesGame.Join, OnHost, OnJoin, true);
+        }
+
+        public static void OnHost() {
+            LinesGame.server = new LinesServer();
+            LinesGame.server.StartInNewThread((s) => { });
+            OnJoin();
+        }
+
+        public static void OnJoin() {
             LinesGame.CurrentState = new WaitForServerState(true);
         }
 
