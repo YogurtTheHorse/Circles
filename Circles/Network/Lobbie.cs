@@ -58,7 +58,7 @@ namespace Lines.Network {
             byte[] encodedPassword = new UTF8Encoding().GetBytes(CreatedAt.ToString());
             byte[] hash = ((HashAlgorithm)CryptoConfig.CreateFromName("MD5")).ComputeHash(encodedPassword);
 
-            return BitConverter.ToString(hash).Replace("-", string.Empty).Substring(0, 6);
+            return BitConverter.ToString(hash).Replace("-", string.Empty).Substring(0, 6).ToLower();
         }
 
         public void Connect(NetConnection conn) {
