@@ -10,19 +10,19 @@ namespace Lines.States {
     public class PreSelectState : IState {
         public delegate void OnSelectHandler();
         
-        private bool isOpening;
+        protected bool isOpening;
 
-        private LinesGame game;
-        private float animationTime = 0f;
-        private float lineWidth = 0f;
-        private float imagesHeight = 0f;
+        protected LinesGame game;
+        protected float animationTime = 0f;
+        protected float lineWidth = 0f;
+        protected float imagesHeight = 0f;
 
-        private Color color;
-        private Texture2D title;
-        private Texture2D first;
-        private Texture2D second;
-        private OnSelectHandler onFirst;
-        private OnSelectHandler onSecond;
+        protected Color color;
+        protected Texture2D title;
+        protected Texture2D first;
+        protected Texture2D second;
+        protected OnSelectHandler onFirst;
+        protected OnSelectHandler onSecond;
 
         public PreSelectState(Color color, Texture2D title, Texture2D first, Texture2D second, OnSelectHandler onFirst, OnSelectHandler onSecond, bool isOpening) {
             this.color = color;

@@ -34,13 +34,20 @@ namespace Lines.Network {
 
         private float tickTime;
 
-        public LinesClient() {
+        private bool isLANGame;
+
+        public LinesClient(bool isLANGame) {
+            this.isLANGame = isLANGame;
+
             config = NetworkGlobals.GetConfig();
             client = new NetClient(config);
 
             tickTime = 1f;
 
             client.Start();
+            if (!isLANGame) {
+                connection = client.Connect(NetworkGlobals.IP, NetworkGlobals.Port);
+            }
         }
 
         public void Update(GameTime gameTime) {
@@ -48,7 +55,9 @@ namespace Lines.Network {
             while ((msg = client.ReadMessage()) != null) {
                 switch (msg.MessageType) {
                     case NetIncomingMessageType.DiscoveryResponse:
-                        connection = client.Connect(msg.SenderEndPoint);
+                        if (connection == null) {
+                            connection = client.Connect(msg.SenderEndPoint);
+                        }
                         break;
 
                     case NetIncomingMessageType.StatusChanged:
@@ -73,7 +82,7 @@ namespace Lines.Network {
                 client.Recycle(msg);
             }
 
-            if (connection == null) {
+            if (isLANGame && connection == null) {
                 tickTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
                 while (tickTime >= 1f) {

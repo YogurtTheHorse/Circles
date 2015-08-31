@@ -13,8 +13,8 @@ namespace Lines.States {
 
         private bool gameStarted;
 
-        public WaitForServerState() {
-            LinesGame.client = new Network.LinesClient();
+        public WaitForServerState(bool isLANGame) {
+            LinesGame.client = new Network.LinesClient(isLANGame);
             LinesGame.client.OnGameStarted += GameStarted;
             LinesGame.client.OnConnect += OnConnect;
 

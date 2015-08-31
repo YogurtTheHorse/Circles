@@ -11,6 +11,7 @@ namespace Lines {
         public static LinesGame instance;
         public static bool IsMobile;
 
+        public static Texture2D Empty, LANGame, GlobalGame;
         public static Texture2D GameTitle, LocalGame, MultiplayerGame;
         public static Texture2D FirstWon, SecondWon, DrawWom, Replay, ToMainMenu;
         public static Texture2D[] WonTextures;
@@ -63,7 +64,7 @@ namespace Lines {
 
             GameTitle = StringToTexture("  Lines  ", BigFont);
             LocalGame = StringToTexture("        Local game        ");
-            MultiplayerGame = StringToTexture("LAN Multiplayer (Beta)");
+            MultiplayerGame = StringToTexture("Multiplayer (Beta)");
 
             FirstWon = StringToTexture("1st palyer won!");
             SecondWon = StringToTexture("2nd palyer won!");
@@ -73,6 +74,10 @@ namespace Lines {
 
             Replay = StringToTexture("Replay?");
             ToMainMenu = StringToTexture("Go to main menu");
+
+            Empty = StringToTexture(" ");
+            LANGame = StringToTexture("         LAN Game         ");
+            GlobalGame = StringToTexture("Internet game");
 
             MusicManager = new MusicManager();
         }
