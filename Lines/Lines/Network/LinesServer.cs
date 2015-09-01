@@ -38,8 +38,19 @@ namespace Lines.Network {
             serverWorking = true;
 
             log("Server started at 0.0.0.0:" + NetworkGlobals.Port);
+
+            TimeSpan updateLen = TimeSpan.FromMilliseconds(1000d / Constants.UPS);
+            DateTime t = DateTime.Now;
+
             while (serverWorking) {
                 Update();
+
+                TimeSpan d = DateTime.Now - t;
+                if (d < updateLen) {
+                    Thread.Sleep(updateLen - d);
+                }
+
+                t = DateTime.Now;
             }
 
             foreach (NetConnection c in server.Connections) {

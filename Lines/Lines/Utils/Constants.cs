@@ -24,6 +24,8 @@ namespace Lines.Utils {
         public const float LINE_ANIMATION_TIME = 0.5f;
         public const float LINE_THICKNESS = 0.015f;
 
+        public static int UPS = 60;
+
         public static void RandomColorScheme() {
             Color[][] colorScemes = new Color[][] {
                 new Color[] {
